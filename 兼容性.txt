@@ -1,7 +1,30 @@
 兼容性:
 
-1.ie6，7不能兼容border-radius；      
-若需要可以用切图的方式进行模拟。
+1.ie6，7不能兼容border-radius；
+若需要可以用图片的方式进行模拟。
 
-2.ie6, 7中如果兄弟元素没有给左浮动，而本身给了右浮动，将会出现塌陷（也就是掉下去）；     
+2.ie6, 7中如果兄弟元素没有给左浮动，而本身给了右浮动，将会出现塌陷（也就是掉下去）；
 如需要可以将右浮动的元素写在左边元素的前面。如：<span style="float:right"></span><p></p>
+
+3.ie6, 7不兼容ES6的写法，所以写js的时候要注意。
+4.ie6,7对CSS3的一些属性不能识别。
+比如animation；建议自己用jquery的animate（）方法实现。
+
+5.ie6,7不识别伪类。
+6.图片会自带3px；
+解决方法：display：block；
+
+7.a标签包含img，会出现蓝色边框；
+解决方法：border：0；
+
+8.ie8及以下，有时候会遇到一个问题，当你用一个图片覆盖了整个页面，且你给了z-index属性，在下面的盒子中，空白处都会默认为这个图片。
+解决方法：要给此盒子加background去覆盖这个层级关系，才可以选中此盒子对应的空白处。
+
+9.ie6兼容min-height
+解决方法：min-height：value；height：auto！important；height：value；（注意顺序不能换）。
+
+10.表单元素距离顶部不一致
+运用float来解决。
+
+11.margin外边距重叠，相互并列的两个元素，一个给了margin-top，一个给了margin-bottom，浏览器按照两者之间较大的值进行解析
+解决方法：给其中一个元素加overflow：hidden。

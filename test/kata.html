@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.1.min.js"></script>
+	</head>
+	<body>
+	</body>
+	<script>
+		//找到一个完美正方形的下一个值
+		/*function findNextSquare(sq) {
+		  // Return the next square if sq if a perfect square, -1 otherwise
+		  if(Math.sqrt(sq)%1===0){
+		  	return (Math.sqrt(sq)+1)**2;
+		  }else{
+		  	return -1;
+		  }
+		  
+		}*/
+		
+		//头字母大写
+		/*String.prototype.toJadenCase = function () {
+		  var arr = this.split(" ");
+		  for(var i=0;i<arr.length;i++){
+		  	var n = arr[i].slice(0,1);
+		  	var reg = new RegExp(`^${n}`,"ig");
+		  	n = n.toUpperCase();
+		  	arr[i] = arr[i].replace(reg,n);
+		  }
+		  var s = arr.join(" ");
+		  return s;
+		};
+		
+		String.prototype.toJadenCase = function () {
+  			return this.replace(/(^|\s)[a-z]/g, function(x){ return x.toUpperCase(); });
+		};
+
+		var str = "How can mirrors be real if our eyes aren't real";
+		str.toJadenCase();*/
+		
+		//数字根是数字中所有数字的递归和。给定n，取n的数字之和。如果该值有两位数，则以这种方式继续减少，直到产生一位数字。这仅适用于自然数。
+		/*function digital_root(n){
+			var x = 0;
+			if(n>=10){
+				x += n%10;
+				n = parseInt(n/10);			
+			}else{
+				return n;
+			}
+			return digital_root(x+digital_root(n));
+		}*/
+		/*function digital_root(n) {
+  return (n - 1) % 9 + 1;
+}
+		console.log(digital_root(16));
+		console.log(digital_root(942));*/
+		
+		//实现一个接受3个整数值a，b，c的方法。如果可以使用给定长度的边构建三角形而在任何其他情况下使用false，则该方法应返回true。
+		/*function triangle(a,b,c){
+			if(a+b>c&&a+c>b&&b+c>a){
+				return true;
+			}
+		}*/
+		
+		/*function likes(names) {
+  			if(names==[]){
+  				return 'no one likes this';
+  			}else if(names.length==1){
+  				return `${names[0]} likes this`;
+  			}else if(names.length==2){
+  				return `${names[0]} and ${names[1]} like this`;
+  			}else if(names.length==3){
+  				return `${names[0]}, ${names[1]} and ${names[2]} like this`;
+  			}else{
+  				return `${names[0]}, ${names[1]} and ${names.length-2} others like this`;
+  			}
+		}*/
+		//隐藏密码
+		/*function maskify(cc) {
+			if(cc.length<4){
+				return cc;
+			}else{
+				
+				var str = `${cc.charAt(cc.length-4)}${cc.charAt(cc.length-3)}${cc.charAt(cc.length-2)}${cc.charAt(cc.length-1)}`;
+				var arr = str.split("");
+				for(var i=0;i<cc.length-4;i++){
+					arr.unshift("*");
+				}
+				return arr.join("");
+			}
+			if(cc.length<4){
+				return cc;
+			}else{
+				var str = `${cc.charAt(cc.length-4)}${cc.charAt(cc.length-3)}${cc.charAt(cc.length-2)}${cc.charAt(cc.length-1)}`;
+				var s = str.padStart(cc.length,'*');
+				return s;
+			}
+		}
+		console.log(maskify("567894564"));*/
+		//有效密码
+		/*function validatePIN (pin) {
+ 			return pin.test(/^(\d{4}|\d{6})$/);
+		}*/
+		/*function isIsogram(str){
+			if(str==""){
+				return true;
+			}
+			str = str.replace(/[A-Z]/g,function(x){
+				return x.toLowerCase();
+			})
+			var arr = str.split("");
+			var set = new Set(arr);
+			console.log(arr.length,set.size);
+			if(arr.length == set.size){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		console.log(isIsogram("ADFAG"));*/
+		/*function digPow(n, p){
+  			var s = n.toString();
+  			var arr = s.split("");
+  			var k;
+  			var sum = 0;
+  			for(var i = 0;i<arr.length;i++){
+  				sum+=Math.pow(arr[i],p)
+  				p++;
+  			}
+  			k = sum/n;
+  			if(k==parseInt(k)){
+  				return k;
+  			}else{
+  				return -1;
+  			}
+		}
+		console.log(digPow(89,1));
+		console.log(digPow(92,1));
+		console.log(digPow(46288,3));*/
+		
+		/*console.log("5498486321".search(/\d/));*/
+		/*如果我们列出10以下的所有自然数是3或5的倍数，我们得到3,5,6和9.这些倍数的总和是23。
+
+完成解决方案，使其返回传入数字下方所有3或5的倍数之和。
+
+注意：如果号码的倍数都 3和5，只计算它一次。*/
+		/*function solution(number){
+			var sum = 0;
+              for(var i=1;i<number;i++){
+              	if(i%3==0||i%5==0){
+              		console.log(i);
+              		sum+=i;
+              	}
+              }
+            return sum;
+		}
+		console.log(solution(10));*/
+		
+		/*编写一个方法，将一系列连续（递增）字母作为输入，并返回数组中缺少的字母。
+
+您将始终获得有效的数组。它总会丢失一个字母。数组的长度始终至少为2. 
+数组中只包含一个字母。
+
+例：
+
+['a','b','c','d','f'] -> 'e'
+['O','Q','R','S'] -> 'P'*/
+/*function findMissingLetter(array)
+{
+	var arr=[];
+	var n;
+	for(var i = 0;i<array.length;i++){
+		arr.push(array[i].charCodeAt());
+	}
+	for(var j = 0;j<arr.length;j++){
+		if(arr[j+1]-arr[j]==2){
+			n=arr[j]+1;
+		}
+	}
+  return String.fromCharCode(n);
+}
+console.log(findMissingLetter(['a','b','c','d','f']));*/
+
+/*function findUniq(arr) {
+  var obj = {};
+  for (var i=0;i<arr.length;i++){
+  	if(!obj[arr[i]]){
+  		obj[arr[i]]=1;
+  	}else{
+  		obj[arr[i]]++;
+  	}
+  }
+  for(var j in obj){
+  	if(obj[j]==1){
+  		return j;
+  	}
+  }
+}
+console.log(findUniq([0,1,0]));
+console.log(findUniq([1,1,1,2,1,1]));
+console.log(findUniq([3,10,3,3,3]));*/
+
+/*给定列表lst和数字N，创建一个新列表，其中包含最多n次的每个lst数，而无需重新排序。例如，如果N = 2，输入为[1,2,3,1,2,1,2,3]，则取[1,2,3,1,2]，然后删除[1,2,3,1,2] ]因为这会导致1和2在结果中3次，然后取3，这导致[1,2,3,1,2,3]。
+
+例
+  deleteNth ([1,1,1,1],2) // return [1,1]
+
+  deleteNth ([20,37,20,21],1) // return [20,37,21]*/
+ function del(arr,n){
+ 	var ar=[];
+ 	var obj={};
+ 	for(var i=0;i<arr.length;i++){
+ 		if(!obj[arr[i]]){
+ 			obj[arr[i]]=1;
+ 			ar.push(arr[i]);
+ 		}else{
+ 			if(obj[arr[i]]==n){
+ 				continue;
+ 			}else{
+ 				obj[arr[i]]++;
+ 				ar.push(arr[i]);
+ 			}
+ 			
+ 		}
+    }
+ 	return ar;
+ }
+ console.log(del([1,1,1,1],2));
+	</script>
+</html>

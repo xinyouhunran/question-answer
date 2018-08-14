@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500" style="border:1px solid #000;"></canvas>
+		<div style="width:50px;height:50px;background:blue" class="blue"></div>
+		<marquee behavior="scroll" direction="up" scrollamount="5">
+			<p>12356</p>
+			<p>489789486</p>
+			<p>46513148</p>
+		</marquee>
+		<div id="footer"></div>
+		<iframe src="footer.html" frameborder="0" width="100%" scrolling="no" id="ifm" name="ifm"></iframe>
+		<!--<iframe frameborder="0" scrolling="no" src="https://www.stc.gov.cn/szwsjj_zxrs/" width="100%" height="36"></iframe>-->
+	</body>
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+	<!--<script>
+		$(function(){
+			$("#footer").load("footer.html");
+		})
+	</script>-->
+	<script type="text/javascript" src="test.js"></script>
+	<script>
+			var ifm = document.getElementById("ifm");
+			var height  = ifm.contentWindow.document.documentElement.offsetHeight;
+			console.log(height);
+	</script>
+	<script type="text/javascript">
+		var blue = document.getElementsByClassName("blue");
+		console.log(blue);
+		var color = "#000";
+		var canvas = document.getElementById('mycanvas');
+				canvas.onmousedown = function(e){
+				var e = e || event;
+				/*console.log(e.offsetX,e.offsetY);*/
+				var originx = e.offsetX;
+				var originy = e.offsetY;
+				document.onmousemove = function(ev){
+					var ev = ev || event;
+					var linex = ev.offsetX;
+					var liney = ev.offsetY;
+					draw(originx,originy,linex,liney,color);
+					originx = linex;
+					originy = liney;
+					canvas.onmouseup = function(eve){
+						document.onmousemove = false;
+					}
+				}
+			}
+		
+		
+		blue[0].onclick = function(){
+			color = this.style.background;
+			console.log(color);
+		}
+		function draw(originx,originy,linex,liney,color){
+		    
+		    if (!canvas.getContext) return;
+		    var ctx = canvas.getContext("2d");
+		    ctx.beginPath();
+		    ctx.strokeStyle = color;
+		    ctx.moveTo(originx, originy);
+		    ctx.lineTo(linex, liney);
+		    
+		    /*ctx.lineTo(200, 200);*/
+		    /*ctx.closePath();*/ //虽然我们只绘制了两条线段，但是closePath会closePath，仍然是一个3角形
+		    ctx.stroke(); //描边。stroke不会自动closePath()
+		}
+		/*draw();*/
+		var d = new Date();
+		console.log(d)
+	</script>
+</html>

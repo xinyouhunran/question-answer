@@ -1,0 +1,13 @@
+<ul class="firstu">
+	<TRS_DOCUMENTS ID="TPYW" NUM="6" ORDER="WCMDOCUMENT.docRelTime desc">
+		<li><span><TRS_DOCUMENT FIELD="docRelTime" DATEFORMAT="yyyy-MM-dd"/></span><TRS_DOCUMENT FIELD="docTitle" LINKALT="true" AUTOLINK="true" target="_blank" NUM="52" /></li>
+	</TRS_DOCUMENTS>
+</ul>
+//上面的写法是文档真实存入时间（FIELD="docRelTime"）
+
+<ul class="secondu hidden">
+	<TRS_DOCUMENTS ID="LDPS" NUM="5">
+		<li><span><TRS_DATETIME DATEFORMAT="MM-dd"></TRS_DATETIME></span><TRS_DOCUMENT FIELD="docTitle" NUM="50" AUTOLINK="true"></trs_DOCUMENT></li>
+	</TRS_DOCUMENTS>
+</ul>
+//下面的是文档发布后的时间（TRS_DATETIME）

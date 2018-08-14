@@ -1,0 +1,4 @@
+ios端支持window.location.href;
+但安卓端不支持。
+建议都用$（“a”）.attr("href":".........");
+避免出错。

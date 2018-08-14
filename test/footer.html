@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+		<script>
+			$(function(){
+				console.log($(".container"));
+			})
+		</script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				height: 100%;
+			}
+			.container{
+				min-height: 100%;
+				position: relative;
+			}
+			.box{
+				width:100%;
+				height: 1000px;
+				background: blue;
+			}
+			#footer{
+				position: absolute;
+				bottom: 0;
+				width:100%;
+				height:100px;
+				background: #64A131;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="box"></div>
+			<div id="footer">
+				footer	
+			</div>
+			<div class="container,.box" style="height:100px"></div>
+		</div>
+		<!--<script language="javascript">
+document.write("<div class='bdsharebuttonbox'><a title='分享到QQ空间' class='bds_qzone' href='#' data-cmd='qzone'></a><a title='分享到新浪微博' class='bds_tsina' href='#' data-cmd='tsina'></a><a title='分享到人人网' class='bds_renren' href='#' data-cmd='renren'></a><a title='分享到微信' class='bds_weixin' href='#' data-cmd='weixin'></a></div>");
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>-->
+	</body>
+	<script>
+			var x = $("#footer").height();
+			console.log(x);
+			console.log($(".container,.box"));
+			
+		</script>
+	<script>
+		/*function dd(){
+			var bh = $(".box").height();
+			var ch = $(document).height();
+			var fh = $("#footer").height();
+			console.log(bh,ch);
+		
+			if(bh<ch){
+				var h = -(ch-bh)+"px";
+			    console.log(h);
+				$("#footer").css({"position":"absolute","bottom":h});
+			}
+		}
+		dd();
+		$(window).resize(function(){
+			console.log(1);
+			dd();
+		})*/
+		
+	</script>
+	<script>
+		
+		function add(arg){
+			console.log(arguments.length);
+			console.log(arguments[2]);
+		}
+		add(2,3,4);
+		var x = 5;
+		var str = `<div>${x}</div>`;
+		$(".box").append(str);
+	</script>
+	<script>
+		function findIndex(arr1,arr2){
+			var n;
+			for(var i = 0;i<arr1.length;i++){
+				for(var j = 0;j<arr2.length;j++){
+					if(arr1[i].timeStart==arr2[j].timeStart){
+						n = i;
+						return n;
+					}
+				}
+			}
+		}
+		var getTimes = [{timeStart: ' ',timeEnd: ' ',timeStartLater: "", timeEndLater: ""}, 
+		{timeStart: '9:00',timeEnd: '10：00',timeStartLater: "", timeEndLater: ""}, 
+		{timeStart: '10:30',timeEnd: '12:00',timeStartLater: "", timeEndLater: ""},
+		{timeStart: '',timeEnd: '',timeStartLater: "", timeEndLater: ""}]
+		var cc = [
+		{ timeStart: '10:30', timeEnd: '12:00'},
+		{ timeStart: '16:00', timeEnd: '17:00' }
+		]
+		var index = findIndex(getTimes,cc);
+		console.log(index);
+		var j = 0;
+		for(index;index<getTimes.length;index++){
+			
+				getTimes[index].timeStartLater=cc[j].timeStart;
+				getTimes[index].timeEndLater=cc[j].timeEnd;
+				j++;
+		}
+		console.log(getTimes);
+		
+		
+	</script>
+</html>

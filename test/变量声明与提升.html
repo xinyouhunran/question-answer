@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul class="zxcd_wrap">
+			
+		</ul>
+	</body>
+	<!--<script>
+		function Foo() {
+    getName = function () { alert (1); };
+    return this;
+	}
+	Foo.getName = function () { alert (2);};
+	Foo.prototype.getName = function () { alert (3);};
+	var getName = function () { alert (4);};
+	function getName() { alert (5);}
+	 
+	//请写出以下输出结果：
+	Foo.getName();
+	getName();
+	Foo().getName();
+	getName();
+	new Foo.getName();
+	new Foo().getName();
+	new new Foo().getName();
+	</script>-->
+	<script src="http://www.stc.gov.cn/images/jquery-1.8.3-20180801.min.js"></script>
+	<script>
+			$(function(){
+				$.ajax({
+					url : 'http://app.gd.gov.cn/xxts/pushinfo_json.php',
+					dataType : "jsonp",
+					jsonp : "pushInfoJsonpCallBack",
+					jsonpCallback:"pushInfoJsonpCallBack",
+					success :function(data){
+						            console.log(222222222);
+		                            var htmlsj="";
+		                            var title="";
+		                            var s_title="";
+		                            var time="";
+		                            for(var z=0; z<5; z++){
+		                                 title=data[z].title;
+		                                 s_title = title;
+		                                 time=data[z].pubDate;
+		                                 if(time.length>0){
+		                                   time=time.substr(time.length-6);
+		                                 }
+		                                 if(title.length>15){
+		                                   title=title.substring(0,15)+"...";
+		                                 }
+		                                 htmlsj+="<li class='zscd_p'><a href='"+data[z].link+"' target='_blank' title='"+s_title+"'>"+title+"</a><span class='fr'>"+"["+time+"]"+"</span></li>";
+						$(".zxcd_wrap").html(htmlsj);
+					                } 
+	                } 
+				});
+			})
+		</script>
+		<script>
+			/*function test(n){
+				console.log(1);
+			}
+			test();*/
+			/*async function main() {
+			  await new Promise( resolve =>{
+			  	setTimeout(function(){
+				  	console.log(1);
+				  	resolve();
+				  },2000)
+			  })
+			  
+			}
+			async function time() {
+			  await main();
+			  setTimeout(function(){
+			  	console.log(2);
+			  },1000);
+			}
+			time();*/
+			/*var obj = {};
+			var str = "5433216455";
+			var arr = str.split("");
+			console.log(arr);
+			for(var i=0;i<arr.length;i++){
+				/*console.log(arr[i]);*/
+				/*console.log(obj)*/
+				/*if(!obj[arr[i]]){
+					obj[arr[i]] = 1;
+				}else{
+					obj[arr[i]]++;
+				}
+			}
+			console.log(obj);*/
+			var isSquare = function(n){
+			  var x = Math.sqrt(n);
+			  var str = `${x}`;
+			  console.log(str);
+			  console.log(/./.test(str));
+			  if(/./.test(str)==true){
+			  return false;
+			  }else{
+			  return true;
+			  }
+			}
+			console.log(isSquare(4));
+		</script>
+</html>
