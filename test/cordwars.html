@@ -207,7 +207,7 @@ console.log(findUniq([3,10,3,3,3]));*/
   deleteNth ([1,1,1,1],2) // return [1,1]
 
   deleteNth ([20,37,20,21],1) // return [20,37,21]*/
- function del(arr,n){
+/* function del(arr,n){
  	var ar=[];
  	var obj={};
  	for(var i=0;i<arr.length;i++){
@@ -226,6 +226,48 @@ console.log(findUniq([3,10,3,3,3]));*/
     }
  	return ar;
  }
- console.log(del([1,1,1,1],2));
+ console.log(del([1,1,1,1],2));*/
+/*您的工作是编写一个增加字符串的函数，以创建一个新字符串。如果字符串已经以数字结尾，则该数字应增加1.如果字符串不以数字结尾，则应将数字1附加到新字符串。
+
+例子：
+
+foo -> foo1
+
+foobar23 -> foobar24
+
+foo0042 -> foo0043
+
+foo9 -> foo10
+
+foo099 -> foo100*/
+/*function incrementString (strng) {
+  var index = strng.search(/\d/);
+  if(index==-1){
+  	return strng+1;
+  }else{
+  	var str = strng.slice(index);
+  	var n = Number(str)+1;
+  	n = n.toString();
+  	var arr = n.split("");
+  	for(var i=arr.length;i<str.length;i++){
+  		arr.unshift("0");
+  	}
+  	var s = strng.slice(0,index)+arr.join("");
+  	return s;
+  } 
+}
+incrementString("foo099");*/
+//阶乘结果中尾部0的数量;涉及到内存泄漏，肯定是不能计算出结果的，所以需要寻找方法，方法：当0 < n < 5时，f(n!) = 0;
+ //  当n >= 5时，f(n!) = k + f(k!), 其中 k = n / 5（取整）。
+/*function zeros (n) {
+  var flag = 0;
+     while(n>=5){
+        n/=5;
+       flag+=parseInt(n);
+     }
+ 
+  return flag;
+}
+console.log(zeros(1000));*/
 	</script>
 </html>
