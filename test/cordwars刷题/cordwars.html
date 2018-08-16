@@ -488,5 +488,164 @@ function cakes(recipe, available) {
 }
 console.log(cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200}));
 console.log(cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000}));*/
+
+
+/*42的除数是：1,2,3,6,7,14,21,42。这些除数的平方是：1,4,9,36,49,196,441,1764。平方除数的总和是2500这是50 * 50，一个正方形！
+
+给定两个整数m，n（1 <= m <= n）我们想要找到m和n之间的所有整数，其平方除数之和本身就是一个平方。42是这样的数字。
+
+结果将是一个数组或元组数组（在C中为一对数组）或一个字符串，每个子数组有两个元素，首先是平方除数为平方的数字，然后是平方除数的总和。
+
+＃例子：
+
+list_squared(1, 250) --> [[1, 1], [42, 2500], [246, 84100]]
+list_squared(42, 250) --> [[42, 2500], [246, 84100]]*/
+
+/*function list_squared(m,n){
+	var arr = [];
+	var brr = [];
+	var a = [];
+	for(m;m<=n;m++){
+		for(var i=1;i<=m;i++){
+			if(m%i==0){
+				arr.push(i);
+			}
+		}
+		for(var j=0;j<arr.length;j++){
+			brr.push(Math.pow(arr[j],2));
+		}
+		var sum = brr.reduce(function(x,y){
+			return x+y;
+		})
+		if(Math.sqrt(sum)==parseInt(Math.sqrt(sum))){
+			a.push([m,sum]);
+		}
+		arr = [];
+		brr = [];
+	}
+	return a;
+}
+console.log(list_squared(1, 250));*/
+
+
+/*什么是字谜？好吧，如果它们都包含相同的字母，则两个单词是彼此的字谜。例如：
+
+'abba' & 'baab' == true
+
+'abba' & 'bbaa' == true
+
+'abba' & 'abbba' == false
+编写一个函数，可以从列表中找到单词的所有字谜。您将获得两个输入单词和一个带单词的数组。你应该返回所有anagrams的数组，如果没有，则返回一个空数组。例如：
+
+anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']) => ['aabb', 'bbaa']
+
+anagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer']) => ['carer', 'racer']
+
+anagrams('laser', ['lazing', 'lazy',  'lacer']) => []*/
+/*function anagrams(word,words){
+	var arr = [];
+	var set1,set2;
+	for(var i=0;i<words.length;i++){
+		if(words[i].length==word.length){
+			set1 = word.split("");
+			set2 = words[i].split("");
+			set1.sort();
+			set2.sort();
+			console.log(set1,set2);
+			if(set1.toString() == set2.toString()){
+				arr.push(words[i]);
+			}
+		}
+	}
+	return arr;
+}
+console.log(anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']));*/
+
+/*将每个单词的第一个字母移动到它的末尾，然后在单词的末尾添加“ay”。保留标点符号不变。
+
+例子
+pigIt('Pig latin is cool'); // igPay atinlay siay oolcay
+pigIt('Hello world !');  */   // elloHay orldWay !
+
+/*function pigIt(str){
+	var arr = str.split(" ");
+	var s;
+	for(var i = 0;i<arr.length;i++){
+		if(/^[a-zA-Z]*$/.test(arr[i])){
+			s = arr[i].slice(0,1);
+			var str = arr[i].replace(/^./,"")+s+"ay";
+			arr[i] = str;
+		}
+	}
+	return arr.join(" ");
+}
+console.log(pigIt('Pig latin is cool !'));*/
+
+/*素数不是有规律的间隔。例如，从2到3的间隙1。从3到5差距2。从它7到11现在4。在2到50之间，我们有以下两个空位素数对： 3-5, 5-7, 11-13, 17-19, 29-31, 41-43
+
+长度为n的主要间隙是两个连续素数之间的n-1个连续复合数的运行（参见：http：//mathworld.wolfram.com/PrimeGaps.html）。
+
+我们将用参数写一个函数间隙：
+
+g （整数> = 2）表示我们正在寻找的差距
+
+m （整数> 2），它给出了搜索的开始（包括m）
+
+n （整数> = m）给出搜索结束（包括n）
+
+在上面的示例中，gap(2, 3, 50)将返回[3, 5] or (3, 5) or {3, 5}3到50之间的第一对，具有2个间隙。
+
+因此，如果这些数字存在（取决于语言），则此函数应返回间隔 在限制之间的第一对两个素数。gmnnil or null or None or Nothing
+
+在C ++中返回这种情况{0, 0}。在F＃回归[||]。在Kotlin回归[]
+
+＃例子： gap(2, 5, 7) --> [5, 7] or (5, 7) or {5, 7}
+
+gap(2, 5, 5) --> nil. In C++ {0, 0}. In F# [||]. In Kotlin return[]`
+
+gap(4, 130, 200) --> [163, 167] or (163, 167) or {163, 167}
+
+（[193,197]也是130到200之间的这种4-gap素数，但它不是第一对）
+
+gap(6,100,110) --> nil or {0, 0}：在100到110之间，我们有101, 103, 107, 109但101-107不是6个缺口，因为103介于两者之间并且103-109不是6个缺口，因为107介于两者之间。*/
+/*gap（11,30000,100000）*/
+/*function gap(g,m,n){
+	var flag = true;
+	var arr = [];
+	for(m;m<=n;m++){
+		if(m%2==0){
+			flag = false;
+		}else{
+			for(var i = 3;i<m;i=i+2){
+				if(m%i==0){
+					flag = false;
+					break;
+				}
+			}
+		}	
+		if(flag){
+			if(arr.length!==1){
+				arr.push(m);
+			}else{
+				if(m-arr[0]==g){
+					return [arr[0],m];
+				}else{
+					arr[0] = m;
+				}
+			}
+		}
+		flag = true;
+	}
+	if(arr.length==1){
+		return null;
+	}
+	
+}
+console.log(gap(2,3,50));*//*for(var i=0;i<arr.length;i++){
+		if(arr[i+1]-arr[i]==g){	
+			return [arr[i],arr[i+1]];
+		}
+	}
+	return null;*/
 	</script>
 </html>

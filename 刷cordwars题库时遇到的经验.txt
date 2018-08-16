@@ -18,4 +18,8 @@
 
 6.es7     padStart（自定义长度，自定义值）头部补全 
 
-  如：“123”.padStart（“5”，“0”）；=》“00123”；     
+  如：“123”.padStart（“5”，“0”）；=》“00123”；
+
+7.Number.isInterger()用来判断一个数是否是整数。  
+
+8.判断两个数组是否相等：arr1.toString()==arr2.toString().   
