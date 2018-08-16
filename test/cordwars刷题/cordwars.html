@@ -392,5 +392,101 @@ console.log(add("100000000000000000000000000000000000000000000000000000000000000
   return sum;
 }
 score([1,1,5,4,1]);*/
+
+//获取顶级域名
+/*function domainName(url){
+ var str = url.replace(/(http:\/\/|https:\/\/){0,1}(www\.){0,1}/,"1");
+  console.log(str);
+  var index = str.search(/\./);
+  var s = str.slice(1,index);
+  console.log(s);
+}
+console.log(domainName("http://google.com"));
+console.log(domainName("www.xakep.ru"));
+console.log(domainName("http://google.co.jp"));*/
+
+/*function formatDuration (seconds) {
+  var year;
+  var day;
+  var hour;
+  var minute;
+  var second;
+  var y="";
+  var d="";
+  var h="";
+  var m="";
+  var s="";
+  var len = 5;
+  var arr = [];
+
+  if(seconds/31536000>1){
+  	year = parseInt(seconds/31536000);
+  	seconds = seconds%31536000;
+  }
+  if(seconds/86400>1){
+  	day = parseInt(n/86400);
+  	seconds = seconds%86400;
+  }
+  if(seconds/3600>1){
+  	hour = parseInt(n/3600);
+  	seconds = seconds%3600;
+  }
+  if(seconds/60>1){
+  	minute = parseInt(n/60);
+  	seconds = seconds%60;
+  }
+  second = seconds;
+  if(year==1&&year!=0){
+  	y = "year";
+  }else{
+  	y = "years"
+  }
+  if(day==1&&day!=0){
+  	d = "day";
+  }else{
+  	d = "days";
+  }
+  if(hour==1&&hour!=0){
+  	h = "hour";
+  }else{
+  	h = "hours";
+  }
+  if(minute==1&&minute!=0){
+  	m = "minute";
+  }else{
+  	m = "minutes";
+  }
+  if(second==1&&second!=0){
+  	s = "second";
+  }else{
+  	s = "seconds";
+  }
+}*/
+/*皮特喜欢烤一些蛋糕。他有一些食谱和配料。不幸的是，他在数学上并不擅长。你可以帮他找一下，考虑到他的食谱，他可以烘烤多少块蛋糕？
+
+编写一个函数cakes()，它接受配方（对象）和可用成分（也是一个对象）并返回Pete可以烘焙的最大蛋糕数（整数）。为简单起见，没有单位的数量（例如1磅面粉或200克糖只是1或200）。对象中不存在的成分可以视为0。
+
+例子：
+
+// must return 2
+cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200}); 
+// must return 0
+cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000});
+function cakes(recipe, available) {
+  var arr = [];
+  for(var i in recipe){
+  	if(!available[i]){
+  		return 0;
+  	}
+  	if(available[i]/recipe[i]>=1){
+  		arr.push(parseInt(available[i]/recipe[i]));
+  	}else{
+  		return 0;
+  	}
+  }
+  return Math.min(...arr);
+}
+console.log(cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200}));
+console.log(cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000}));*/
 	</script>
 </html>

@@ -1,0 +1,21 @@
+1.var s = str.charCodeAt();转ASCII码
+
+2.String.fromCharCode(65);转字母
+
+3.es6    ... (扩展运算符)，将一个数组转化成由逗号分割的队列。
+
+  如：arr = [1,2,3]            ...arr  => 1,2,3;
+  
+  当你需要找一个数组中的最小值的时候便可以Math.min(...arr);
+
+4.arr.reduce(function(){},初始值)；累计一个数组中的元素,
+
+  如：arr.reduce(function(x,y){
+      return x + y;
+  }，0)
+
+5.es6     set 集合长度用size；
+
+6.es7     padStart（自定义长度，自定义值）头部补全 
+
+  如：“123”.padStart（“5”，“0”）；=》“00123”；     
