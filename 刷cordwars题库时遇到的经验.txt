@@ -22,4 +22,10 @@
 
 7.Number.isInterger()用来判断一个数是否是整数。  
 
-8.判断两个数组是否相等：arr1.toString()==arr2.toString().   
+8.判断两个数组是否相等：arr1.toString()==arr2.toString().
+
+9.实现反转的sort排序：sort（x=>1）//箭头函数
+
+10.replace（）想要替换所有匹配的值时，要在正则表达式那里加上g，也就是全局，否则他只会匹配第一个。
+
+   
