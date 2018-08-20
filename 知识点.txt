@@ -10,7 +10,7 @@
 
 4.arr.reduce(function(){},初始值)；累计一个数组中的元素,
 
-  如：arr.reduce(function(x,y){
+  如累加：arr.reduce(function(x,y){
       return x + y;
   }，0)
 
@@ -29,5 +29,10 @@
 10.replace（）想要替换所有匹配的值时，要在正则表达式那里加上g，也就是全局，否则他只会匹配第一个。
 
 11.$("li:gt(index));取大于索引的所有值。
+
+12.判断二进制数能否被3整除正则表达式：var reg = /^0*(1(01*0)*10*)*$/
+
+13.instanceOf 用来判断一个对象是否是由另一个对象生成的
+   typeOf     用来判断类型
 
    
