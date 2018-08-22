@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		/*给定列表lst和数字N，创建一个新列表，其中包含最多n次的每个lst数，而无需重新排序。例如，如果N = 2，输入为[1,2,3,1,2,1,2,3]，则取[1,2,3,1,2]，然后删除[1,2,3,1,2] ]因为这会导致1和2在结果中3次，然后取3，这导致[1,2,3,1,2,3]。
+
+例
+  deleteNth ([1,1,1,1],2) // return [1,1]
+
+  deleteNth ([20,37,20,21],1) // return [20,37,21]*/
+ function del(arr,n){
+ 	var ar=[];
+ 	var obj={};
+ 	for(var i=0;i<arr.length;i++){
+ 		if(!obj[arr[i]]){
+ 			obj[arr[i]]=1;
+ 			ar.push(arr[i]);
+ 		}else{
+ 			if(obj[arr[i]]==n){
+ 				continue;
+ 			}else{
+ 				obj[arr[i]]++;
+ 				ar.push(arr[i]);
+ 			}
+ 			
+ 		}
+    }
+ 	return ar;
+ }
+ console.log(del([1,1,1,1],2));
+	</script>
+</html>

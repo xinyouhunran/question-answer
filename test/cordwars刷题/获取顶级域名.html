@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		//获取顶级域名
+function domainName(url){
+ var str = url.replace(/(http:\/\/|https:\/\/){0,1}(www\.){0,1}/,"1");
+  console.log(str);
+  var index = str.search(/\./);
+  var s = str.slice(1,index);
+  console.log(s);
+}
+console.log(domainName("http://google.com"));
+console.log(domainName("www.xakep.ru"));
+console.log(domainName("http://google.co.jp"));
+	</script>
+</html>

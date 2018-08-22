@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		//大数字之和，返回结果是字符串（考虑到数字特别大，如果相加会产生e）
+		function add(a, b) {
+  var arr = a.split("");
+  var brr = b.split("");
+  var crr = [];
+  var i;
+  var n;
+  var flag = false;判断两个数字相加是否大于10;
+  var f = false;判断头两位相加是否大于10
+  if(arr.length<=brr.length){
+  	i = brr.length-1;
+  	for(var j=arr.length;j<brr.length;j++){
+  		arr.unshift("0");
+  	}
+  }else{
+  	i = arr.length-1;
+  	for(var j=brr.length;j<arr.length;j++){
+  		brr.unshift("0");
+  	}
+  }
+  for(i;i>=0;i--){
+  	if(flag){上一级的两个数字相加大于10
+  		n = Number(arr[i])+Number(brr[i])+1;
+  		console.log(n);
+  	}else{
+  		n = Number(arr[i])+Number(brr[i]);
+  	}
+  	if(n>=10){两个数字相加大于10
+  		crr.unshift(n%10);
+  		flag = true;
+  		if(i==0){头部两个数字相加
+  			f = true;
+  		}
+  	}else{
+  		crr.unshift(n);
+  		flag = false;
+  	}
+  }
+  if(f){头部两个数字相加大于10
+  	crr.unshift(1);
+  }
+  if(crr[0]==0){
+  	crr.shift();
+  }
+  return crr.join("");
+}
+console.log(add("123","321"));
+console.log(add("11","99"));
+console.log(add("9","11"));
+console.log(add("10000000000000000000000000000000000000000000000000000000000000000","10000000000000000000000000000000000000000000000000000000000000000000000000000000000000"));
+	</script>
+</html>

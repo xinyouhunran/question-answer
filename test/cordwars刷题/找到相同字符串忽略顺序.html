@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		/*什么是字谜？好吧，如果它们都包含相同的字母，则两个单词是彼此的字谜。例如：
+
+'abba' & 'baab' == true
+
+'abba' & 'bbaa' == true
+
+'abba' & 'abbba' == false
+编写一个函数，可以从列表中找到单词的所有字谜。您将获得两个输入单词和一个带单词的数组。你应该返回所有anagrams的数组，如果没有，则返回一个空数组。例如：
+
+anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']) => ['aabb', 'bbaa']
+
+anagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer']) => ['carer', 'racer']
+
+anagrams('laser', ['lazing', 'lazy',  'lacer']) => []*/
+function anagrams(word,words){
+	var arr = [];
+	var set1,set2;
+	for(var i=0;i<words.length;i++){
+		if(words[i].length==word.length){
+			set1 = word.split("");
+			set2 = words[i].split("");
+			set1.sort();
+			set2.sort();
+			console.log(set1,set2);
+			if(set1.toString() == set2.toString()){
+				arr.push(words[i]);
+			}
+		}
+	}
+	return arr;
+}
+console.log(anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']));
+	</script>
+</html>

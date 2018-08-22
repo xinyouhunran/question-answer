@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		/*素数不是有规律的间隔。例如，从2到3的间隙1。从3到5差距2。从它7到11现在4。在2到50之间，我们有以下两个空位素数对： 3-5, 5-7, 11-13, 17-19, 29-31, 41-43
+
+长度为n的主要间隙是两个连续素数之间的n-1个连续复合数的运行（参见：http：//mathworld.wolfram.com/PrimeGaps.html）。
+
+我们将用参数写一个函数间隙：
+
+g （整数> = 2）表示我们正在寻找的差距
+
+m （整数> 2），它给出了搜索的开始（包括m）
+
+n （整数> = m）给出搜索结束（包括n）
+
+在上面的示例中，gap(2, 3, 50)将返回[3, 5] or (3, 5) or {3, 5}3到50之间的第一对，具有2个间隙。
+
+因此，如果这些数字存在（取决于语言），则此函数应返回间隔 在限制之间的第一对两个素数。gmnnil or null or None or Nothing
+
+在C ++中返回这种情况{0, 0}。在F＃回归[||]。在Kotlin回归[]
+
+＃例子： gap(2, 5, 7) --> [5, 7] or (5, 7) or {5, 7}
+
+gap(2, 5, 5) --> nil. In C++ {0, 0}. In F# [||]. In Kotlin return[]`
+
+gap(4, 130, 200) --> [163, 167] or (163, 167) or {163, 167}
+
+（[193,197]也是130到200之间的这种4-gap素数，但它不是第一对）
+
+gap(6,100,110) --> nil or {0, 0}：在100到110之间，我们有101, 103, 107, 109但101-107不是6个缺口，因为103介于两者之间并且103-109不是6个缺口，因为107介于两者之间。*/
+/*gap（11,30000,100000）*/
+function gap(g,m,n){
+	var flag = true;
+	var arr = [];
+	for(m;m<=n;m++){
+		if(m%2==0){
+			flag = false;
+		}else{
+			for(var i = 3;i<m;i=i+2){
+				if(m%i==0){
+					flag = false;
+					break;
+				}
+			}
+		}	
+		if(flag){
+			if(arr.length!==1){
+				arr.push(m);
+			}else{
+				if(m-arr[0]==g){
+					return [arr[0],m];
+				}else{
+					arr[0] = m;
+				}
+			}
+		}
+		flag = true;
+	}
+	if(arr.length==1){
+		return null;
+	}
+	
+}
+console.log(gap(2,3,50));
+	</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		/*42的除数是：1,2,3,6,7,14,21,42。这些除数的平方是：1,4,9,36,49,196,441,1764。平方除数的总和是2500这是50 * 50，一个正方形！
+
+给定两个整数m，n（1 <= m <= n）我们想要找到m和n之间的所有整数，其平方除数之和本身就是一个平方。42是这样的数字。
+
+结果将是一个数组或元组数组（在C中为一对数组）或一个字符串，每个子数组有两个元素，首先是平方除数为平方的数字，然后是平方除数的总和。
+
+＃例子：
+
+list_squared(1, 250) --> [[1, 1], [42, 2500], [246, 84100]]
+list_squared(42, 250) --> [[42, 2500], [246, 84100]]*/
+
+function list_squared(m,n){
+	var arr = [];
+	var brr = [];
+	var a = [];
+	for(m;m<=n;m++){
+		for(var i=1;i<=m;i++){
+			if(m%i==0){
+				arr.push(i);
+			}
+		}
+		for(var j=0;j<arr.length;j++){
+			brr.push(Math.pow(arr[j],2));
+		}
+		var sum = brr.reduce(function(x,y){
+			return x+y;
+		})
+		if(Math.sqrt(sum)==parseInt(Math.sqrt(sum))){
+			a.push([m,sum]);
+		}
+		arr = [];
+		brr = [];
+	}
+	return a;
+}
+console.log(list_squared(1, 250));
+	</script>
+</html>

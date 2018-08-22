@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		/*编写一个方法，将一系列连续（递增）字母作为输入，并返回数组中缺少的字母。
+
+您将始终获得有效的数组。它总会丢失一个字母。数组的长度始终至少为2. 
+数组中只包含一个字母。
+
+例：
+
+['a','b','c','d','f'] -> 'e'
+['O','Q','R','S'] -> 'P'*/
+function findMissingLetter(array)
+{
+	var arr=[];
+	var n;
+	for(var i = 0;i<array.length;i++){
+		arr.push(array[i].charCodeAt());
+	}
+	for(var j = 0;j<arr.length;j++){
+		if(arr[j+1]-arr[j]==2){
+			n=arr[j]+1;
+		}
+	}
+  return String.fromCharCode(n);
+}
+console.log(findMissingLetter(['a','b','c','d','f']));
+	</script>
+</html>

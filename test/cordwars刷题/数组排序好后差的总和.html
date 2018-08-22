@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//数组排序好后相邻两元素的差的总和
+	function sumOfDifferences(arr) {
+ if(arr.length==0||arr.length==1){return 0;}
+ arr = arr.sort(function(a,b){
+ 	return a-b;
+ })
+ var sum = 0;
+ for(var i=0;i<arr.length-1;i++){
+ sum+=arr[i+1]-arr[i];
+ }
+  return sum;
+}
+	sumOfDifferences([-1,2,-9,-20,10,8,18,-1,18]) ;
+	
+	//其实你会发现就等于最大值减去最小值。
+	</script>
+</html>

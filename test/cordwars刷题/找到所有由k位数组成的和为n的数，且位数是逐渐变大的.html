@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//找到所有由k位数组成的和为n的数，且位数是逐渐变大的
+	function findAll(n,k){
+		var x = 1;
+		var y = 9;
+		for(var i=0;i<k-1;i++){
+			x = x*10;
+			y = y*10+9;
+		}
+		var ar;
+		var arr = [];
+		var flag = true;
+		var index;
+		var num = 0;
+		for(x;x<=y;x++){
+			ar = x.toString().split("");
+			for(var i = 0;i<ar.length;i++){
+				if(ar[i]>ar[i+1]){
+					flag = false;
+					break;
+				}
+			}
+			if(!flag){
+				flag = true;
+				continue;
+			}
+			index = x;
+			for(var j = 0;j<k;j++){
+				num+=index%10;
+				if(num==n){
+					if(j==k-1){
+						arr.push(x);
+					}else{
+						break;
+					}
+				}
+				index = Math.floor(index/10);
+			}
+			num = 0;
+		}
+		return arr.length!=0?[arr.length,Math.min(...arr).toString(),Math.max(...arr).toString()]:[];
+	}
+		
+	console.log(findAll(5,2));
+	</script>
+</html>

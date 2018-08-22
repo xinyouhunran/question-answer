@@ -8,61 +8,13 @@
 	<body>
 	</body>
 	<script>
-		//找到一个完美正方形的下一个值
-		/*function findNextSquare(sq) {
-		  // Return the next square if sq if a perfect square, -1 otherwise
-		  if(Math.sqrt(sq)%1===0){
-		  	return (Math.sqrt(sq)+1)**2;
-		  }else{
-		  	return -1;
-		  }
-		  
-		}*/
-		
-		//头字母大写
-		/*String.prototype.toJadenCase = function () {
-		  var arr = this.split(" ");
-		  for(var i=0;i<arr.length;i++){
-		  	var n = arr[i].slice(0,1);
-		  	var reg = new RegExp(`^${n}`,"ig");
-		  	n = n.toUpperCase();
-		  	arr[i] = arr[i].replace(reg,n);
-		  }
-		  var s = arr.join(" ");
-		  return s;
-		};
-		
-		String.prototype.toJadenCase = function () {
-  			return this.replace(/(^|\s)[a-z]/g, function(x){ return x.toUpperCase(); });
-		};
-
-		var str = "How can mirrors be real if our eyes aren't real";
-		str.toJadenCase();*/
-		
-		//数字根是数字中所有数字的递归和。给定n，取n的数字之和。如果该值有两位数，则以这种方式继续减少，直到产生一位数字。这仅适用于自然数。
-		/*function digital_root(n){
-			var x = 0;
-			if(n>=10){
-				x += n%10;
-				n = parseInt(n/10);			
-			}else{
-				return n;
-			}
-			return digital_root(x+digital_root(n));
-		}*/
-		/*function digital_root(n) {
-  return (n - 1) % 9 + 1;
-}
-		console.log(digital_root(16));
-		console.log(digital_root(942));*/
-		
 		//实现一个接受3个整数值a，b，c的方法。如果可以使用给定长度的边构建三角形而在任何其他情况下使用false，则该方法应返回true。
 		/*function triangle(a,b,c){
 			if(a+b>c&&a+c>b&&b+c>a){
 				return true;
 			}
 		}*/
-		
+		//名字
 		/*function likes(names) {
   			if(names==[]){
   				return 'no one likes this';
@@ -76,28 +28,7 @@
   				return `${names[0]}, ${names[1]} and ${names.length-2} others like this`;
   			}
 		}*/
-		//隐藏密码
-		/*function maskify(cc) {
-			if(cc.length<4){
-				return cc;
-			}else{
-				
-				var str = `${cc.charAt(cc.length-4)}${cc.charAt(cc.length-3)}${cc.charAt(cc.length-2)}${cc.charAt(cc.length-1)}`;
-				var arr = str.split("");
-				for(var i=0;i<cc.length-4;i++){
-					arr.unshift("*");
-				}
-				return arr.join("");
-			}
-			if(cc.length<4){
-				return cc;
-			}else{
-				var str = `${cc.charAt(cc.length-4)}${cc.charAt(cc.length-3)}${cc.charAt(cc.length-2)}${cc.charAt(cc.length-1)}`;
-				var s = str.padStart(cc.length,'*');
-				return s;
-			}
-		}
-		console.log(maskify("567894564"));*/
+		
 		//有效密码
 		/*function validatePIN (pin) {
  			return pin.test(/^(\d{4}|\d{6})$/);
@@ -140,47 +71,9 @@
 		console.log(digPow(46288,3));*/
 		
 		/*console.log("5498486321".search(/\d/));*/
-		/*如果我们列出10以下的所有自然数是3或5的倍数，我们得到3,5,6和9.这些倍数的总和是23。
-
-完成解决方案，使其返回传入数字下方所有3或5的倍数之和。
-
-注意：如果号码的倍数都 3和5，只计算它一次。*/
-		/*function solution(number){
-			var sum = 0;
-              for(var i=1;i<number;i++){
-              	if(i%3==0||i%5==0){
-              		console.log(i);
-              		sum+=i;
-              	}
-              }
-            return sum;
-		}
-		console.log(solution(10));*/
 		
-		/*编写一个方法，将一系列连续（递增）字母作为输入，并返回数组中缺少的字母。
-
-您将始终获得有效的数组。它总会丢失一个字母。数组的长度始终至少为2. 
-数组中只包含一个字母。
-
-例：
-
-['a','b','c','d','f'] -> 'e'
-['O','Q','R','S'] -> 'P'*/
-/*function findMissingLetter(array)
-{
-	var arr=[];
-	var n;
-	for(var i = 0;i<array.length;i++){
-		arr.push(array[i].charCodeAt());
-	}
-	for(var j = 0;j<arr.length;j++){
-		if(arr[j+1]-arr[j]==2){
-			n=arr[j]+1;
-		}
-	}
-  return String.fromCharCode(n);
-}
-console.log(findMissingLetter(['a','b','c','d','f']));*/
+		
+		
 
 /*function findUniq(arr) {
   var obj = {};
@@ -201,212 +94,8 @@ console.log(findUniq([0,1,0]));
 console.log(findUniq([1,1,1,2,1,1]));
 console.log(findUniq([3,10,3,3,3]));*/
 
-/*给定列表lst和数字N，创建一个新列表，其中包含最多n次的每个lst数，而无需重新排序。例如，如果N = 2，输入为[1,2,3,1,2,1,2,3]，则取[1,2,3,1,2]，然后删除[1,2,3,1,2] ]因为这会导致1和2在结果中3次，然后取3，这导致[1,2,3,1,2,3]。
 
-例
-  deleteNth ([1,1,1,1],2) // return [1,1]
 
-  deleteNth ([20,37,20,21],1) // return [20,37,21]*/
-/* function del(arr,n){
- 	var ar=[];
- 	var obj={};
- 	for(var i=0;i<arr.length;i++){
- 		if(!obj[arr[i]]){
- 			obj[arr[i]]=1;
- 			ar.push(arr[i]);
- 		}else{
- 			if(obj[arr[i]]==n){
- 				continue;
- 			}else{
- 				obj[arr[i]]++;
- 				ar.push(arr[i]);
- 			}
- 			
- 		}
-    }
- 	return ar;
- }
- console.log(del([1,1,1,1],2));*/
-/*您的工作是编写一个增加字符串的函数，以创建一个新字符串。如果字符串已经以数字结尾，则该数字应增加1.如果字符串不以数字结尾，则应将数字1附加到新字符串。
-
-例子：
-
-foo -> foo1
-
-foobar23 -> foobar24
-
-foo0042 -> foo0043
-
-foo9 -> foo10
-
-foo099 -> foo100*/
-/*function incrementString (strng) {
-  var index = strng.search(/\d/);
-  if(index==-1){
-  	return strng+1;
-  }else{
-  	var str = strng.slice(index);
-  	var n = Number(str)+1;
-  	n = n.toString();
-  	var arr = n.split("");
-  	for(var i=arr.length;i<str.length;i++){
-  		arr.unshift("0");
-  	}
-  	var s = strng.slice(0,index)+arr.join("");
-  	return s;
-  } 
-}
-incrementString("foo099");*/
-//阶乘结果中尾部0的数量;涉及到内存泄漏，肯定是不能计算出结果的，所以需要寻找方法，方法：当0 < n < 5时，f(n!) = 0;
- //  当n >= 5时，f(n!) = k + f(k!), 其中 k = n / 5（取整）。
-/*function zeros (n) {
-  var flag = 0;
-     while(n>=5){
-        n/=5;
-       flag+=parseInt(n);
-     }
- 
-  return flag;
-}
-console.log(zeros(1000));*/
-
-//大数字之和，返回结果是字符串（考虑到数字特别大，如果相加会产生e）
-/*function add(a, b) {
-  var arr = a.split("");
-  var brr = b.split("");
-  var crr = [];
-  var i;
-  var n;
-  var flag = false;判断两个数字相加是否大于10;
-  var f = false;判断头两位相加是否大于10
-  if(arr.length<=brr.length){
-  	i = brr.length-1;
-  	for(var j=arr.length;j<brr.length;j++){
-  		arr.unshift("0");
-  	}
-  }else{
-  	i = arr.length-1;
-  	for(var j=brr.length;j<arr.length;j++){
-  		brr.unshift("0");
-  	}
-  }
-  for(i;i>=0;i--){
-  	if(flag){上一级的两个数字相加大于10
-  		n = Number(arr[i])+Number(brr[i])+1;
-  		console.log(n);
-  	}else{
-  		n = Number(arr[i])+Number(brr[i]);
-  	}
-  	if(n>=10){两个数字相加大于10
-  		crr.unshift(n%10);
-  		flag = true;
-  		if(i==0){头部两个数字相加
-  			f = true;
-  		}
-  	}else{
-  		crr.unshift(n);
-  		flag = false;
-  	}
-  }
-  if(f){头部两个数字相加大于10
-  	crr.unshift(1);
-  }
-  if(crr[0]==0){
-  	crr.shift();
-  }
-  return crr.join("");
-}
-console.log(add("123","321"));
-console.log(add("11","99"));
-console.log(add("9","11"));
-console.log(add("10000000000000000000000000000000000000000000000000000000000000000","10000000000000000000000000000000000000000000000000000000000000000000000000000000000000"));*/
-	/*贪婪是用五个六面骰子玩的骰子游戏。如果你选择接受它，你的任务就是根据这些规则得分。您将始终获得一个包含五个六面骰子值的数组。
-
- Three 1's => 1000 points
- Three 6's =>  600 points
- Three 5's =>  500 points
- Three 4's =>  400 points
- Three 3's =>  300 points
- Three 2's =>  200 points
- One   1   =>  100 points
- One   5   =>   50 point
-单个模具每个卷只能计数一次。例如，“5”只能算作三重奏的一部分（有助于500分）或单个50分，但不能同时作为同一卷。
-
-示例评分
-
- Throw       Score
- ---------   ------------------
- 5 1 3 4 1   50 + 2 * 100 = 250
- 1 1 1 3 1   1000 + 100 = 1100
- 2 4 4 5 4   400 + 50 = 450*/
-/*function score( dice ) {
-  var obj = {};
-  var x=0;
-  var y=0;
-  var z=0;
-  for(var i = 0;i<dice.length;i++){
-  	if(!obj[dice[i]]){
-  		obj[dice[i]]=1;
-  	}else{
-  		obj[dice[i]]++;
-  	}
-  }
-  console.log(obj);
-  for(var j in obj){
-  	if(obj[j]>=3){
-  		switch(j){
-  			case "1":x=1000;break;
-  			case "2":x=200;break;
-  			case "3":x=300;break;
-  			case "4":x=400;break;
-  			case "5":x=500;break;
-  			case "6":x=600;break;
-  			default:x=0;break;
-  		}
-  		if(obj[j]==4&&j==1){
-  			x = 1100;
-  		}
-  		if(obj[j]==4&&j==5){
-  			x = 1050;
-  		}
-  		if(obj[j]==5&&j==1){
-  			x = 1200;
-  		}
-  		if(obj[j]==5&&j==5){
-  			x = 1100;
-  		}
-  	}
-  	if(obj[j]==2){
-  		switch(j){
-  			case "1":y+=100*2;break;
-  			case "5":y+=50*2;break;
-  			default:break;
-  		}
-  	}
-  	if(obj[j]==1){
-  		switch(j){
-  			case "1":z+=100;break;
-  			case "5":z+=50;break;
-  			default:break;
-  		}
-  	}
-  }
-  var sum = x+y+z;
-  return sum;
-}
-score([1,1,5,4,1]);*/
-
-//获取顶级域名
-/*function domainName(url){
- var str = url.replace(/(http:\/\/|https:\/\/){0,1}(www\.){0,1}/,"1");
-  console.log(str);
-  var index = str.search(/\./);
-  var s = str.slice(1,index);
-  console.log(s);
-}
-console.log(domainName("http://google.com"));
-console.log(domainName("www.xakep.ru"));
-console.log(domainName("http://google.co.jp"));*/
 
 /*function formatDuration (seconds) {
   var year;
@@ -465,191 +154,8 @@ console.log(domainName("http://google.co.jp"));*/
   	s = "seconds";
   }
 }*/
-/*皮特喜欢烤一些蛋糕。他有一些食谱和配料。不幸的是，他在数学上并不擅长。你可以帮他找一下，考虑到他的食谱，他可以烘烤多少块蛋糕？
-
-编写一个函数cakes()，它接受配方（对象）和可用成分（也是一个对象）并返回Pete可以烘焙的最大蛋糕数（整数）。为简单起见，没有单位的数量（例如1磅面粉或200克糖只是1或200）。对象中不存在的成分可以视为0。
-
-例子：
-
-// must return 2
-cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200}); 
-// must return 0
-cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000});
-function cakes(recipe, available) {
-  var arr = [];
-  for(var i in recipe){
-  	if(!available[i]){
-  		return 0;
-  	}
-  	if(available[i]/recipe[i]>=1){
-  		arr.push(parseInt(available[i]/recipe[i]));
-  	}else{
-  		return 0;
-  	}
-  }
-  return Math.min(...arr);
-}
-console.log(cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200}));
-console.log(cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000}));*/
 
 
-/*42的除数是：1,2,3,6,7,14,21,42。这些除数的平方是：1,4,9,36,49,196,441,1764。平方除数的总和是2500这是50 * 50，一个正方形！
-
-给定两个整数m，n（1 <= m <= n）我们想要找到m和n之间的所有整数，其平方除数之和本身就是一个平方。42是这样的数字。
-
-结果将是一个数组或元组数组（在C中为一对数组）或一个字符串，每个子数组有两个元素，首先是平方除数为平方的数字，然后是平方除数的总和。
-
-＃例子：
-
-list_squared(1, 250) --> [[1, 1], [42, 2500], [246, 84100]]
-list_squared(42, 250) --> [[42, 2500], [246, 84100]]*/
-
-/*function list_squared(m,n){
-	var arr = [];
-	var brr = [];
-	var a = [];
-	for(m;m<=n;m++){
-		for(var i=1;i<=m;i++){
-			if(m%i==0){
-				arr.push(i);
-			}
-		}
-		for(var j=0;j<arr.length;j++){
-			brr.push(Math.pow(arr[j],2));
-		}
-		var sum = brr.reduce(function(x,y){
-			return x+y;
-		})
-		if(Math.sqrt(sum)==parseInt(Math.sqrt(sum))){
-			a.push([m,sum]);
-		}
-		arr = [];
-		brr = [];
-	}
-	return a;
-}
-console.log(list_squared(1, 250));*/
-
-
-/*什么是字谜？好吧，如果它们都包含相同的字母，则两个单词是彼此的字谜。例如：
-
-'abba' & 'baab' == true
-
-'abba' & 'bbaa' == true
-
-'abba' & 'abbba' == false
-编写一个函数，可以从列表中找到单词的所有字谜。您将获得两个输入单词和一个带单词的数组。你应该返回所有anagrams的数组，如果没有，则返回一个空数组。例如：
-
-anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']) => ['aabb', 'bbaa']
-
-anagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer']) => ['carer', 'racer']
-
-anagrams('laser', ['lazing', 'lazy',  'lacer']) => []*/
-/*function anagrams(word,words){
-	var arr = [];
-	var set1,set2;
-	for(var i=0;i<words.length;i++){
-		if(words[i].length==word.length){
-			set1 = word.split("");
-			set2 = words[i].split("");
-			set1.sort();
-			set2.sort();
-			console.log(set1,set2);
-			if(set1.toString() == set2.toString()){
-				arr.push(words[i]);
-			}
-		}
-	}
-	return arr;
-}
-console.log(anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']));*/
-
-/*将每个单词的第一个字母移动到它的末尾，然后在单词的末尾添加“ay”。保留标点符号不变。
-
-例子
-pigIt('Pig latin is cool'); // igPay atinlay siay oolcay
-pigIt('Hello world !');  */   // elloHay orldWay !
-
-/*function pigIt(str){
-	var arr = str.split(" ");
-	var s;
-	for(var i = 0;i<arr.length;i++){
-		if(/^[a-zA-Z]*$/.test(arr[i])){
-			s = arr[i].slice(0,1);
-			var str = arr[i].replace(/^./,"")+s+"ay";
-			arr[i] = str;
-		}
-	}
-	return arr.join(" ");
-}
-console.log(pigIt('Pig latin is cool !'));*/
-
-/*素数不是有规律的间隔。例如，从2到3的间隙1。从3到5差距2。从它7到11现在4。在2到50之间，我们有以下两个空位素数对： 3-5, 5-7, 11-13, 17-19, 29-31, 41-43
-
-长度为n的主要间隙是两个连续素数之间的n-1个连续复合数的运行（参见：http：//mathworld.wolfram.com/PrimeGaps.html）。
-
-我们将用参数写一个函数间隙：
-
-g （整数> = 2）表示我们正在寻找的差距
-
-m （整数> 2），它给出了搜索的开始（包括m）
-
-n （整数> = m）给出搜索结束（包括n）
-
-在上面的示例中，gap(2, 3, 50)将返回[3, 5] or (3, 5) or {3, 5}3到50之间的第一对，具有2个间隙。
-
-因此，如果这些数字存在（取决于语言），则此函数应返回间隔 在限制之间的第一对两个素数。gmnnil or null or None or Nothing
-
-在C ++中返回这种情况{0, 0}。在F＃回归[||]。在Kotlin回归[]
-
-＃例子： gap(2, 5, 7) --> [5, 7] or (5, 7) or {5, 7}
-
-gap(2, 5, 5) --> nil. In C++ {0, 0}. In F# [||]. In Kotlin return[]`
-
-gap(4, 130, 200) --> [163, 167] or (163, 167) or {163, 167}
-
-（[193,197]也是130到200之间的这种4-gap素数，但它不是第一对）
-
-gap(6,100,110) --> nil or {0, 0}：在100到110之间，我们有101, 103, 107, 109但101-107不是6个缺口，因为103介于两者之间并且103-109不是6个缺口，因为107介于两者之间。*/
-/*gap（11,30000,100000）*/
-/*function gap(g,m,n){
-	var flag = true;
-	var arr = [];
-	for(m;m<=n;m++){
-		if(m%2==0){
-			flag = false;
-		}else{
-			for(var i = 3;i<m;i=i+2){
-				if(m%i==0){
-					flag = false;
-					break;
-				}
-			}
-		}	
-		if(flag){
-			if(arr.length!==1){
-				arr.push(m);
-			}else{
-				if(m-arr[0]==g){
-					return [arr[0],m];
-				}else{
-					arr[0] = m;
-				}
-			}
-		}
-		flag = true;
-	}
-	if(arr.length==1){
-		return null;
-	}
-	
-}
-console.log(gap(2,3,50));*//*for(var i=0;i<arr.length;i++){
-		if(arr[i+1]-arr[i]==g){	
-			return [arr[i],arr[i+1]];
-		}
-	}
-	return null;*/
 	/*function rever(arr){
 		return arr.reverse();
 	}
@@ -658,64 +164,7 @@ console.log(gap(2,3,50));*//*for(var i=0;i<arr.length;i++){
 	}
 	console.log(rever([1,2,3,'a','b','c',[]]));*/
 	
-	//爆炸求和个数
-	//sum(1) // 1
-/*sum(2) // 2  -> 1+1 , 2
-sum(3) // 3 -> 1+1+1, 1+2, 3
-sum(4) // 5 -> 1+1+1+1, 1+1+2, 1+3, 2+2, 4
-sum(5) */// 7 -> 1+1+1+1+1, 1+1+1+2, 1+1+3, 1+2+2, 1+4, 5, 2+3
-/*	function sum(a,b){//递归消耗性能
-		b = b | 1;
-    return a >= 2 * b ? sum(a - b, b) + sum(a, b + 1) : a >= b ? 1 : 0;
-	}
-	function sum(n){
-	    var f =[[1],[]];
-	    for(var i=1; i<=n; f[++i]=[]){
-	        for(var j=1; j<=i; ++j)
-	        {
-	            f[i][j] = f[i-1][j-1] || 0;
-	            if(i-j>0) f[i][j] += f[i-j][j] || 0;
-	        }
-	    }
-	    return f[n].reduce((a,b)=>a+b);
-	}
-	console.log(sum(4));*/
-	/*function removezero(arr){
-		var index = 0;
-		for(var i = 0;i<arr.length;i++){
-				if(arr[i]===0||arr[i]==="0"){
-					index++;
-				}
-		}
-		console.log(index);
-		for(var j = 0;j<index;j++){
-			arr = zero(arr);
-		}
-		return arr;
-	}*/
-	/*function zero(arr){
-		if(arr.toString()==[{"a":["code"]},0,{"b":["wars"]},1].toString()){
-			return [{"a":["code"]},{"b":["wars"]},1,0];
-		}
-			var str1 = arr.join(" ");
-			console.log(str1);
-			str1 = str1.replace(/\d{2,}/g,1);*/
-			//str1 = str1.replace(/\d*\.\d*/g,1)
-			/*str1 = str1.replace(/false/g,1);
-			console.log(str1);
-			str1 = str1.replace(/\s\s/g," 1 ");
-			console.log(str1);
-			str1 = str1.replace(/\s/g,"");
-			
-			if(str1.search(/(0|"0")/)!=-1){
-				var x = arr.splice(str1.search(/(0|"0")/),1);
-				console.log(x);
-				return [...arr,...x];
-			}
-	}
-	console.log(removezero([1,"2",0,8,6,null,false,"5",null,"0"]));*/
-	/*console.log(removezero(["0"]));*/
-	/*console.log(removezero([4.5,9.6,0,0.2,1.5,4000,0,5]));*/
+	
 	
 	/*function par(str){
 		var s;
@@ -758,72 +207,12 @@ sum(5) */// 7 -> 1+1+1+1+1, 1+1+1+2, 1+1+3, 1+2+2, 1+4, 5, 2+3
 	//判断二进制数能否被五整除：
 	/*let divisibleByFive = /^(0|1(10)*(0|11)(01*01|01*00(10)*(0|11))*1)+$/*/
 	
-	//阶乘，考虑内存溢出
-	/*function jiecheng(n){
-	var a = [1];
-                for (var i = 1; i <= n; i++) {
-                    for (var j = 0, c = 0; j < a.length || c != 0; j++) {
-                        var m = (j < a.length) ? (i * a[j] + c) : c;
-                        a[j] = m % 10;
-                        c = (m - a[j]) / 10;
-                    }
-                }
-                return a.reverse().join("");	
-	}*/
-	//找到所有由k位数组成的和为n的数，且位数是逐渐变大的
-	/*function findAll(n,k){
-		var x = 1;
-		var y = 9;
-		for(var i=0;i<k-1;i++){
-			x = x*10;
-			y = y*10+9;
-		}
-		var ar;
-		var arr = [];
-		var flag = true;
-		var index;
-		var num = 0;
-		for(x;x<=y;x++){
-			ar = x.toString().split("");
-			for(var i = 0;i<ar.length;i++){
-				if(ar[i]>ar[i+1]){
-					flag = false;
-					break;
-				}
-			}
-			if(!flag){
-				flag = true;
-				continue;
-			}
-			index = x;
-			for(var j = 0;j<k;j++){
-				num+=index%10;
-				if(num==n){
-					if(j==k-1){
-						arr.push(x);
-					}else{
-						break;
-					}
-				}
-				index = Math.floor(index/10);
-			}
-			num = 0;
-		}
-		return arr.length!=0?[arr.length,Math.min(...arr).toString(),Math.max(...arr).toString()]:[];
-	}
-		
-	console.log(findAll(5,2));*/
 	
-	//属于世纪
-	/*function centuryFromYear(year){
-		return (year/100==0)?year/100:Math.ceil(year/100);
-	}
-	console.log(centuryFromYear(1601))*/
-	/*centuryFromYear(1900)  
-	centuryFromYear(1601)  
-	centuryFromYear(2000)*/
 	
-	//数组相邻两元素的差的总和
+	
+	
+	
+	//数组排序好后相邻两元素的差的总和
 	/*function sumOfDifferences(arr) {
  if(arr.length==0||arr.length==1){return 0;}
  arr = arr.sort(function(a,b){

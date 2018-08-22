@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		/*您的工作是编写一个增加字符串的函数，以创建一个新字符串。如果字符串已经以数字结尾，则该数字应增加1.如果字符串不以数字结尾，则应将数字1附加到新字符串。
+
+例子：
+
+foo -> foo1
+
+foobar23 -> foobar24
+
+foo0042 -> foo0043
+
+foo9 -> foo10
+
+foo099 -> foo100*/
+function incrementString (strng) {
+  var index = strng.search(/\d/);
+  if(index==-1){
+  	return strng+1;
+  }else{
+  	var str = strng.slice(index);
+  	var n = Number(str)+1;
+  	n = n.toString();
+  	var arr = n.split("");
+  	for(var i=arr.length;i<str.length;i++){
+  		arr.unshift("0");
+  	}
+  	var s = strng.slice(0,index)+arr.join("");
+  	return s;
+  } 
+}
+incrementString("foo099");
+	</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		//隐藏密码
+		function maskify(cc) {
+			if(cc.length<4){
+				return cc;
+			}else{
+				
+				var str = `${cc.charAt(cc.length-4)}${cc.charAt(cc.length-3)}${cc.charAt(cc.length-2)}${cc.charAt(cc.length-1)}`;
+				var arr = str.split("");
+				for(var i=0;i<cc.length-4;i++){
+					arr.unshift("*");
+				}
+				return arr.join("");
+			}
+			/*if(cc.length<4){
+				return cc;
+			}else{
+				var str = `${cc.charAt(cc.length-4)}${cc.charAt(cc.length-3)}${cc.charAt(cc.length-2)}${cc.charAt(cc.length-1)}`;
+				var s = str.padStart(cc.length,'*');
+				return s;
+			}*/
+		}
+		console.log(maskify("567894564"));
+	</script>
+</html>

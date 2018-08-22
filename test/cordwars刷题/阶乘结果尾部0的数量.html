@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		//阶乘结果中尾部0的数量;涉及到内存泄漏，肯定是不能计算出结果的，所以需要寻找方法，方法：当0 < n < 5时，f(n!) = 0;
+ //  当n >= 5时，f(n!) = k + f(k!), 其中 k = n / 5（取整）。
+function zeros (n) {
+  var flag = 0;
+     while(n>=5){
+        n/=5;
+       flag+=parseInt(n);
+     }
+ 
+  return flag;
+}
+console.log(zeros(1000));
+	</script>
+</html>
