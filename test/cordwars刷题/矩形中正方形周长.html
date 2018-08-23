@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		/*function perimeter(n){
+			var s = 0;
+			for(var i=1;i<=n+1;i++){
+				s+=sum(i);
+			}
+			console.log(4*s);
+		}
+	    function sum(n){
+	    	if(n==1){
+	    		return 1;
+	    	}
+	    	if(n==2){
+	    		return 1;
+	    	}
+	    	if(n>2){
+	    		return sum(n-1)+sum(n-2);
+	    	}
+	    }*/
+		function perimeter(n){
+			var sum = 0;
+			var arr = [1,1];
+			for(var i=1;i<=n+1;i++){
+				if(i==1||i==2){
+					sum+=1;
+				}
+				if(i>2){
+					sum = sum+arr[0]+arr[1];
+					var x = arr[0]+arr[1];
+					arr.push(x);
+					arr.shift();
+				}
+			}
+			console.log(4*sum);
+		}
+	    perimeter(5);
+	    perimeter(7)
+	</script>
+</html>
