@@ -11,7 +11,9 @@
 4.arr.reduce(function(){},初始值)；累计一个数组中的元素,
 
   如累加：arr.reduce(function(x,y){
-      return x + y;
+     
+	  return x + y;
+
   }，0)//初始值我理解为x的初始值为0；也就是需要求和的值。
 
 5.es6     set 集合长度用size；
@@ -46,6 +48,12 @@
 
    在判断数组元素是否为0或者“0”时，要用===；因为如果是==；false会转化为0。
 
-16.将二维数组扁平化：[].concat(...arr)
+16.将二维数组扁平化：[].concat(...arr);
+
+17.四舍五入且保留两位小数的方法：num.toFixed(2);保留两位小数；
+
+		   如果是   +num.toFixed(2)则代表整数依然保留整数，小数保留两位。
+
+		   Math.round(num*100)/100；
 
    

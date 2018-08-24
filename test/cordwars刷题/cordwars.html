@@ -223,7 +223,7 @@ console.log(findUniq([3,10,3,3,3]));*/
 
 
 //扁平化二维数组
-function bian(arr){
+/*function bian(arr){
 	var a = [];
 	for(var i= 0;i<arr.length;i++){
 		a = a.concat(...arr[i]);
@@ -231,6 +231,34 @@ function bian(arr){
 	return a.sort((a,b)=>a-b);
 	//return [].concat(...arr).sort((a,b)=>a-b);
 }
-console.log(bian([[3,2,1],[4,6,5],[],[9,7,8]]));
+console.log(bian([[3,2,1],[4,6,5],[],[9,7,8]]));*/
+
+
+/*function remove(str,n){
+	for(var i=0;i<n;i++){
+		str = str.replace(/!/,"");
+	}
+	return str;
+}
+console.log(remove("Hi!!!",5));*/
+
+
+/*function DiscoverOriginalPrice(p,z){
+	var price = p/(1-z*0.01);
+	price = price.toString();
+	if(price.search(/\./)!=-1){
+		var x = price.slice(0,price.search(/\./));
+		var y = price.slice(price.search(/\./),price.search(/\./)+3);
+		return x+y;
+	}else{
+		price = price+".00";
+		return price;
+	}
+	//console.log(+(p/(1-z*0.01)).toFixed(2));
+}
+DiscoverOriginalPrice(75,25);
+DiscoverOriginalPrice(74,25);*/
+
+
 	</script>
 </html>
