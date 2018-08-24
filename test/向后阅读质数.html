@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		function backwardsPrime(m,n){
+			var arr = [];
+			var x;
+			if(m<13){
+				m=13;
+			}
+			for(m;m<=n;m++){	
+				if(zhishu(m)){
+					x = parseInt(m.toString().split("").reverse().join(""));
+					if(m!=x&&zhishu(x)){
+						arr.push(m);
+						continue;
+					}
+				}
+			}
+			return arr;
+		}
+		function zhishu(m){
+			if(m%2==0||m%3==0||m%5==0||m%7==0||m%11==0){
+					return false;
+				}
+			for(var i = 13;i<m/5+1;i=i+2){
+				if(m%i==0){
+					return false;
+				}
+			}		
+			return true;
+		}
+		console.log(backwardsPrime(2, 100));
+		console.log(backwardsPrime(9900, 10000));
+	</script>
+</html>
