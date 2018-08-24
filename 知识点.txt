@@ -56,4 +56,5 @@
 
 		   Math.round(num*100)/100；
 
+18.反转一个数组：不用reverse（）：reverse=a=>[...a].map(a.pop,a)；
    

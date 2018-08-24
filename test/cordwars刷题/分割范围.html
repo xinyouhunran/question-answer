@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		/*表示有序整数列表的格式是使用逗号分隔的列表个别整数
+或者由起始整数表示的整数范围，用短划线“ - ”分隔范围内的结束整数。范围包括区间中的所有整数，包括两个端点。除非它跨越至少3个数字，否则它不被视为范围。例如（“12,13,15-17”）
+完成解决方案，使其按递增顺序获取整数列表，并以范围格式返回格式正确的字符串。
+
+例：
+
+solution([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]);
+// returns "-6,-3-1,3-5,7-11,14,15,17-20"*/
+		function solution(arr){
+			var brr = [];
+			var n = 0;
+			for(var i=0;i<arr.length;i++){
+				if(arr[i+1]-arr[i]==1){
+					n++;
+				}else{
+					if(n==0){
+						brr.push(arr[i]);
+					}else if(n==1){
+						brr.push(arr[i-1]);
+						brr.push(arr[i]);
+						n=0;
+					}else{
+						brr.push(`${arr[i-n]}-${arr[i]}`);
+						n=0;
+					}
+				}
+			}
+			console.log(brr.join(","));
+		}
+		solution([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]);
+		/*"-6,-3-1,3-5,7-11,14,15,17-20"*/
+	</script>
+</html>
