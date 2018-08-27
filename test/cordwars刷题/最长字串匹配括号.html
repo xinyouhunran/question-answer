@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		function findLongest(str){
+			var arr = [];
+			var num = 0;
+			for(var i=0;i<str.length;i++){
+				if(str.charAt(i)=="("){
+					arr.push(i);
+				}
+				if(str.charAt(i)==")"){
+					if(arr.length==0){
+							continue;
+						}else{
+							if(i>arr[arr.length-1]){
+								arr.pop();
+								num+=2;
+							}
+						}	
+				}
+			}
+			console.log(num);
+		}
+		findLongest("(())((((");
+		findLongest("))))()");
+	</script>
+</html>

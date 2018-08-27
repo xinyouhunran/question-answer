@@ -57,4 +57,23 @@
 		   Math.round(num*100)/100；
 
 18.反转一个数组：不用reverse（）：reverse=a=>[...a].map(a.pop,a)；
+
+19.判断url是否能被正确链接
+
+function checkUrl(url, name)
+			{
+				$.ajax({
+					url: url,
+					type: "get",
+					dataType : 'jsonp',
+					crossDomain : true,
+
+					complete: function(xhr, textStatus) {
+						if( xhr.readyState === 4 && xhr.status === 200 )
+						{
+							代表能访问链接成功
+						}
+					}
+				});
+			}
    
