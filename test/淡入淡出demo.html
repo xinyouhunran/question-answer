@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul{
+				position: relative;
+			}
+			ul li{
+				position: absolute;
+			}
+			ul li img{
+				display: none;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+	</head>
+	<body>
+		<ul class="sli">
+			<li><img src="../house/house4.jpg" /></li>
+			<li><img src="../house/house3.jpg" /></li>
+			<li><img src="../house/house2.jpg" /></li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		var index = 0;
+		var time = setInterval(function(){
+			if(index==2){
+				index=0;
+			}else{
+				index++;
+			}
+			$(".sli img").eq(index).fadeIn().parent().siblings().children().fadeOut();
+		},2000);
+	</script>
+</html>
