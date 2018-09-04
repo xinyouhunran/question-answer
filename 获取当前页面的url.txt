@@ -1,0 +1,14 @@
+function getCurrUrl() {
+	var url = "";
+	if (parent !== window) {
+		try {
+			url = window.top.location.href;
+		} catch (e) {
+			url = window.top.document.referrer;
+		}
+	}
+	if (url.length == 0)
+		url = document.location.href;
+
+	return url;
+}
