@@ -78,4 +78,6 @@ function checkUrl(url, name)
 			}
 
 20.网上有在线excel表格转json数据。
+
+21.在做一些网页上的tab栏切换的时候，建议用jquery的show（）和hide（）方法来实现。（且默认隐藏的元素也用hide（）方法初始化）。
    
