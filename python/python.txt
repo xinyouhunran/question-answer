@@ -19,3 +19,21 @@ insert（index，val）插入至索引处
 4.tuple列表元素不可被改变。用（1,2,3）括号包起。倘若只有一个元素则要加逗号，如（1，）。
 
 如果tuple列表中包含了list列表，那么list列表中的值是可以改变的。	
+
+5.条件后面要跟冒号：
+
+python中else if的写法为elif
+
+6.用户输入input（），输出print（）
+
+7.int（str）将字符串转化为整型，float（）转化为浮点型
+
+8.循环：for in循环；while循环；
+
+9.range（x）取一个整数序列，由0到x-1；
+
+10.dict，既对象。
+
+判断对象key值是否存在用if（key in obj）
+
+或者用get（）方法，如果没有key则返回none，但是none并不会在python交互环境中显示。
