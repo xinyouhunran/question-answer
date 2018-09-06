@@ -2,10 +2,12 @@
 
   chr（）把编码转换成对应的字符
 
+
 2.len（）可以取字符串长度，也可以取list列表长度
 
-3.list列表的元素可以是不同类型[1,true,"str"]。         
 
+3.list列表的元素可以是不同类型[1,true,"str"]。   
+      
 list列表具有list（-1）；找到最后一个元素，负数以此类推。
 
 append（val）添加至末尾	
@@ -16,29 +18,37 @@ pop（index）删除指定位置元素
 
 insert（index，val）插入至索引处
 
+
 4.tuple列表元素不可被改变。用（1,2,3）括号包起。倘若只有一个元素则要加逗号，如（1，）。
 
 如果tuple列表中包含了list列表，那么list列表中的值是可以改变的。	
+
 
 5.条件后面要跟冒号：
 
 python中else if的写法为elif
 
+
 6.用户输入input（），输出print（）
+
 
 7.int（str）将字符串转化为整型，float（）转化为浮点型，str（）转化为字符串，bool（）转化为boolean值
 
+
 8.循环：for in循环；while循环；
+
 
 9.range（x）取一个整数序列，由0到x-1；
 
-10.dict，既对象。
+
+10.dict，既理解为对象。
 
 判断对象key值是否存在用if（key in obj）
 
 或者用get（）方法，如果没有key则返回none，但是none并不会在python交互环境中显示。
 
 可以用pop（key）删除key以及对应的value值
+
 
 11.定义函数用def  functionname（x）
 
@@ -49,3 +59,50 @@ if not isinstance(x, (int, float)):
         raise TypeError('bad operand type')
 
 函数的返回值其实是一个tuple，这是在python中函数可以返回多个值的原因。
+
+函数可以定义默认参数，不过默认参数必须要指定不变对象，避免出错。
+
+当需要传入的参数个数不确定时，可以在形参前加个*，称为可变参数。
+
+关键字参数**kw，既传参时会将参数解析为dict形式。
+
+
+12.切片L[0:3],从第一个元素开始取，取3-0个元素；
+
+L[-2，-1]，从倒数第二个元素开始取，取-1-（-2）个元素；
+
+如：前10个数，每两个取一个：
+
+>>> L[:10:2]
+[0, 2, 4, 6, 8]
+所有数，每5个取一个：
+
+>>> L[::5]
+[0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
+
+
+13.迭代
+
+默认情况下，dict迭代的是key。如果要迭代value，可以用for value in d.values()，如果要同时迭代key和value，可以用for k, v in d.items()
+
+判断是否可迭代
+>>> from collections import Iterable
+>>> isinstance('abc', Iterable) # str是否可迭代 true
+
+整型不可迭代
+
+同时迭代索引和元素本身for i, value in enumerate(['A', 'B', 'C']):
+
+
+14.列表生成式：生成[1x1, 2x2, 3x3, ..., 10x10]怎么做
+
+>>> [x * x for x in range(1, 11)]
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+>>> [x * x for x in range(1, 11) if x % 2 == 0]筛选出仅偶数的平方
+[4, 16, 36, 64, 100]
+
+还可以使用两层循环，可以生成全排列：
+
+>>> [m + n for m in 'ABC' for n in 'XYZ']
+['AX', 'AY', 'AZ', 'BX', 'BY', 'BZ', 'CX', 'CY', 'CZ']
