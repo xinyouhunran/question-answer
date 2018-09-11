@@ -1,0 +1,62 @@
+.Slide{
+            width: 556px; height: 336px;overflow: hidden;	position: relative;
+            margin-top:22px;float:left;
+        }
+       .slide-cont {
+            width: 556px;height: 336px;position: relative;overflow: hidden;
+        }
+       .slide-item {
+            position: absolute;width: 100%;height: 100%;
+        }
+       .slide-item a {
+            display: block;	width: 100%;height: 100%;
+        }
+       .slide-item img {
+            width: 556px;	height: 336px;
+        }
+       .slide-txt {
+            width: 556px;height: 37px;position: absolute;left: 0;bottom: 0px;z-index: 1;
+        }
+       .slide-txt .txt_bg {
+            width: 556px;	height: 37px;background: #000;opacity: 0.7;filter: alpha(opacity=70);
+        }
+       .slide-txt a {
+            display: inline-block;	width: 430px;height: 37px;line-height: 37px;font-size: 14px;padding: 0 20px;overflow: hidden;color: #fff;position: absolute;left: 0;top: 0;
+        }
+       .slide-nav {
+            width: auto;height: 12px;display: inline-block;overflow: hidden;position: absolute;	z-index: 100;bottom: 8px;right: 20px;overflow: hidden;
+        }
+       .slide-nav a {
+            display: block;	width: 10px;height: 10px;border-radius: 50%;/*width:20px;height:4px;*/background: #8d8c8e;cursor: pointer;margin-left: 8px;float: left;text-indent: -99em;overflow: hidden;
+        }
+       .slide-nav .nownav {
+            background: #D6403F;
+        }
+       .btn{position:absolute;top:50%;margin-top:-23px;left:0;font-family:"SimSun";font-size:40px;color:#fff;width:100%;}
+       .btn #next{float:left;display:inline-block;cursor:pointer;}
+       .btn #prev{float:right;display:inline-block;cursor:pointer;}
+       .dianxing .Slide1{
+       	width: 240px; height: 203px;overflow: hidden;	position: relative;
+            margin:22px 20px;float:left;
+       }
+       .dianxing .slide-cont1 {
+            width:240px;height: 203px;position: relative;overflow: hidden;
+        }
+       .dianxing .slide-item1 {
+            position: absolute;width: 100%;height: 100%;
+        }
+       .dianxing .slide-item1 a {
+            display: block;	width: 100%;height: 100%;
+        }
+        .dianxing .slide-item1 img {
+            width: 240px;	height: 166px;
+        }
+        .dianxing .slide-txt1 {
+            width: 240px;height: 37px;position: absolute;left: 0;bottom: 0px;z-index: 1;
+        }
+        .dianxing .slide-txt1 a {
+            display: inline-block;	width: 240px;height: 37px;line-height: 37px;font-size: 14px;overflow: hidden;color: #333333;position: absolute;text-align: center;
+        }
+        .btn1{position:absolute;top:50%;margin-top:-23px;left:0;font-family:"SimSun";font-size:40px;color:#fff;width:100%;}
+       .btn1 #nextone{float:left;display:inline-block;cursor:pointer;}
+       .btn1 #prevone{float:right;display:inline-block;cursor:pointer;}

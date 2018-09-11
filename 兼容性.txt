@@ -28,3 +28,12 @@
 
 11.margin外边距重叠，相互并列的两个元素，一个给了margin-top，一个给了margin-bottom，浏览器按照两者之间较大的值进行解析
 解决方法：给其中一个元素加overflow：hidden。
+
+12.padding-bottom给像素值时，在谷歌和ie浏览器中值有偏差。
+解决方法：换成给元素高，不给padding-bottom。
+
+13.解决IE6,IE7不能隐藏(overflow:hidden)绝对定位溢出的内容
+解决方法：哪个需要设置overflow；hidden，生效，就在哪个上面设置position:relative;
+
+14.有时候页面屏幕变小，内容背景显示不完全。
+解决方法：给个最小宽度。
