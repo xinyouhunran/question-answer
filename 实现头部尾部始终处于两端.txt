@@ -33,3 +33,12 @@
 		</div>
 		
 	</body>
+
+
+或者用js：大致如下：
+
+var winHeight=$("body").height();
+			var Height=$(".szjj_header").height()+$("body .session").eq(0).height()+$(".footerBox").height();
+			if(Height<winHeight){
+				$(".footerBox").css({"position":"absolute","bottom":"0","width":"100%"});
+			}
