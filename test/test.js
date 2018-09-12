@@ -16,18 +16,18 @@ Cat.prototype = {
 
 var c = new Cat();
 c.eat();*/
-function Animal(){
+/*function Animal(){
 	this.eat = function(){
 		console.log(3);
 	}
 }
 var a = new Animal();
-a.eat();
+a.eat();*/
 
 /*location.href = "https://www.baidu.com";*/
 /*console.log(window.navigator.geolocation.getCurrentPosition());*/
 
-let obj1 = {
+/*let obj1 = {
 	num:1,
 	id:1
 }
@@ -39,4 +39,12 @@ var obj = $.extend(obj1,obj2);
 console.log(obj);
 
 var o = JSON.stringify(obj1);
-console.log(o);
+console.log(o);*/
+
+a = [1,2,3]
+b = []
+
+b=a;
+console.log(b);
+a.clear();
+console.log(a,b);
