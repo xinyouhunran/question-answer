@@ -82,4 +82,6 @@ function checkUrl(url, name)
 21.在做一些网页上的tab栏切换的时候，建议用jquery的show（）和hide（）方法来实现。（且默认隐藏的元素也用hide（）方法初始化）。
 
 22.background:url()#000 ;代表当图片不够充满容器时，用黑色填满。
+
+23.jquery记录index：$（this）.index（）；
    
