@@ -1,3 +1,0 @@
-http://www.stc.gov.cn/QITA/201512/t20151214_51702.htm                    页面测试
-
-http://192.168.2.209:8080/wcm/console/include/not_login.htm              交警登录修改数据(IP：61.144.225.4，用户名：yuweihua，密码：Huawei@123)(admin,xinghuo110)
