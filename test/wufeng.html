@@ -27,7 +27,75 @@
 		</div>	
 	</body>
 	<script type="text/javascript">
-		var fli = $("ul li").clone(true);
+		var obj = {
+			fli:$("ul li").clone(true),
+			oul:$("ul"),
+			inow:0,
+			timer:null,
+			init:function(){
+				this.oul.append(this.fli);
+				this.oul.width($("ul li").eq(0).width()*$("ul li").length);
+				this.autoplay();
+				this.mymouseover();
+				this.mymouseout();
+				this.next();
+				this.prev();
+			},
+			mymouseover:function(){
+				var _this = this;
+				$("div").mouseover(function(){
+					clearInterval(_this.timer);
+				})
+			},
+			mymouseout:function(){
+				var _this = this;
+				$("div").mouseout(function(){
+					_this.autoplay();
+				})
+			},
+			next:function(){
+				var _this = this;
+				$(".next").click(function(){
+					if(_this.inow == $("ul li").length/2){
+						_this.oul.css("left","0px");
+						_this.inow = 1;
+					}else{
+						_this.inow++;
+					}
+					var leng = -_this.inow*$("ul li").eq(0).width()+"px";
+					_this.oul.animate({"left":leng});
+				})
+			},
+			prev:function(){
+				var _this =this ;
+				$(".prev").click(function(){
+					if(_this.inow == 0){
+						var ml = -$("ul li").eq(0).width()*($("ul li").length/2)+"px";
+						_this.oul.css("left",ml);
+						_this.inow = $("ul li").length/2-1;
+					}else{
+						_this.inow--;
+					}
+					var leng = -_this.inow*$("ul li").eq(0).width()+"px";
+					_this.oul.animate({"left":leng});
+				})
+			},
+			autoplay:function(){
+				var _this = this;
+				_this.timer = setInterval(function(){
+					if(_this.inow == $("ul li").length/2){
+						_this.oul.css("left","0px");
+						_this.inow = 1;
+					}else{
+						_this.inow++;
+					}
+					var leng = -_this.inow*$("ul li").eq(0).width()+"px";
+					_this.oul.animate({"left":leng});
+				},2000);
+			}
+		}
+		obj.init();
+		/*var fli = $("ul li").clone(true);
 		var oul = $("ul");
 		oul.append(fli);
 		oul.width($("ul li").eq(0).width()*$("ul li").length);
@@ -74,6 +142,6 @@
 				oul.animate({"left":leng});
 			},2000);
 		}
-		autoplay();
+		autoplay();*/
 	</script>
 </html>
