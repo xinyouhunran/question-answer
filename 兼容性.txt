@@ -7,10 +7,12 @@
 如需要可以将右浮动的元素写在左边元素的前面。如：<span style="float:right"></span><p></p>
 
 3.ie6, 7不兼容ES6的写法，所以写js的时候要注意。
+
 4.ie6,7对CSS3的一些属性不能识别。
 比如animation；建议自己用jquery的animate（）方法实现。
 
 5.ie6,7不识别伪类。
+
 6.图片会自带3px；
 解决方法：display：block；
 
@@ -39,3 +41,8 @@
 解决方法：给个最小宽度。
 
 15.ie8以下调用json文件，json数据的对象必须完整。
+
+16.ie6下多个li包a，li给了浮动，当a为块元素时，li不在一排，掉了下来。
+解决方法：给a加display：inline-block；
+
+17.ie6支持hover
