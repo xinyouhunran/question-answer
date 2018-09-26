@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=0">
+    <title>纠错</title>
+
+    <!-- <link rel="stylesheet" th:href="@{/static/css/weui-1.1.2.min.css}" />
+    <link rel="stylesheet" th:href="@{/static/css/jquery-weui-1.2.0.min.css}" />
+    <link rel="stylesheet" th:href="@{/static/css/correction.css}" /> -->
+    <link rel="stylesheet" href="/jwdzdt/static/css/weui-1.1.2.min.css" />
+    <link rel="stylesheet" href="/jwdzdt/static/css/jquery-weui-1.2.0.min.css" />
+    <!-- <link rel="stylesheet" href="/jwdzdt/static/css/correction.css" /> -->
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .weui-cells {
+            margin-top: 8px;
+        }
+        
+        .weui-uploader__title,
+        .weui-label,
+        .weui-input,
+        .weui-textarea {
+            font-size: 18px;
+        }
+        
+        .weui-textarea-counter,
+        .weui-uploader__info {
+            font-size: 16px;
+        }
+        
+        .divider {
+            height: 8px;
+            background-color: #f1f1f1;
+            box-shadow: 3.5px 3.5px rgba(0, 0, 0, -1) inset;
+        }
+        
+        .correction-main {
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            width: 100%;
+        }
+        
+        .correction-top {
+            flex: 1 0 auto;
+        }
+        
+        .upload_area {
+            display: block;
+            overflow-y: auto;
+        }
+        
+        .imgDiv {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .button-cross {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            width: 20px;
+            height: 20px;
+            display: none;
+            margin-top: -11.5px;
+            margin-right: -11.5px;
+        }
+        
+        .correction-bottom {
+            display: block;
+            margin: 50px auto;
+            width: 90%;
+            /* overflow-y: auto; */
+            /* bottom: 5px; */
+            flex: 0 0 auto;
+        }
+        
+        .correction-label {
+            font-size: 18px;
+            padding: 7px 0 0 19px;
+            position: relative;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+        }
+        
+        .required-label::after {
+            content: "*";
+            color: red;
+            padding-left: 3.5px;
+        }
+        
+        .cardUpload .box .cardcon {
+            position: relative;
+            display: inline-block;
+            /* width: 100%; */
+            text-align: left;
+        }
+        
+        .cardcon .bgInput {
+            padding: 13.5px 0 13.5px 7px;
+        }
+        
+        .cardcon input {
+            position: absolute;
+            z-index: 9;
+            opacity: 0;
+            height: 82px;
+            width: 82px;
+        }
+        
+        .bgInput img {
+            width: 82px;
+            height: 82px;
+        }
+        
+        .correction-input-call {
+            margin-top: 0px;
+        }
+        
+        .addBorder {
+            border-top: 0.5px solid #cccccc;
+        }
+        
+        .weui-cells:before {
+            border: none;
+        }
+        
+        .weui-uploader__files {
+            padding-top: 11.5px;
+        }
+        
+        .container {
+            width: 1000px;
+            margin: auto;
+            border: 1px solid #eee;
+        }
+        
+        .btn {
+            display: inline-block;
+            width: 300px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 5px;
+            background-color: #3385ff;
+            font-size: 18px;
+            color: #fff;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+    	
+        <form id="corretionForm" action="/jwdzdt/pcweb/save" enctype="multipart/form-data" method="post">
+            <div class="correction-main">
+                <div class="correction-top">
+                    <div class="divider"></div>
+                    <p class="correction-label required-label">问题描述</p>
+                    <div class="weui-cells weui-cells_form">
+                        <div class="weui-cell addBorder">
+                            <div class="weui-cell__bd">
+                                <textarea name="problem" class="weui-textarea" labelValue="请描述您的问题，以便于我们及时为您解决" placeholder="请描述您的问题，以便于我们及时为您解决" rows="4" required="required" maxlength="300"></textarea>
+                                <div class="weui-textarea-counter">输入5-300个字</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+                    <div class="weui-cells weui-cells_form">
+                        <div class="weui-cell">
+                            <div class="weui-cell__bd">
+                                <div class="weui-uploader">
+                                    <div class="weui-uploader__hd">
+                                        <p class="weui-uploader__title required-label">图片上传</p>
+                                        <div class="weui-uploader__info"></div>
+                                    </div>
+                                    <!-- style="background-image:url(../static/img/camera.png)" -->
+                                    <div class="weui-uploader__bd upload_area">
+                                        <ul class="weui-uploader__files" id="uploaderFiles">
+                                            <!-- <li class="weui-uploader__file weui-uploader__file_status">
+					              <div class="weui-uploader__file-content">
+					                <i class="weui-icon-warn"></i>
+					              </div>
+					            </li>
+					            <li class="weui-uploader__file weui-uploader__file_status">
+					              <div class="weui-uploader__file-content">50%</div>
+					            </li> -->
+                                        </ul>
+                                        <div class="weui-uploader__input-box" id="uploadFilesDiv">
+                                            <input name="uploadFiles" class="weui-uploader__input uploaderInput" type="file" accept="image/*" multiple/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 点击 缩略图 时全屏预览，需要时动态创建 -->
+                    <!-- <div class="weui-gallery" style="display: block">
+					  <span class="weui-gallery__img" style="background-image: url(../static/img/camera.png);"></span>
+					  <div class="weui-gallery__opr">
+					    <a href="javascript:" class="weui-gallery__del">
+					      <i class="weui-icon-delete weui-icon_gallery-delete"></i>
+					    </a>
+					  </div>
+					</div> -->
+
+                    <div class="divider"></div>
+                    <div class="weui-cells weui-cells_form correction-input-call">
+                        <div class="weui-cell">
+                            <div class="weui-cell__hd">
+                                <label class="weui-label required-label">联系方式</label>
+                            </div>
+                            <div class="weui-cell__bd">
+                                <input name="telephone" class="weui-input" type="tel" placeholder="请输入联系方式" maxlength="50" labelValue="请输入联系方式">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="javascript:void(0);" class="btn">提交</a>
+            </div>
+            <!-- 隐藏input -->
+            <input type="text" id="hidden_input" name="entity" hidden="hidden">
+            <input type="text" id="hidden_input1" name="demoId" hidden="hidden">
+        </form>
+    </div>
+</body>
+
+<!-- <script type="text/javascript" th:src="@{/static/js/jquery-2.1.4.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/jquery-weui-1.2.0.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/jweixin-1.1.0.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/jquery-form.js}"></script> -->
+<script type="text/javascript" src="/jwdzdt/static/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/jwdzdt/static/js/jquery-weui-1.2.0.min.js"></script>
+<script type="text/javascript" src="/jwdzdt/static/js/jweixin-1.1.0.js"></script>
+<script type="text/javascript" src="/jwdzdt/static/js/jquery.form.min.js"></script>
+<!-- <script type="text/javascript" th:src="@{/static/js/correction.js}"></script> -->
+<script>
+    var contextPath = location.protocol + '//' + document.domain;
+    $(function() {
+        var entity = getUrlParam('entity');
+        var id = getUrlParam('id');
+        $("#hidden_input").val(entity == null ? '' : entity);
+        $("#hidden_input1").val(id == null ? '' : id);
+
+        //   var url = location.search;
+        // url = url.split("url=")[1];
+        //  $("#hidden_input").val(url);
+        //    interActionWithWeixin();
+        var maxCount = 8;
+        var imgArr = [];
+
+        //初始化设置图片的张数及总张数
+        $('.weui-uploader__info').text('0/' + maxCount);
+
+        $(".uploaderInput").change(function(e) {
+            var files = e.target.files;
+            var leng = files.length + $(".imgDiv").length;
+            if (leng > maxCount) {
+                return $.alert('最多只能上传' + maxCount + '张图片!');
+
+            }
+            // console.log($(".imgDiv"))
+            var $file_input = $(this);
+            /* FileReader提供了如下方法：
+            readAsArrayBuffer(file)	按字节读取文件内容，结果用ArrayBuffer对象表示
+            readAsBinaryString(file)	按字节读取文件内容，结果为文件的二进制串
+            readAsDataURL(file)	读取文件内容，结果用data:url的字符串形式表示，将文件内容进行base64编码后输出
+            readAsText(file,encoding)	按字符读取文件内容，结果用字符串形式表示
+			abort()	终止文件读取操作 */
+            for (var i = 0, len = files.length; i < len; i++) {
+                var file = files[i];
+                var reader = new FileReader(); // 创建FileReader对像;
+                if (imgArr.indexOf(file.name) != -1) {
+                    return $.alert('已上传的图片不能再次上传!');
+
+                }
+                imgArr.push(file.name);
+
+                /* 每个file对象包含以下属性：
+                lastModified：数值，表示最近一次修改时间的毫秒数；
+                lastModifiedDate：对象，表示最后一次表示最近一次修改时间的Date对象
+                name：本地文件系统中的文件名；
+                size：文件的字节大小；
+                type：字符串，文件的MIME类型； */
+
+                reader.readAsDataURL(file); // file类型的input会有files属性，保存着文件的相关信息
+                reader.onloadstart = function() {
+                    // 这个事件在读取开始时触发
+                    //console.log("读取数据总量："+file.size); 
+                }
+                reader.onprogress = function(p) {
+                    // 这个事件在读取进行中定时触发
+                    //console.log("已读取数据量："+p.loaded); 
+                }
+                reader.onload = function(ev) {
+                    // 这个事件在读取成功结束后触发
+                    url = ev.target.result // 拿到读取结果;
+                        /* var img=new Image();
+					img.src=url; */
+                    var crossImgPath = contextPath + '/jwdzdt/static/img/button-cross.png';
+                    var liDiv = ('<li class="weui-uploader__file imgDiv" style="background-image:url(' + url + ')">' +
+                        '<img src="' + crossImgPath + '" class="button-cross"/></li>');
+                    $('#uploaderFiles').append(liDiv);
+                    $('.weui-uploader__info').text($(".imgDiv").length + '/' + maxCount);
+
+                    $file_input.clone().css("display", "none").appendTo($("#uploaderFiles").find("li:last"));
+                    $file_input.val('');
+
+                    $(".imgDiv").unbind().hover(function() {
+                    	$(this).find(".button-cross").show();
+                    }, function() {
+                    	$(this).find(".button-cross").hide();
+                    });
+
+                    $(".button-cross").unbind().click(function() {
+                        var index = $(this).parent().index();
+                        // console.log(index)
+                        imgArr.splice(index, 1);
+                        // console.log(imgArr);
+                        $(this).parent().remove();
+                        $('.weui-uploader__info').text($(".imgDiv").length + '/' + maxCount);
+                    });
+                }
+            }
+        });
+    });
+
+
+
+    //电话号码校验
+    function checkPhone() {
+        var phoneNum = $("input[name='telephone']").val();
+        if (phoneNum.trim().length == 0) {
+            $.modal({
+                title: "请填写联系电话",
+                buttons: [{
+                    text: "确定",
+                    onClick: function() {
+                        $("input[name='telephone']").focus();
+                    }
+                }]
+            });
+            return false;
+        }
+        var regPhone = /^(13[0-9]|15[012356789]|18[0123456789]|147|145|17[0-9])\d{8}$/;
+        if (!regPhone.test(phoneNum)) {
+            $.modal({
+                title: "手机号码格式不正确",
+                buttons: [{
+                    text: "确定",
+                    onClick: function() {
+                        $("input[name='telephone']").focus();
+                    }
+                }]
+            });
+            return false;
+        }
+        return true;
+    }
+
+    //提交表单数据
+    $(".btn").click(function() {
+        //空值校验
+        if (!$(":input[name='problem']").val().replace(/\s+/g, "")) {
+            $.alert($(":input[name='problem']").attr("labelValue"));
+            return false;
+        }
+
+        if ($(":input[name='problem']").val().replace(/\s+/g, "").length < 5) {
+            $.alert("请输入至少5个字的问题描述~");
+            return false;
+        }
+
+        if (!checkPhone()) {
+            return false;
+        }
+
+        if ($("input[type='file']").length <= 1) {
+            $.alert("请上传相关图片");
+            return false;
+        }
+        $("#corretionForm").ajaxSubmit({
+            url: contextPath + "/jwdzdt/pcweb/save",
+            type: "post",
+            dataType: "text",
+            success: function(data) {
+                console.log(data);
+                console.log(data == "success");
+                if (data == "success") {
+                    alert("提交成功");
+                    window.close();
+                } else {
+                    alert("地址参数错误");
+                    window.close();
+                }
+                //console.log(data);
+            }
+        });
+        // $("#corretionForm").submit();
+    });
+
+    function getUrlParam(name) {
+        //构造一个含有目标参数的正则表达式对象  
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        //匹配目标参数  
+        var r = window.location.search.substr(1).match(reg);
+        //返回参数值  
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+</script>
+
+</html>
