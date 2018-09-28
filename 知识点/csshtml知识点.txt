@@ -1,0 +1,17 @@
+1.background:url()#000 ;代表当图片不够充满容器时，用黑色填满。
+
+2.height:inherit;继承父级元素的高度。
+
+	当子元素给了绝对定位，父元素不给相对定位，子元素也能适配高度。
+
+3.网上有在线excel表格转json数据。
+
+4.对于现代浏览器，例如webkit内核的浏览器，或者移动端，是可以实现多行文本内容超出点点点…最后一行显示的，典型的CSS组合如下：
+
+.box {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+其中-webkit-line-clamp就是控制行数的，是3就是显示3行，3行结束点点点，如果是2则最多2行。
+

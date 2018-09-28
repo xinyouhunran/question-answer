@@ -77,11 +77,14 @@ function checkUrl(url, name)
 				});
 			}
 
-20.网上有在线excel表格转json数据。
 
-21.在做一些网页上的tab栏切换的时候，建议用jquery的show（）和hide（）方法来实现。（且默认隐藏的元素也用hide（）方法初始化）。
 
-22.background:url()#000 ;代表当图片不够充满容器时，用黑色填满。
+20.在做一些网页上的tab栏切换的时候，建议用jquery的show（）和hide（）方法来实现。（且默认隐藏的元素也用hide（）方法初始化）。
 
-23.jquery记录index：$（this）.index（）；
+21.jquery记录index：$（this）.index（）。
+
+22.substring（index）代表从索引处开始截取；substring（a，b）代表从下标为a处截取长度为b-a个字符。（参数不为负数）
+   slice（）和substr（）形似，参数可以为负数。
+
+
    
