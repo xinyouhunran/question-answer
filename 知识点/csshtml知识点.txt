@@ -15,3 +15,7 @@
 }
 其中-webkit-line-clamp就是控制行数的，是3就是显示3行，3行结束点点点，如果是2则最多2行。
 
+5.textarea中设置value属性是不生效的，可以用js赋值，或者用placeholder。
+
+6.placeholder的文字颜色不可被改变。
+
