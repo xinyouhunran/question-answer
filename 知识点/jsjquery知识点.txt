@@ -86,5 +86,25 @@ function checkUrl(url, name)
 22.substring（index）代表从索引处开始截取；substring（a，b）代表从下标为a处截取长度为b-a个字符。（参数不为负数）
    slice（）和substr（）形似，参数可以为负数。
 
+23.运用jquery或者js不能直接获取到after，before的样式；如果需要修改此样式，应该新定义一个class，再给class定义after或before去覆盖之前的样式。
 
-   
+24.当运用layui的弹出层想弹出layui的表格时，可以如下写：
+
+html页面：
+<script type="text/html" id="alerttable">//注意type
+			<div id="creattable"></div>
+		</script>
+js：
+layui.use('table',function(){
+			var table = layui.table;
+			
+			table.render({
+				elem:“#creattable”,.....//子节点
+})
+})
+layer.open({
+		area:['1200px','600px'],
+		content:$("#alerttable").html()//父节点
+	});
+				
+  
