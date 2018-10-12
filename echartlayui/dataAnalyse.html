@@ -1,0 +1,482 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<title></title>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="../../static/assets/bootstrap-3.3.7/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="../../static/assets/layui/css/layui.css"/>
+<link rel="stylesheet" href="../../static/css/bootstrap-table.min.css"/>
+<link rel="stylesheet" href="../../static/css/bootstrap-treeview.min.css"/>
+<link rel="stylesheet" href="../../static/css/jquery.treegrid.min.css"/>
+<link rel="stylesheet" href="../../static/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="../../static/css/ionicons.min.css"/>
+<link rel="stylesheet" href="../../static/assets/adminlte-2.3.7/css/AdminLTE.min.css"/>
+<link rel="stylesheet" href="../../static/assets/adminlte-2.3.7/css/skins/_all-skins.min.css"/>
+<link rel="stylesheet" href="../../static/css/app.css"/>
+<link rel="stylesheet" href="../../static/assets/layui-v2.3.0/layui/css/modules/layer/default/layer.css"/>
+<link rel="stylesheet" href="../../static/css/portal/dataSearch.css"/>
+<style>
+	.mydatashow{
+		float: left;
+		width: 18%;
+		margin-left: 10rem;
+	}
+	.mydatashow ul li{
+		width: 100%;
+		border: 1px solid #EEF1F6;
+		box-shadow: 5px 5px 5px #eee;
+		height: 40px;
+		line-height: 40px;
+		margin-bottom: 10px;
+	}
+	.mydatashow ul li strong{
+		display: inline-block;
+		height: 40px;
+		padding: 0 10px;
+		width: 80%;
+		text-align: center;
+		color: #67677B;
+	}
+	.mydatashow ul li span{
+		color: #FFA96E;
+	}
+	.myall{
+		cursor: pointer;
+		color: #184FD0;
+	}
+	.quyu{
+		color: #184FD0;
+	}
+	.myfl{
+		float: left;
+	}
+	.myselect{
+		width: 218px;
+		line-height: 34px;
+	}
+	#start_date,#end_date{
+		width:120px;
+	}
+	.myfl button{
+		    width: 50px;
+    line-height: 34px;
+    border: 0;
+    margin-left: 10px;
+    border-radius: 10px;
+    background: #004DD5;
+    color: #fff;
+	}
+	.layui-layer-dialog .layui-layer-content{
+		overflow-x: auto!important;
+	}
+	table td{
+		cursor: pointer;
+	}
+	#mytable{
+		max-height: 600px;
+		
+	}
+</style>
+<!--[if lt IE 9]>
+<script src="static/js/html5shiv.min.js"></script>
+<script src="static/js/respond.min.js"></script>
+<!--[endif]-->
+</head>
+
+<body class="layui-layout-body">
+		<div class="layui-body">
+			<div class="layui-collapse" style="display: block;">
+				<!--地图-->
+				<div class="layui-colla-item">
+					<h2 class="layui-colla-title" style="padding-left: 15px;color:#5B626E;"><i class="fa fa-bar-chart" style="margin-right: 5px;"></i>区域分布</h2>
+					<div class="layui-colla-content layui-show" style="overflow: hidden;">
+						<div id="mainMap" style="height: 300px; width: 60%;float: left;"></div>
+						<div class="mydatashow">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--表格数据-->
+			<div class="layui-collapse" style="display: block;">
+				<div class="layui-colla-item">
+					<h2 class="layui-colla-title" style="padding-left: 15px;color:#5B626E;"><i class="fa fa-bar-chart" style="margin-right: 5px;"></i>物管企业服务统计</h2>
+					<div class="layui-colla-content layui-show" id="mytable" style="overflow: hidden;overflow-y: auto;">
+						<div><span class="myall">全部</span>&nbsp;&nbsp;<span class="quyu"></span></div>
+						<div id="wgqyfwtj">
+							<!--<table class="layui-table">
+							  <colgroup>
+							    <col width="200">
+							    <col width="200">
+							    <col width="200">
+							    <col width="200">
+							    <col width="200">
+							    <col width="200">
+							  </colgroup>
+							  <thead>
+							    <tr>
+							      <th><i class="fa fa-bar-chart" style="margin-right: 5px;color:#FFD304;"></i>行政区域</th>
+							      <th><i class="fa fa-bar-chart" style="margin-right: 5px;color:#FFD304;"></i>已登记物业数量</th>
+							      <th><i class="fa fa-bar-chart" style="margin-right: 5px;color:#FFD304;"></i>已登记物业管理处数量</th>
+							      <th><i class="fa fa-bar-chart" style="margin-right: 5px;color:#FFD304;"></i>已登记楼宇数量</th>
+							      <th><i class="fa fa-bar-chart" style="margin-right: 5px;color:#FFD304;"></i>已登记企业数量</th>
+							      <th><i class="fa fa-bar-chart" style="margin-right: 5px;color:#FFD304;"></i>已登记从业人员数量</th>
+							      <th><i class="fa fa-bar-chart" style="margin-right: 5px;color:#FFD304;"></i>风险企业</th>
+							    </tr> 
+							  </thead>
+							  <tbody>
+							    <tr>
+							      <td>罗湖</td>
+							      <td>66</td>
+							      <td>66</td>
+							      <td>66</td>
+							      <td>66</td>
+							      <td>66</td>
+							       <td>66</td>
+							    </tr>
+							    <tr>
+							      <td>南山</td>
+							      <td>88</td>
+							      <td>88</td>
+							      <td>88</td>
+							      <td>88</td>
+							      <td>88</td>
+							       <td>66</td>
+							    </tr>
+							  </tbody>
+							</table>-->
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--柱状图数据-->
+			<div class="layui-collapse" style="display: block;">
+				<div class="layui-colla-item">
+					<h2 class="layui-colla-title" style="padding-left: 15px;color:#5B626E;"><i class="fa fa-bar-chart" style="margin-right: 5px;"></i>图表统计</h2>
+					<div class="layui-colla-content layui-show" style="overflow: hidden;">
+						<div style="overflow: hidden;">
+						<div class="myfl myselect">
+							<span style="float: left;">类型：</span>
+							<select name="" class="form-control select_date1 selectlei" style="float: left;width: 70%;">
+					            <option>已登记物业公司</option>
+					            <option>已登记物业管理处</option>
+					            <option>已登记楼宇</option>
+					            <option>已登记企业</option>
+					            <option>已登记从业人员</option>
+					            <option>风险企业</option>
+					        </select>
+						</div>
+						<div class="myfl myselect" style="width: 150px;">
+							<span style="float: left;">统计时间：</span>
+							<select name="" class="form-control select_date1 selectdate" style="float: left;width: 40%;">
+					            <option value="day">日</option>
+					            <option value="month">月</option>
+					        </select>
+						</div>
+						<div class="myfl">
+							<div class="input-group">
+			                    <input type="text" class="form-control" id="start_date" placeholder="开始日期" lay-key="2">
+			                </div>
+						</div>
+						<div class="myfl" style="line-height: 34px;">
+							&nbsp;&nbsp;-&nbsp;&nbsp;
+						</div>
+						<div class="myfl">
+							<div class="input-group">
+			                    <input type="text" class="form-control" id="end_date" placeholder="结束日期" lay-key="1">
+			                </div>
+						</div>
+						<div class="myfl myselect" style="width: 110px;margin-left: 20px;">
+							<select name="" class="form-control select_date1 selectbi" style="float: left;width: 85%;">
+					            <option value="zidingyi">自定义</option>
+					            <option value="tongbi">同比</option>
+					            <option value="huanbi">环比</option>
+					            
+					        </select>
+						</div>
+						<div class="myfl">
+							<div class="input-group">
+			                    <input type="text" class="form-control" id="mystart_date" placeholder="自定义开始" lay-key="3">
+			                </div>
+						</div>
+						<div class="myfl" style="line-height: 34px;">
+							&nbsp;&nbsp;-&nbsp;&nbsp;
+						</div>
+						<div class="myfl">
+							<div class="input-group">
+			                    <input type="text" class="form-control" id="myend_date" placeholder="自定义结束" lay-key="4">
+			                </div>
+						</div>
+						<div class="myfl">
+							<button type="button" class="searchBtu">搜索</button>
+						</div>
+						</div>
+						<div id="zhuchart" style="height: 500px; width: 100%;float: left;margin-top: 20px;">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<!--<div id="alerttable" style="display: none;"></div>-->
+		
+		<script type="text/html" id="alerttable">
+			<div id="creattable"></div>
+		</script>
+		<script type="text/html" id="alerttable1">
+			<div id="creattable1"></div>
+		</script>
+		
+		<script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../static/assets/echarts/echarts.js"></script>
+		<script type="text/javascript" src="../../static/js/jquery-migrate.min.js"></script>
+		<script type="text/javascript" src="../../static/js/jquery.treegrid.min.js"></script>
+		<script type="text/javascript" src="../../static/js/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="../../static/assets/layui/layui.js"></script>
+		<script src="../../static/js/layer.min.js" type="text/javascript"></script>
+
+		<script type="text/javascript" src="../../static/assets/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../static/js/bootstrap-table.min.js"></script>
+		<script type="text/javascript" src="../../static/js/bootstrap-table-zh-CN.min.js"></script>
+		<script type="text/javascript" src="../../static/js/bootstrap-treeview.min.js"></script>
+		<script type="text/javascript" src="../../static/js/additional-methods.min.js"></script>
+		<script type="text/javascript" src="../../static/js/messages_zh.min.js"></script>
+		<script type="text/javascript" src="../../static/assets/adminlte-2.3.7/js/app.min.js"></script>
+		<script type="text/javascript" src="../../static/js/common.js"></script>
+		<script type="text/javascript" src="../../static/assets/adminlte-2.3.7/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+		<script type="text/javascript" src="../../static/js/portal/common.js"></script>
+		<script type="text/javascript" src="../../static/assets/echarts/szs2.js"></script>
+		<script type="text/javascript">
+			var myChart = echarts.init(document.getElementById('mainMap'));
+			var wuyenum = 100;
+			//已登记总量查询
+			$.ajax({
+				type:"get",
+				url:"https://msjwt.szga.gov.cn/wgqyfwt/query/queryTotals",
+				async:true,
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					$(".mydatashow").html("");
+					var str = `<ul>
+								<li><strong>已登记物业数量</strong><span>${data.data[0].propertyCompanyCounts}</span></li>
+								<li><strong>物业管理处数量</strong><span>${data.data[0].propertyCounts}</span></li>
+								<li><strong>已登记楼宇数量</strong><span>${data.data[0].buildingCounts}</span></li>
+								<li><strong>已登记企业数量</strong><span>${data.data[0].enterpriseCounts}</span></li>
+								<li><strong>已登记从业人员数量</strong><span>${data.data[0].employeeCounts}</span></li>
+								<li><strong>风险企业</strong><span>${data.data[0].ventureEnterpriseCounts}</span></li>
+							</ul>`;
+					$(".mydatashow").html(str);
+				}
+			})
+			new Promise(function(resolve,reject){
+				$.ajax({
+					type:"get",
+					url:"https://msjwt.szga.gov.cn/wgqyfwt/query/queryTotalsForArea",
+					async:true,
+					dataType:"json",
+					success:function(data){
+						console.log(data);
+						resolve(data);
+					}
+				})
+			}).then(function(data){
+				console.log(data);
+			
+			
+			myChart.setOption(option = {
+				title: {
+					text: '区域分布 （2018）'
+				},
+				tooltip: {
+					trigger: 'item',
+					/*formatter: '{b}<br/>{c} (p / km2)'*/
+					formatter: function(params) {
+						/*console.log(option.series);
+						console.log(params);*/
+						var myseries = option.series;
+						myseries[0].data[1].wuyenum = 100;
+						/*console.log(option.series);*/
+						return params.name+"</br>物业数量: "+params.data.mydata.propertyCompanyCounts+"</br>物业管理处数量: "+params.data.mydata.propertyCounts+"</br>楼宇数量: "+params.data.mydata.buildingCounts+"</br>企业数量: "+params.data.mydata.enterpriseCounts+"</br>从业人员数量: "+params.data.mydata.employeeCounts+"</br>风险企业: "+params.data.mydata.ventureEnterpriseCounts;
+					}
+				},
+				series: [
+					{
+						name: '深圳市',
+						type: 'map',
+						mapType: 'szs', // 自定义扩展图表类型
+						itemStyle:{
+							normal:{label:{show:true}},
+							emphasis:{label:{show:true}}
+						},
+						data:[
+							{
+								name: '罗湖',
+								value: 20057.34,
+								mydata:data.data[0],
+								itemStyle: {
+			                        normal: {
+			                            areaColor: '#FF99E0',
+			                            borderColor:"#26D2FD",
+			                            label: {
+			                                show: true,
+			                                textStyle: {
+			                                    color: '#fff',
+			                                    fontSize: 15
+			                                }
+			                            }
+			                        }
+			                       }
+								},
+							{name: '福田', value: 15477.48,mydata:data.data[1],
+							itemStyle: {
+			                        normal: {
+			                            areaColor: '#FFD38B',
+			                            borderColor:"#26D2FD",
+			                            label: {
+			                                show: true,
+			                                textStyle: {
+			                                    color: '#fff',
+			                                    fontSize: 15
+			                                }
+			                            }
+			                        }
+			                      }
+							},
+							{name: '南山', value: 31686.1,mydata:data.data[2],
+							itemStyle: {
+			                        normal: {
+			                            areaColor: '#33B6F9',
+			                            borderColor:"#26D2FD",
+			                            label: {
+			                                show: true,
+			                                textStyle: {
+			                                    color: '#fff',
+			                                    fontSize: 15
+			                                }
+			                            }
+			                        }
+			                      }
+							},
+							{name: '龙岗', value: 6992.6,mydata:data.data[3],
+							itemStyle: {
+			                        normal: {
+			                            areaColor: '#A5D55C',
+			                            borderColor:"#26D2FD",
+			                            label: {
+			                                show: true,
+			                                textStyle: {
+			                                    color: '#fff',
+			                                    fontSize: 15
+			                                }
+			                            }
+			                        }
+			                     }
+							},
+							{name: '龙华', value: 44045.49,mydata:data.data[4],
+							itemStyle: {
+			                        normal: {
+			                            areaColor: '#76A3F3',
+			                            borderColor:"#26D2FD",
+			                            label: {
+			                                show: true,
+			                                textStyle: {
+			                                    color: '#fff',
+			                                    fontSize: 15
+			                                }
+			                            }
+			                        }
+			                     }
+							},
+							{name: '盐田', value: 40689.64,mydata:data.data[5],
+							itemStyle: {
+			                        normal: {
+			                            areaColor: '#FF8D99',
+			                            borderColor:"#26D2FD",
+			                            label: {
+			                                show: true,
+			                                textStyle: {
+			                                    color: '#fff',
+			                                    fontSize: 15
+			                                }
+			                            }
+			                        }
+			                     }
+							},
+							{name: '宝安', value: 37659.78,mydata:data.data[6],
+							itemStyle: {
+			                        normal: {
+			                            areaColor: '#FFCE7C',
+			                            borderColor:"#26D2FD",
+			                            label: {
+			                                show: true,
+			                                textStyle: {
+			                                    color: '#fff',
+			                                    fontSize: 15
+			                                }
+			                            }
+			                        }
+			                     }
+							},
+							{name: '光明', value: 45180.97,mydata:data.data[7],
+							itemStyle: {
+			                        normal: {
+			                            areaColor: '#C59AAC',
+			                            borderColor:"#26D2FD",
+			                            label: {
+			                                show: true,
+			                                textStyle: {
+			                                    color: '#fff',
+			                                    fontSize: 15
+			                                }
+			                            }
+			                        }
+			                     }
+							},
+							{name: '坪山', value: 55204.26,mydata:data.data[8],
+							itemStyle: {
+			                        normal: {
+			                            areaColor: '#FFA964',
+			                            borderColor:"#26D2FD",
+			                            label: {
+			                                show: true,
+			                                textStyle: {
+			                                    color: '#fff',
+			                                    fontSize: 15
+			                                }
+			                            }
+			                        }
+			                     }
+							},
+							{name: '大鹏', value: 21900.9,mydata:data.data[9],
+							itemStyle: {
+			                        normal: {
+			                            areaColor: '#26D2FD',
+			                            borderColor:"#26D2FD",
+			                            label: {
+			                                show: true,
+			                                textStyle: {
+			                                    color: '#fff',
+			                                    fontSize: 15
+			                                }
+			                            }
+			                        }
+			                     }
+							}
+						]
+					}
+				]
+			})
+			}).catch(function(){
+				
+			});
+		</script>
+		<script type="text/javascript" src="../../static/js/wgqyfwtj.js"></script>
+		
+</body>
+</html>

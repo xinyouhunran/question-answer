@@ -3,3 +3,5 @@ tableExport.js表格导出，此插件【依赖于jQuery (1.2.1 or higher) && FileSaver.js】
 navbarscroll.js导航可左右滑动，可点击边缘的一个，自动滚动下一个到可视范围【依赖于iscroll.js】
 
 jquery.form.min.js表单提交的时候方便使用
+
+font-awesome一套无需js的图标库，只需引入css即可
