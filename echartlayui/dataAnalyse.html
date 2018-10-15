@@ -79,6 +79,15 @@
 		max-height: 600px;
 		
 	}
+	.export{
+		float:right;
+		margin-right: 20px;
+		cursor: pointer;
+	}
+	.layui-layer-btn .layui-layer-btn1{
+		color:#fff;
+		background-color: #1E9FFF;
+	}
 </style>
 <!--[if lt IE 9]>
 <script src="static/js/html5shiv.min.js"></script>
@@ -91,7 +100,7 @@
 			<div class="layui-collapse" style="display: block;">
 				<!--地图-->
 				<div class="layui-colla-item">
-					<h2 class="layui-colla-title" style="padding-left: 15px;color:#5B626E;"><i class="fa fa-bar-chart" style="margin-right: 5px;"></i>区域分布</h2>
+					<h2 class="layui-colla-title" style="padding-left: 15px;color:#5B626E;"><i class="fa fa-area-chart" style="margin-right: 5px;"></i>区域分布</h2>
 					<div class="layui-colla-content layui-show" style="overflow: hidden;">
 						<div id="mainMap" style="height: 300px; width: 60%;float: left;"></div>
 						<div class="mydatashow">
@@ -104,50 +113,13 @@
 			<div class="layui-collapse" style="display: block;">
 				<div class="layui-colla-item">
 					<h2 class="layui-colla-title" style="padding-left: 15px;color:#5B626E;"><i class="fa fa-bar-chart" style="margin-right: 5px;"></i>物管企业服务统计</h2>
-					<div class="layui-colla-content layui-show" id="mytable" style="overflow: hidden;overflow-y: auto;">
-						<div><span class="myall">全部</span>&nbsp;&nbsp;<span class="quyu"></span></div>
+					<div class="layui-colla-content layui-show" id="mytable" style="overflow: hidden;">
+						<div style="overflow: hidden;"><span class="myall">全部</span>&nbsp;&nbsp;<span class="quyu"></span><div class="export">导出表格</div></div>
+						
 						<div id="wgqyfwtj">
-							<!--<table class="layui-table">
-							  <colgroup>
-							    <col width="200">
-							    <col width="200">
-							    <col width="200">
-							    <col width="200">
-							    <col width="200">
-							    <col width="200">
-							  </colgroup>
-							  <thead>
-							    <tr>
-							      <th><i class="fa fa-bar-chart" style="margin-right: 5px;color:#FFD304;"></i>行政区域</th>
-							      <th><i class="fa fa-bar-chart" style="margin-right: 5px;color:#FFD304;"></i>已登记物业数量</th>
-							      <th><i class="fa fa-bar-chart" style="margin-right: 5px;color:#FFD304;"></i>已登记物业管理处数量</th>
-							      <th><i class="fa fa-bar-chart" style="margin-right: 5px;color:#FFD304;"></i>已登记楼宇数量</th>
-							      <th><i class="fa fa-bar-chart" style="margin-right: 5px;color:#FFD304;"></i>已登记企业数量</th>
-							      <th><i class="fa fa-bar-chart" style="margin-right: 5px;color:#FFD304;"></i>已登记从业人员数量</th>
-							      <th><i class="fa fa-bar-chart" style="margin-right: 5px;color:#FFD304;"></i>风险企业</th>
-							    </tr> 
-							  </thead>
-							  <tbody>
-							    <tr>
-							      <td>罗湖</td>
-							      <td>66</td>
-							      <td>66</td>
-							      <td>66</td>
-							      <td>66</td>
-							      <td>66</td>
-							       <td>66</td>
-							    </tr>
-							    <tr>
-							      <td>南山</td>
-							      <td>88</td>
-							      <td>88</td>
-							      <td>88</td>
-							      <td>88</td>
-							      <td>88</td>
-							       <td>66</td>
-							    </tr>
-							  </tbody>
-							</table>-->
+						</div>
+						<div id="mypage">
+							
 						</div>
 					</div>
 				</div>
@@ -156,7 +128,7 @@
 			<!--柱状图数据-->
 			<div class="layui-collapse" style="display: block;">
 				<div class="layui-colla-item">
-					<h2 class="layui-colla-title" style="padding-left: 15px;color:#5B626E;"><i class="fa fa-bar-chart" style="margin-right: 5px;"></i>图表统计</h2>
+					<h2 class="layui-colla-title" style="padding-left: 15px;color:#5B626E;"><i class="fa fa-signal" style="margin-right: 5px;"></i>图表统计</h2>
 					<div class="layui-colla-content layui-show" style="overflow: hidden;">
 						<div style="overflow: hidden;">
 						<div class="myfl myselect">
@@ -251,6 +223,8 @@
 		<script type="text/javascript" src="../../static/assets/adminlte-2.3.7/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 		<script type="text/javascript" src="../../static/js/portal/common.js"></script>
 		<script type="text/javascript" src="../../static/assets/echarts/szs2.js"></script>
+		<script type="text/javascript" src="../../static/assets/export/FileSaver.min.js"></script>
+		<script type="text/javascript" src="../../static/assets/export/tableExport.js"></script>
 		<script type="text/javascript">
 			var myChart = echarts.init(document.getElementById('mainMap'));
 			var wuyenum = 100;
@@ -261,7 +235,7 @@
 				async:true,
 				dataType:"json",
 				success:function(data){
-					console.log(data);
+					/*console.log(data);*/
 					$(".mydatashow").html("");
 					var str = `<ul>
 								<li><strong>已登记物业数量</strong><span>${data.data[0].propertyCompanyCounts}</span></li>
@@ -281,12 +255,12 @@
 					async:true,
 					dataType:"json",
 					success:function(data){
-						console.log(data);
+						/*console.log(data);*/
 						resolve(data);
 					}
 				})
 			}).then(function(data){
-				console.log(data);
+				/*console.log(data);*/
 			
 			
 			myChart.setOption(option = {

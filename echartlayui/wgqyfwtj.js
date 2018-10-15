@@ -1,3 +1,11 @@
+//表格下载
+$(".export").click(function(){
+	$('.layui-table-box').eq(0).tableExport({
+        type: 'excel',
+        excelstyles: ['border-bottom', 'border-top', 'border-left', 'border-right']
+    });
+})
+
 //表格数据操作
 //指定行政区已登记总量
 function allArea(){
@@ -8,19 +16,20 @@ function allArea(){
 		dataType:"json",
 		success:(data)=>{
 			console.log(data);
-			findTable("#wgqyfwtj",false,'adsName',"https://msjwt.szga.gov.cn/wgqyfwt/query/queryTotalsForArea");
+			findTable("#wgqyfwtj",data,'adsName',"https://msjwt.szga.gov.cn/wgqyfwt/query/queryTotalsForArea");
 		}
 	});
 }
 allArea();
-function findTable(el,ispage,firstcol,url){//选择器,分页，数据，首列
+function findTable(el,data,firstcol,url){//选择器,分页，数据，首列
 	$(el).html("");
-	layui.use('table',function(){
+	layui.use(['table','laypage'],function(){
 			var table = layui.table;
+			var laypage = layui.laypage;
 			table.render({
 				elem:el,
 				cellMinWidth:80,
-				page:ispage,
+				height:430,
 				url:url,
 				response: {
 				   statusName: 'status' //规定数据状态的字段名称，默认：code
@@ -69,11 +78,11 @@ function findTable(el,ispage,firstcol,url){//选择器,分页，数据，首列
 				    //如果是异步请求数据方式，res即为你接口返回的信息。
 				    //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
 				    console.log(res);
+				    console.log(curr,count);
 				    var ads = $("[data-field='adsName']");
 				    for(var i=1;i<=res.data.length-1;i++){
 				    	$("[data-field='adsName']").eq(i).attr("data-adsId",`${res.data[i-1].adsId}`);
 				    }
-				    count = res.data.length-1;
 				  }
 			})
 		})
@@ -99,7 +108,7 @@ $("#mytable").on("click","tbody tr td:nth-child(1)",function(){
 			dataType:"json",
 			success:function(data){
 				console.log(data);
-				findTable("#wgqyfwtj",false,'name',"https://msjwt.szga.gov.cn/wgqyfwt/query/queryTotalsByAdsId?adsId="+adsId);
+				findTable("#wgqyfwtj",data,'name',"https://msjwt.szga.gov.cn/wgqyfwt/query/queryTotalsByAdsId?adsId="+adsId);
 				$(".quyu").attr("data-adsId",adsId);
 			},
 			error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -167,17 +176,25 @@ function secondClick(adsId){
 						],
 					})
 				})
-				
+				console.log($('.layui-table-box'));
 			},
 			error:function(XMLHttpRequest, textStatus, errorThrown){
 				console.log(textStatus);
 			}
 	})
 	layer.open({
-		area:['1200px','600px'],
+		area:['800px','600px'],
 		content:$("#alerttable").html(),
+		btn:['下载','确定'],
+		yes:function(index,layero){
+			$('.layui-table-box').eq(1).tableExport({
+		        type: 'excel',
+		        excelstyles: ['border-bottom', 'border-top', 'border-left', 'border-right']
+		    });
+		},
 		success:function(){
 			$(".layui-layer-title").attr("data-adsId",adsId);
+	
 		}
 	});
 }
@@ -240,8 +257,15 @@ $("#mytable").on("click","tbody tr td:nth-child(3)",function(){
 			}
 	})
 	layer.open({
-		area:['1200px','600px'],
-		content:$("#alerttable").html()
+		area:['800px','600px'],
+		content:$("#alerttable").html(),
+		btn:['下载','确定'],
+		yes:function(index,layero){
+			$('.layui-table-box').eq(1).tableExport({
+		        type: 'excel',
+		        excelstyles: ['border-bottom', 'border-top', 'border-left', 'border-right']
+		    });
+		},
 	});
 })
 
@@ -323,8 +347,15 @@ $("#mytable").on("click","tbody tr td:nth-child(4)",function(){
 			}
 	})
 	layer.open({
-		area:['1200px','600px'],
-		content:$("#alerttable").html()
+		area:['800px','600px'],
+		content:$("#alerttable").html(),
+		btn:['下载','确定'],
+		yes:function(index,layero){
+			$('.layui-table-box').eq(1).tableExport({
+		        type: 'excel',
+		        excelstyles: ['border-bottom', 'border-top', 'border-left', 'border-right']
+		    });
+		},
 	});
 })
 
@@ -401,8 +432,15 @@ $("#mytable").on("click","tbody tr td:nth-child(5)",function(){
 			}
 	})
 	layer.open({
-		area:['1200px','600px'],
-		content:$("#alerttable").html()
+		area:['800px','600px'],
+		content:$("#alerttable").html(),
+		btn:['下载','确定'],
+		yes:function(index,layero){
+			$('.layui-table-box').eq(1).tableExport({
+		        type: 'excel',
+		        excelstyles: ['border-bottom', 'border-top', 'border-left', 'border-right']
+		    });
+		},
 	});
 })
 
@@ -469,8 +507,15 @@ $("#mytable").on("click","tbody tr td:nth-child(6)",function(){
 			}
 	})
 	layer.open({
-		area:['1200px','600px'],
-		content:$("#alerttable").html()
+		area:['800px','600px'],
+		content:$("#alerttable").html(),
+		btn:['下载','确定'],
+		yes:function(index,layero){
+			$('.layui-table-box').eq(1).tableExport({
+		        type: 'excel',
+		        excelstyles: ['border-bottom', 'border-top', 'border-left', 'border-right']
+		    });
+		},
 	});
 })
 
@@ -547,8 +592,15 @@ $("#mytable").on("click","tbody tr td:nth-child(7)",function(){
 			}
 	})
 	layer.open({
-		area:['1200px','600px'],
-		content:$("#alerttable").html()
+		area:['800px','600px'],
+		content:$("#alerttable").html(),
+		btn:['下载','确定'],
+		yes:function(index,layero){
+			$('.layui-table-box').eq(1).tableExport({
+		        type: 'excel',
+		        excelstyles: ['border-bottom', 'border-top', 'border-left', 'border-right']
+		    });
+		}
 	});
 })
 
@@ -872,14 +924,22 @@ $("body").on("click","tbody tr td:nth-child(5)",function(){
 						],
 					})
 				})
+				console.log($('.layui-table-box'));
 			},
 			error:function(XMLHttpRequest, textStatus, errorThrown){
 				console.log(textStatus);
 			}
 	})
 	layer.open({
-		area:['1200px','600px'],
+		area:['800px','600px'],
 		content:$("#alerttable1").html(),
+		btn:['下载','确定'],
+		yes:function(index,layero){
+			$('.layui-table-box').eq(1).tableExport({
+		        type: 'excel',
+		        excelstyles: ['border-bottom', 'border-top', 'border-left', 'border-right']
+		    });
+		},
 		end:function(){
 			secondClick(adsId);
 		}
@@ -949,8 +1009,15 @@ $("body").on("click","tbody tr td:nth-child(6)",function(){
 			}
 	})
 	layer.open({
-		area:['1200px','600px'],
+		area:['800px','600px'],
 		content:$("#alerttable1").html(),
+		btn:['下载','确定'],
+		yes:function(index,layero){
+			$('.layui-table-box').eq(1).tableExport({
+		        type: 'excel',
+		        excelstyles: ['border-bottom', 'border-top', 'border-left', 'border-right']
+		    });
+		},
 		end:function(){
 			secondClick(adsId);
 		}
