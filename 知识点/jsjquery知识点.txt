@@ -107,4 +107,6 @@ layer.open({
 		content:$("#alerttable").html()//父节点
 	});
 				
-  
+25.$.extend(合并到此处，对象1，对象2)合并对象。
+
+26.ES6 对象提供了 Object.assign()这个方法来实现浅复制。（将源对象可枚举的属性拷贝给目标对象）。
