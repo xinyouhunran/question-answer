@@ -1,4 +1,4 @@
-//表格下载
+//表格导出
 $(".export").click(function(){
 	$('.layui-table-box').eq(0).tableExport({
         type: 'excel',
@@ -78,7 +78,7 @@ function findTable(el,data,firstcol,url){//选择器,分页，数据，首列
 				    //如果是异步请求数据方式，res即为你接口返回的信息。
 				    //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
 				    console.log(res);
-				    console.log(curr,count);
+				    /*console.log(curr,count);*/
 				    var ads = $("[data-field='adsName']");
 				    for(var i=1;i<=res.data.length-1;i++){
 				    	$("[data-field='adsName']").eq(i).attr("data-adsId",`${res.data[i-1].adsId}`);
@@ -88,7 +88,10 @@ function findTable(el,data,firstcol,url){//选择器,分页，数据，首列
 		})
 }
 /*findTable("#wgqyfwtj");*/
-
+/*$(".layui-table-view .layui-table td").on("mouseover",'div',function(){
+	console.log(this);
+	$(this).css({'cursor':'pointer','color':'#fff','background':'#1E9FFF'})
+})*/
 //表格中第一列点击时触发
 var firstflag = true;//记录是否是第一次点击第一列
 $("#mytable").on("click","tbody tr td:nth-child(1)",function(){
@@ -122,6 +125,11 @@ $("#mytable").on("click","tbody tr td:nth-child(1)",function(){
 
 //返回第二列数据
 function secondClick(adsId){
+	$('.layui-table-view .layui-table td:nth-child(1)').hover(function(){
+				$(this).css({'color':'#666','text-decoration':'none'})
+		})
+	var ww = $(window).width();
+	var myleft = (ww-1200-200)/2+200+'px';//弹出层距离左边的距离
 	$.ajax({
 			type:"get",
 			url:"https://msjwt.szga.gov.cn/wgqyfwt/query/queryPropertyCompaniesByAdsId?adsId="+adsId,
@@ -183,9 +191,10 @@ function secondClick(adsId){
 			}
 	})
 	layer.open({
-		area:['800px','600px'],
+		area:['1200px','600px'],
+		offset:['center',myleft],
 		content:$("#alerttable").html(),
-		btn:['下载','确定'],
+		btn:['导出','关闭'],
 		yes:function(index,layero){
 			$('.layui-table-box').eq(1).tableExport({
 		        type: 'excel',
@@ -194,10 +203,60 @@ function secondClick(adsId){
 		},
 		success:function(){
 			$(".layui-layer-title").attr("data-adsId",adsId);
-	
-		}
+			//给第五列和第六列设置样式
+			$('body').on('mouseover','.layui-table-view .layui-table td:nth-child(5)',function(){
+				$(this).css({
+					'color':'#1E9FFF',
+					'text-decoration': 'underline'
+				})
+			})
+			$('body').on('mouseout','.layui-table-view .layui-table td:nth-child(5)',function(){
+				$(this).css({
+					'color':'#666',
+					'text-decoration': 'none'
+				})
+			})
+			$('body').on('mouseover','.layui-table-view .layui-table td:nth-child(6)',function(){
+				$(this).css({
+					'color':'#1E9FFF',
+					'text-decoration': 'underline'
+				})
+			})
+			$('body').on('mouseout','.layui-table-view .layui-table td:nth-child(6)',function(){
+				$(this).css({
+					'color':'#666',
+					'text-decoration': 'none'
+				})
+			})
+		},
 	});
 }
+
+//设置初始表格样式
+
+	$('#mytable').on('mouseover','.layui-table-view .layui-table td',function(){
+		$(this).css({
+			'color':'#1E9FFF',
+			'text-decoration': 'underline'
+		})
+	})
+	$('#mytable').on('mouseout','.layui-table-view .layui-table td',function(){
+		$(this).css({
+			'color':'#666',
+			'text-decoration': 'none'
+		})
+	})
+
+/*//恢复样式
+function recover(num){
+		$('.layui-table-view .layui-table td:nth-child('+num+')').mouseover(function(){
+				$(this).css({'color':'#1E9FFF','text-decoration':'underline'})
+		})
+		$('.layui-table-view .layui-table td:nth-child('+num+')').mouseout(function(){
+				$(this).css({'color':'#666','text-decoration':'none'})
+		})
+}*/
+
 //表格中第二列点击时触发
 $("#mytable").on("click","tbody tr td:nth-child(2)",function(){
 	var adsId = getadsId(this);
@@ -206,6 +265,8 @@ $("#mytable").on("click","tbody tr td:nth-child(2)",function(){
 
 //表格中第三列点击时触发
 $("#mytable").on("click","tbody tr td:nth-child(3)",function(){
+	var ww = $(window).width();
+	var myleft = (ww-1200-200)/2+200+'px';
 	var adsId = getadsId(this);
 	$.ajax({
 			type:"get",
@@ -257,9 +318,10 @@ $("#mytable").on("click","tbody tr td:nth-child(3)",function(){
 			}
 	})
 	layer.open({
-		area:['800px','600px'],
+		area:['1200px','600px'],
+		offset:['center',myleft],
 		content:$("#alerttable").html(),
-		btn:['下载','确定'],
+		btn:['导出','关闭'],
 		yes:function(index,layero){
 			$('.layui-table-box').eq(1).tableExport({
 		        type: 'excel',
@@ -271,6 +333,8 @@ $("#mytable").on("click","tbody tr td:nth-child(3)",function(){
 
 //表格中第四列点击时触发
 $("#mytable").on("click","tbody tr td:nth-child(4)",function(){
+	var ww = $(window).width();
+	var myleft = (ww-1200-200)/2+200+'px';
 	var adsId = getadsId(this);
 	$.ajax({
 			type:"get",
@@ -347,9 +411,10 @@ $("#mytable").on("click","tbody tr td:nth-child(4)",function(){
 			}
 	})
 	layer.open({
-		area:['800px','600px'],
+		area:['1200px','600px'],
+		offset:['center',myleft],
 		content:$("#alerttable").html(),
-		btn:['下载','确定'],
+		btn:['导出','关闭'],
 		yes:function(index,layero){
 			$('.layui-table-box').eq(1).tableExport({
 		        type: 'excel',
@@ -361,6 +426,8 @@ $("#mytable").on("click","tbody tr td:nth-child(4)",function(){
 
 //表格中第五列点击时触发
 $("#mytable").on("click","tbody tr td:nth-child(5)",function(){
+	var ww = $(window).width();
+	var myleft = (ww-1200-200)/2+200+'px';
 	var adsId = getadsId(this);
 	$.ajax({
 			type:"get",
@@ -432,9 +499,10 @@ $("#mytable").on("click","tbody tr td:nth-child(5)",function(){
 			}
 	})
 	layer.open({
-		area:['800px','600px'],
+		area:['1200px','600px'],
+		offset:['center',myleft],
 		content:$("#alerttable").html(),
-		btn:['下载','确定'],
+		btn:['导出','关闭'],
 		yes:function(index,layero){
 			$('.layui-table-box').eq(1).tableExport({
 		        type: 'excel',
@@ -446,6 +514,8 @@ $("#mytable").on("click","tbody tr td:nth-child(5)",function(){
 
 //表格中第六列点击时触发
 $("#mytable").on("click","tbody tr td:nth-child(6)",function(){
+	var ww = $(window).width();
+	var myleft = (ww-1200-200)/2+200+'px';
 	var adsId = getadsId(this);
 	$.ajax({
 			type:"get",
@@ -507,9 +577,10 @@ $("#mytable").on("click","tbody tr td:nth-child(6)",function(){
 			}
 	})
 	layer.open({
-		area:['800px','600px'],
+		area:['1200px','600px'],
+		offset:['center',myleft],
 		content:$("#alerttable").html(),
-		btn:['下载','确定'],
+		btn:['导出','关闭'],
 		yes:function(index,layero){
 			$('.layui-table-box').eq(1).tableExport({
 		        type: 'excel',
@@ -521,6 +592,8 @@ $("#mytable").on("click","tbody tr td:nth-child(6)",function(){
 
 //表格中第七列点击时触发
 $("#mytable").on("click","tbody tr td:nth-child(7)",function(){
+	var ww = $(window).width();
+	var myleft = (ww-1200-200)/2+200+'px';
 	var adsId = getadsId(this);
 	$.ajax({
 			type:"get",
@@ -592,9 +665,10 @@ $("#mytable").on("click","tbody tr td:nth-child(7)",function(){
 			}
 	})
 	layer.open({
-		area:['800px','600px'],
+		area:['1200px','600px'],
+		offset:['center',myleft],
 		content:$("#alerttable").html(),
-		btn:['下载','确定'],
+		btn:['导出','关闭'],
 		yes:function(index,layero){
 			$('.layui-table-box').eq(1).tableExport({
 		        type: 'excel',
@@ -604,6 +678,7 @@ $("#mytable").on("click","tbody tr td:nth-child(7)",function(){
 	});
 })
 
+//获取需要传递的adsId
 function getadsId(t){
 	var adsId;
 	if($(".quyu").text()==""){
@@ -660,7 +735,7 @@ $(".myall").click(function(){
 })
 
 //柱状图查询
-function myzhu(data1,data2){//选择器，原数据，对比数据
+function myzhu(data1,data2,myarea){//原数据，对比数据
 	var myCharts = echarts.init(document.getElementById("zhuchart"));
 
 	var myoption = {
@@ -685,7 +760,7 @@ function myzhu(data1,data2){//选择器，原数据，对比数据
 	        {
 	            type : 'category',
 	            name:'区域',
-	            data : ['罗湖','南山','宝安','福田','龙岗','龙华','光明','坪山','大鹏','盐田']
+	            data :myarea
 	        }
 	    ],
 	    yAxis : [
@@ -710,7 +785,7 @@ function myzhu(data1,data2){//选择器，原数据，对比数据
 	}
 	myCharts.setOption(myoption);
 }
-myzhu([100,100,100,100,100,100,100,100,100,150],[100,100,100,100,100,100,100,100,100,150]);
+/*myzhu([100,100,100,100,100,100,100,100,100,150],[100,100,100,100,100,100,100,100,100,150]);*/
 //下拉框选择什么比对应的日期操作
 $(".selectbi").click(function(){
 	var date = new Date();
@@ -764,6 +839,56 @@ $(".selectbi").click(function(){
 	
 })
 
+function getnewDate(mydate){
+	var lastY = mydate.getFullYear();
+	var lastM = mydate.getMonth()+1;
+	var lastD = mydate.getDate();
+	var LDate = lastY + "-" + (lastM < 10 ? "0" + lastM : lastM) + "-" +(lastD < 10 ? "0" + lastD : lastD);
+	return LDate;
+}
+//初始默认值柱状图
+function myInit(){
+	var date1 = new Date();
+	var startDate = new Date(date1 - 1000 * 60 * 60 * 24 * 8);
+	var endDate = new Date(date1 - 1000 * 60 * 60 * 24 * 1);
+	var mystartDate = new Date(date1 - 1000 * 60 * 60 * 24 * 16);
+	var myendDate = new Date(date1 - 1000 * 60 * 60 * 24 * 9);
+	var time1 = getnewDate(startDate);
+	$("#start_date").val(time1);
+	var time2 = getnewDate(endDate);
+	$("#end_date").val(time2);
+	var time3 = getnewDate(mystartDate);
+	$("#mystart_date").val(time3);
+	var time4 = getnewDate(myendDate);
+	$("#myend_date").val(time4);
+	$.ajax({
+			type:"post",
+			url:"https://msjwt.szga.gov.cn/wgqyfwt/query/queryDatasByConditions",
+			data:{
+				queryType:1,
+				timeType:1,
+				time1:time1,
+				time2:time2,
+				time3:time3,
+				time4:time4,
+			},
+			async:true,
+			dataType:"json",
+			success:function(data){
+				console.log(data);
+				var data1=[];
+				var data2=[];
+				var myarea=[];
+				for(var i=0;i<data.data.length;i++){
+						data1.push(data.data[i].propertyCompanyCounts);
+						data2.push(data.data[i].compareCounts);
+						myarea.push(data.data[i].adsName);
+					}
+				myzhu(data1,data2,myarea);
+			}
+		})
+}
+myInit();
 //搜索按钮点击触发
 $(".searchBtu").click(function(){
 	var selectlei = $(".selectlei  option:selected").text();
@@ -829,6 +954,7 @@ $(".searchBtu").click(function(){
 				console.log(data);
 				var data1=[];
 				var data2=[];
+				var myarea = [];
 				if(queryType==1){
 					for(var i=0;i<data.data.length;i++){
 						data1.push(data.data[i].propertyCompanyCounts);
@@ -859,7 +985,10 @@ $(".searchBtu").click(function(){
 						data2.push(data.data[i].compareCounts);
 					}
 				}
-				myzhu(data1,data2);
+				for(var i=0;i<data.data.length;i++){
+						myarea.push(data.data[i].adsName);
+					}
+				myzhu(data1,data2,myarea);
 			}
 		})
 	}
@@ -867,6 +996,8 @@ $(".searchBtu").click(function(){
 
 //二次弹窗第五列
 $("body").on("click","tbody tr td:nth-child(5)",function(){
+	var ww = $(window).width();
+	var myleft = (ww-1200-200)/2+200+'px';
 	var adsId = $(".layui-layer-title").attr("data-adsId");
 	if($(this).parent().children().eq(1).attr("data-field")=="unitCreditCode"){
 		var unitCreditCode = $(this).parent().children().eq(1).text();
@@ -931,9 +1062,10 @@ $("body").on("click","tbody tr td:nth-child(5)",function(){
 			}
 	})
 	layer.open({
-		area:['800px','600px'],
+		area:['1200px','600px'],
+		offset:['center',myleft],
 		content:$("#alerttable1").html(),
-		btn:['下载','确定'],
+		btn:['导出','关闭'],
 		yes:function(index,layero){
 			$('.layui-table-box').eq(1).tableExport({
 		        type: 'excel',
@@ -951,6 +1083,8 @@ $("body").on("click","tbody tr td:nth-child(5)",function(){
 
 //二次弹窗第六列
 $("body").on("click","tbody tr td:nth-child(6)",function(){
+	var ww = $(window).width();
+	var myleft = (ww-1200-200)/2+200+'px';
 	var adsId = $(".layui-layer-title").attr("data-adsId");
 	if($(this).parent().children().eq(1).attr("data-field")=="unitCreditCode"){
 		var unitCreditCode = $(this).parent().children().eq(1).text();
@@ -1009,9 +1143,10 @@ $("body").on("click","tbody tr td:nth-child(6)",function(){
 			}
 	})
 	layer.open({
-		area:['800px','600px'],
+		area:['1200px','600px'],
+		offset:['center',myleft],
 		content:$("#alerttable1").html(),
-		btn:['下载','确定'],
+		btn:['导出','关闭'],
 		yes:function(index,layero){
 			$('.layui-table-box').eq(1).tableExport({
 		        type: 'excel',
