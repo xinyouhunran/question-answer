@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import demo from '@/components/demo'
 import child from '@/components/child'
 
+import 'weui'
+
 Vue.use(Router)
 
 export default new Router({

@@ -1,24 +1,47 @@
 <template>
 	<div id="child">
 		<h1 v-text="msg" @click="getData()"></h1>
+		<p>{{newId}}</p>
+		<input type="text" v-model="newId"/>
+		<xfooter></xfooter>
 	</div>
 </template>
 
 <script>
+	import xfooter from '@/components/common/footer'
 	import axios from 'axios';
 	export default{
 		name:'child',
 		props:['msg'],
+		components:{
+			xfooter
+		},
 		data(){
 			return{			
-				msg1:"我是子"
+				msg1:"我是子",
+				id:'2',
+				mydata:[]
+			}
+		},
+		computed:{
+			newId:{
+				get:function(){
+				return this.id+'px';
+			},
+				set: function (id) {
+				this.newId = '';
+		      	this.id = id;
+		    }
 			}
 		},
 		methods:{
 			getData:()=>{
+				var _this = this;
 				axios.get('https://msjwt.szga.gov.cn/wgqyfwt/query/queryTotals')
 				.then(function (response) {
 				    console.log(response);
+				    _this.mydata =[...response.data.data];
+				    console.log(_this.mydata);
 				 })
 				.catch(function (error) {
 				    console.log(error);
@@ -26,7 +49,11 @@
 			}
 		},
 		mounted(){
-			
+			this.id = this.$route.query.id;
+			console.log(this.id);
+		},
+		watch:{
+			'id':'getData'
 		}
 	}
 </script>
