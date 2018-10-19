@@ -3,7 +3,8 @@
 		<h1 v-text="msg" @click="getData()"></h1>
 		<p>{{newId}}</p>
 		<input type="text" v-model="newId"/>
-		<xfooter></xfooter>
+		<p v-text="authorName"></p>
+		<!--<xfooter></xfooter>-->
 	</div>
 </template>
 
@@ -25,13 +26,25 @@
 		},
 		computed:{
 			newId:{
-				get:function(){
-				return this.id+'px';
+					get:function(){
+					return this.id+'px';
+				},
+					set: function (id) {
+					this.newId = '';
+			      	this.id = id;
+			    }
 			},
-				set: function (id) {
-				this.newId = '';
-		      	this.id = id;
-		    }
+			authorName:function(){
+				var _this = this;
+				/*new Promise(function(resolve,reject){*/
+					_this.$store.commit('increment',{detial:{author:{loginname:"456"}}});
+					/*resolve()
+				}).then(function(){*/
+					console.log(_this.$store.state.detial);
+					return _this.$store.state.detial.author.loginname;
+				/*})*/
+				
+				
 			}
 		},
 		methods:{
@@ -51,10 +64,13 @@
 		mounted(){
 			this.id = this.$route.query.id;
 			console.log(this.id);
+			/*console.log(this.$store.state.detial);*/
+			this.$store.commit('increment',{detial:{author:{loginname:"123"}}});
+			console.log(this.$store.state.detial.author.loginname);;
 		},
-		watch:{
+		/*watch:{
 			'id':'getData'
-		}
+		}*/
 	}
 </script>
 
