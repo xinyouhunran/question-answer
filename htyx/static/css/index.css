@@ -1,0 +1,24 @@
+.fl{float: left;}
+.fr{float: right;}
+*{margin: 0;padding: 0;}
+
+/*header*/
+#header{overflow: hidden;width: 100%;height: 58px;background-color: rgb(70, 76, 91)}
+.logo{width: 10%;line-height:58px ;height: 58px;}
+.logo img{display: block;}
+
+.mynav{line-height: 58px;height: 58px;margin-left: 70px;}
+.mynav ul{overflow: hidden;list-style: none;margin-bottom: 0;}
+.mynav ul li{float: left;width: 121px;text-align: center;line-height: 58px;color: rgb(204, 204, 204);font-size: 16px;cursor: pointer;}
+.mynav ul li:hover{background-color: #1ABC9C;color: #fff;}
+.mynav ul .active{color: #fff;}
+.mynav ul .active:hover{background-color: rgb(70, 76, 91);}
+
+.opeater>p{display: inline-block;width: 120px;height: 58px;line-height: 58px;font-size: 16px;color: rgb(204, 204, 204);cursor: pointer;text-align: center;margin-bottom: 0;}
+.opeater>p:hover{background-color: #1ABC9C;color: #fff;}
+.opeater>p i{margin-right: 10px;}
+
+#session{overflow: hidden;}
+.sideleft{width:15%;float: left;}
+.sideright{width:85%;float: left;min-height: 880px;background-color: #F7F7F7;position: relative;}
+

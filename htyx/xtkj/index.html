@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../static/assets/bootstrap-3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="../static/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/css/custom.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/assets/adminlte-2.3.7/css/AdminLTE.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/css/index.css"/>
+		<style>
+		</style>
+	</head>
+	<body>
+		<div id="header">
+			<div class="logo fl"><img src="" alt="" /></div>
+			<div class="mynav fl">
+				<ul>
+					<li class="active">首页</li>
+					<li>警务电子地图</li>
+					<li>无证入住</li>
+					<li>物管企业服务</li>
+				</ul>
+			</div>
+			<div class="opeater fr">
+				<p><i class="fa fa-user-circle"></i>账户设置</p>
+				<p><i class="fa fa-window-close"></i>退出登录</p>
+			</div>
+		</div>
+		<div id="session">
+			<div class="sideleft">
+				
+				<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+					<!--首页-->
+					<div class="menu_section">
+					 	<ul class="nav side-menu">
+					 		<li class="active"><a><i class="fa fa-list-alt"></i> 首页 <span class="fa fa-chevron-down"></span></a>
+	                            <ul class="nav child_menu" style="display: block;">
+	                                <li><a href="#" id="applyProofUser">各应用使用情况</a></li>
+	                                <li><a href="#" id="publicAccountUser">各应用使用图表</a></li>
+	                            </ul>
+	                        </li>
+					 	</ul>
+					 </div>
+					 
+					<!-- 警务电子地图-->
+					 <div class="menu_section">
+	                    <ul class="nav side-menu">
+	                        <li class=""><a><i class="fa fa-user"></i> 统计分析 <span class="fa fa-chevron-down"></span></a>
+	                            <ul class="nav child_menu" style="display: none;">
+	                                <li><a href="#" id="applyProofUser">图表统计</a></li>
+	                            </ul>
+	                        </li>
+	
+	                        <li class="active"><a><i class="fa fa-bar-chart"></i> 信息管理 <span class="fa fa-chevron-down"></span></a>
+	                            <ul class="nav child_menu" style="display: none;">
+	                                <li><a href="#" id="latestApplyProof">公安机关管理</a></li>
+	                                <li><a href="#" id="proofStat">自助机管理</a></li>
+	                                <li><a href="#" id="userStat">服务大厅管理</a></li>
+	                                <li><a href="#" id="dataReport">治安网点管理</a></li>
+	                                <li><a href="#" id="logManager">监管场所管理</a></li>
+	                                <li><a href="#" id="dataReport">其他网点管理</a></li>
+	                                <li><a href="#" id="logManager">纠错信息管理</a></li>
+	                            </ul>
+	                        </li>
+	
+	                    </ul>
+	                </div>	
+	                
+					 <!--临时身份凭证-->
+	                <div class="menu_section">
+	                    <ul class="nav side-menu">
+	                        <li style="display: none" id="backStageUserManage"><a><i class="fa fa-user"></i> 后台用户管理 <span class="fa fa-chevron-down"></span></a>
+	                            <ul class="nav child_menu">
+	                                <li><a href="#" id="backStageUser">用户管理</a></li>
+	                            </ul>
+	                        </li>
+	                        <li class=""><a><i class="fa fa-user"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
+	                            <ul class="nav child_menu" style="display: none;">
+	                                <li><a href="#" id="applyProofUser">申请凭证用户</a></li>
+	                                <li><a href="#" id="publicAccountUser">民生警务个人用户</a></li>
+	                            </ul>
+	                        </li>
+	
+	                        <li class="active"><a><i class="fa fa-id-card"></i> 凭证管理 <span class="fa fa-chevron-down"></span></a>
+	                            <ul class="nav child_menu" style="display: none;">
+	                                <li><a href="#" id="latestApplyProof">最新申请凭证</a></li>
+	                            </ul>
+	                        </li>
+	
+	                        <li class=""><a><i class="fa fa-bar-chart-o"></i> 数据统计 <span class="fa fa-chevron-down"></span></a>
+	                            <ul class="nav child_menu" style="display: none;">
+	                                <li><a href="#" id="proofStat">凭证统计</a></li>
+	                                <li><a href="#" id="userStat">用户统计</a></li>
+	                                <li><a href="#" id="dataReport">数据报表</a></li>
+	                            </ul>
+	                        </li>
+	
+	                        <li>
+	                            <a><i class="fa fa-gear"></i> 系统管理 <span class="fa fa-chevron-down"></span></a>
+	                            <ul class="nav child_menu">
+	                                <li><a href="#" id="logManager">日志管理</a></li>
+	                            </ul>
+	                        </li>
+	
+	                    </ul>
+	                </div>
+	                
+	               <!--物管企业服务 -->
+	               <div class="menu_section">
+	                    <ul class="nav side-menu">
+	                        
+	                        <li class=""><a><i class="fa fa-user"></i> 数据统计 <span class="fa fa-chevron-down"></span></a>
+	                            <ul class="nav child_menu" style="display: none;">
+	                                <li><a href="#" id="applyProofUser">访问量统计</a></li>
+	                                <li><a href="#" id="publicAccountUser">业务操作量统计</a></li>
+	                            </ul>
+	                        </li>
+	
+	                        <li class="active"><a><i class="fa fa-id-card"></i> 数据查询 <span class="fa fa-chevron-down"></span></a>
+	                            <ul class="nav child_menu" style="display: none;">
+	                                <li><a href="#" id="latestApplyProof">数据查询</a></li>
+	                            </ul>
+	                        </li>
+	
+	                    </ul>
+	                </div>
+	            </div>
+            </div>
+            <div class="sideright">
+            	<!--<iframe src="" width="100%" height="880px" style="border: 0;"></iframe>-->
+            	
+            </div>
+		</div>
+		<script src="../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/js/jquery.form.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/assets/bootstrap-3.3.7/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/js/custom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/assets/adminlte-2.3.7/js/app.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/js/htyx.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
