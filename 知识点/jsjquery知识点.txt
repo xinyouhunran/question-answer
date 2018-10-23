@@ -112,3 +112,7 @@ layer.open({
 26.ES6 对象提供了 Object.assign()这个方法来实现浅复制。（将源对象可枚举的属性拷贝给目标对象）。
 
 27.验证的八个正则表达式（手机号，密码，身份证，日期，验证码等）https://www.cnblogs.com/hejun26/p/9811090.html。
+
+28.jquery提供closest（selector）方法，寻找所匹配的第一个选择器元素，dom向上遍历。
+
+29.Object.create()创建一个新对象，使用现有的对象来提供新创建的对象的__proto__。（可以用此方法来实现类式继承）
