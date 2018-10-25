@@ -31,3 +31,7 @@ Ajax Upload多文件上传插件翻译及中文演示
 JS字符串补全方法padStart()和padEnd()简介
 
 是时候好好安利下LuLu UI框架了！
+
+隐私相关-了解HTML5 Do Not Track API
+
+揭秘视频网站video视频倍速播放的实现
