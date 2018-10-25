@@ -25,3 +25,12 @@
 
   可以利用此项规则解决一些偏差在一像素内的ie和其他浏览器的兼容问题。
 
+8.传统<script>属性支持一个名为defer的属性值，可以让JS资源异步加载，同时保持顺序
+
+<!-- 同步 -->
+<script src="1.js"></script>
+
+<!-- 异步但顺序保证 -->
+<script defer src="2.js"></script>
+<script defer src="3.js"></script>
+

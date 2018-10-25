@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var str = window.btoa("liusong");
+		console.log(str);
+		var s = window.atob("bGl1c29uZw==")
+		console.log(s);
+		var ss = window.btoa(window.encodeURI("刘松"));
+		console.log(ss);
+		var ss1 = window.decodeURI(window.atob("JUU1JTg4JTk4JUU2JTlEJUJF"));
+		console.log(ss1);
+		console.log(navigator.doNotTrack);
+		if(navigator.msDoNotTrack == '1'|| window.doNotTrack == '1'|| navigator.doNotTrack == '1'){//不跟踪
+			alert("您选择了隐私跟踪保护");
+		}
+	</script>
+</html>
