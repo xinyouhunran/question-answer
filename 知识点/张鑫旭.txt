@@ -35,3 +35,11 @@ JS字符串补全方法padStart()和padEnd()简介
 隐私相关-了解HTML5 Do Not Track API
 
 揭秘视频网站video视频倍速播放的实现
+
+突破本地离线存储5M限制的JS库localforage简介
+
+JS实现照片图片变成黑白线条线稿
+
+小tips: 纯前端JS读取与解析本地文本类文件
+
+利用HTML5 Web Audio API给网页JS交互增加声音
