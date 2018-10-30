@@ -1,11 +1,13 @@
-tableExport.js表格导出，此插件【依赖于jQuery (1.2.1 or higher) && FileSaver.js】https://www.jianshu.com/p/6e153a5db41d
+1.tableExport.js表格导出，此插件【依赖于jQuery (1.2.1 or higher) && FileSaver.js】https://www.jianshu.com/p/6e153a5db41d
 表格对应的选择器.tableExport({
 		        type: 'excel',
 		        excelstyles: ['border-bottom', 'border-top', 'border-left', 'border-right']
 		    });
 
-navbarscroll.js导航可左右滑动，可点击边缘的一个，自动滚动下一个到可视范围【依赖于iscroll.js】
+2.navbarscroll.js导航可左右滑动，可点击边缘的一个，自动滚动下一个到可视范围【依赖于iscroll.js】
 
-jquery.form.min.js表单提交的时候方便使用
+3.jquery.form.min.js表单提交的时候方便使用
 
-font-awesome一套无需js的图标库，只需引入css即可
+4.font-awesome一套无需js的图标库，只需引入css即可
+
+5.layui弹出层时，想要实现一直弹，可以采用type：2；也就是加载一个页面，你可以传递参数过去，在此页面根据window.location.search可以获取参数，从而动态加载表格数据。
