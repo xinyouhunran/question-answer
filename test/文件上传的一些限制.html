@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var imgArr = [];
+		var maxSize = 5120000;
+		$(".mypic").on('change','.uploaderInput',function(evt){
+			var files = evt.target.files;
+			var _this = this;
+			console.log(imgArr,files.length);//files.length就是你一次性选择图片的数量
+			/*console.log($(_this));*/
+		    for(var i = 0,f,len = files.length; i < len; i++){
+		    	f = files[i];
+		    	/*console.log(f);*/
+		        // 过滤掉非图片类型文件
+		        if(!f.type.match('image.*')){
+		            continue;
+		        }
+		        // 过滤掉重复上传的图片
+		        if (imgArr.indexOf(f.name) != -1) {
+	                    return alert('已上传的图片不能再次上传!');
+	
+	                }
+		        console.log(f.size);
+		        // 设置文件大小限制
+		        if(f.size>maxSize){
+		        	return alert('圖片大小不能超过5MB');
+		        }
+	            imgArr.push(f.name);
+	            console.log(imgArr);
+	            var reader = new FileReader();
+	            reader.onload = (function (theFile) {
+	                return function (e) {
+	                	/*$(_this).prev().attr("src",e.target.result);*/
+	                	/*console.log(theFile);*/
+	                	$(_this).parent().css({"background":"url("+e.target.result+") no-repeat center","background-size":"cover"});
+	                	$(_this).parent().parent().addClass('myheng');
+	                	$(_this).parent().attr("data-name",theFile.name);
+	                };
+	            })(f);
+	            reader.readAsDataURL(f);
+	            break;
+		    }
+		})
+		 $(".mypic").on("click","span",function(){
+					console.log(1);
+					console.log(imgArr);
+					if($(this).parent().attr("data-name")!=undefined){
+						console.log($(this).parent().attr("data-name"));
+						var myname = $(this).parent().attr("data-name");
+						var index = imgArr.indexOf(myname);
+						if(index>-1){
+							imgArr.splice(index,1);
+						}
+						/*$(this).parent().css("background","none");*/
+						$(this).parent().parent().remove();
+						var str = `<div class="weui-uploader__input-box">
+	                                    	<div class="myfl">
+		                                        <input style="cursor: pointer;" name="uploadFiles" class="weui-uploader__input uploaderInput" type="file" accept="image/*" multiple>
+		                                    	<span></span>
+	                                    	</div>
+	                                    </div>`;
+	                    $(".upload_area").append(str);
+						$(this).parent().parent().removeClass('myheng');
+						console.log(imgArr);
+					}
+				})
+		
+		
+	</script>
+</html>

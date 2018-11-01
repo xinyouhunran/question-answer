@@ -38,6 +38,8 @@ JS字符串补全方法padStart()和padEnd()简介
 
 突破本地离线存储5M限制的JS库localforage简介
 
+借助CSS Shapes实现元素滚动自动环绕iPhone X的刘海
+
 JS实现照片图片变成黑白线条线稿
 
 小tips: 纯前端JS读取与解析本地文本类文件

@@ -41,3 +41,9 @@
    background-origin：有三个属性值：content-box, padding-box,和 border-box
 
    background-attchment:背景图片跟不跟随滚动条滚动
+
+11.改变输入框光标颜色：CSS caret-color属性可以改变输入框插入光标的颜色。input { color: #333; caret-color: red;}
+
+12.conic-gradient锥形渐变，mask遮罩属性。
+
+13.shape-outside:可以让内联元素以不规则的形状进行外部排列
