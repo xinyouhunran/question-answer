@@ -1,76 +1,306 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-	</body>
-	<script type="text/javascript">
-		var imgArr = [];
-		var maxSize = 5120000;
-		$(".mypic").on('change','.uploaderInput',function(evt){
-			var files = evt.target.files;
-			var _this = this;
-			console.log(imgArr,files.length);//files.length就是你一次性选择图片的数量
-			/*console.log($(_this));*/
-		    for(var i = 0,f,len = files.length; i < len; i++){
-		    	f = files[i];
-		    	/*console.log(f);*/
-		        // 过滤掉非图片类型文件
-		        if(!f.type.match('image.*')){
-		            continue;
-		        }
-		        // 过滤掉重复上传的图片
-		        if (imgArr.indexOf(f.name) != -1) {
-	                    return alert('已上传的图片不能再次上传!');
+<!DOCTYPE HTML>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title></title>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="../../static/assets/bootstrap-3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../static/css/bootstrap-table.min.css" />
+<link rel="stylesheet" href="../../static/assets/adminlte-2.3.7/css/AdminLTE.min.css" />
+<!--[if lt IE 9]>
+<script src="../../static/js/html5shiv.min.js" th:src="@{../../static/js/html5shiv.min.js}"></script>
+<script src="../../static/js/respond.min.js" th:src="@{../../static/js/respond.min.js}"></script>
+<!--[endif]-->
+<style type="text/css">
+    body{
+        background-color: #eee;
+    }
+    .mypic{
+    	overflow: hidden;
+    }
+    .mypic img{
+    	float: left;
+    	width: 100%;
+    	cursor: pointer;
+    }
+    .weui-uploader__input-box{
+    	float: left;
+		position: relative;
+		margin-right: 20px;
+		margin-bottom: 9px;
+		width: 77px;
+		height: 77px;
+		border: 1px solid #d9d9d9;
+    }
+    .weui-uploader__input-box:before {
+    width: 2px;
+    height: 39.5px;
+}
+.weui-uploader__input-box:after {
+    width: 39.5px;
+    height: 2px;
+}
+.myheng:after{
+	width: 39.5px;
+    height: 2px;
+	z-index: -1;
+}
+.weui-uploader__input-box:after, .weui-uploader__input-box:before {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    background-color: #d9d9d9;
+}
+.weui-uploader__input {
+	cursor: pointer;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+#uploadFilesDiv{
+	overflow: hidden;
+}
+.myfl{
+	float: left;
+	position: relative;
+	width: 100%;height: 100%;
+}
+.myfl span{
+	position: absolute;width: 20px;height: 20px;right: -15px;top: -15px;
+}
+.mymessage{
+	color: #aaa;
+}
+    </style>
+</head>
+<body>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                	<a href="javascript: history.back();" class="box-title">返回</a>
+                    <h3 class="box-title" >修改一体机</h3>
+                </div>
+                <div class="box-body">
+                    <form class="form-horizontal" enctype="multipart/form-data">
+                        <input type="hidden" name="aioId"  />
+                        <div class="form-group">
+                            <label for="aioName" class="col-sm-2 control-label">一体机名称(安放点)</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="aioName" class="form-control" id="aioName" required="required"  placeholder="请输入一体机名称" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address" class="col-sm-2 control-label">一体机地址</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="address" class="form-control" id="address"  placeholder="请输入一体机地址" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="longitude" class="col-sm-2 control-label">经度</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="longitude" class="form-control" id="longitude"  placeholder="经度" />
+                            </div>
+                        </div>    
+                        <div class="form-group">
+                            <label for="latitude" class="col-sm-2 control-label">纬度</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="latitude" class="form-control" id="latitude"  placeholder="纬度" />
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label for="dutyPhones" class="col-sm-2 control-label">值班电话</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="dutyPhones" class="form-control" id="dutyPhones"  placeholder="请输入值班电话" />
+                            </div>
+                        </div>                    
+                        <div class="form-group">
+                            <label for="serviceContent" class="col-sm-2 control-label">业务内容</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="serviceContent" class="form-control" id="serviceContent"  placeholder="请输入业务内容" />
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label for="note" class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="note" class="form-control" id="note" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="status" class="col-sm-2 control-label">是否启用</label>
+                            <div class="col-sm-10">
+                                <select name="status" class="form-control" id="status">
+                                    <option value="1" th:selected="${aio.status eq 1}">是</option>
+                                    <option value="0" th:selected="${aio.status eq 0}">否</option>
+                                </select>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label for="serviceTime" class="col-sm-2 control-label">服务时间</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="serviceTime" class="form-control" id="serviceTime" />
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label for="districtId" class="col-sm-2 control-label">所属区域</label>
+                            <div class="col-sm-10">
+                                <select name="districtId" class="form-control" id="status">
+                                    <option value="1" >福田区</option>
+                                    <option value="2" >罗湖区</option>
+                                    <option value="3" >南山区</option>
+                                    <option value="4" >盐田区</option>
+                                    <option value="5" >宝安区</option>
+                                    <option value="6" >龙岗区</option>
+                                    <option value="7" >龙华区</option>
+                                    <option value="8" >坪山区</option>
+                                    <option value="9" >光明区</option>
+                                    <option value="10" >大鹏新区</option>
+                                    
+                                </select>
+                            </div>
+                        </div>   
+                        <div class="form-group mypic">
+                        	<label for="pic" class="col-sm-2 control-label">图片</label>
+                        	<div class="col-sm-10">
+                        		<div class="weui-uploader__bd upload_area" style="overflow: hidden;padding: 20px;">
+                                    <div class="weui-uploader__input-box">
+                                    	<div class="myfl">
+	                                        <input style="cursor: pointer;" data-index="0" name="uploadFiles" class="weui-uploader__input uploaderInput" type="file" accept="image/*" multiple/>
+	                                    	<span data-index="0"><img src="https://msjwt.szga.gov.cn/jwdzdt/static/img/button-cross.png" alt="" /></span>
+                                    	</div>
+                                    </div>
+                                    <div class="weui-uploader__input-box">
+                                    	<div class="myfl">
+	                                        <input style="cursor: pointer;" data-index="1" name="uploadFiles" class="weui-uploader__input uploaderInput" type="file" accept="image/*" multiple/>
+	                                    	<span data-index="1"><img src="https://msjwt.szga.gov.cn/jwdzdt/static/img/button-cross.png" alt="" /></span>
+                                    	</div>
+                                    </div>
+                                    <div class="weui-uploader__input-box">
+                                    	<div class="myfl">
+	                                        <input style="cursor: pointer;" data-index="2" name="uploadFiles" class="weui-uploader__input uploaderInput" type="file" accept="image/*" multiple>
+	                                    	<span data-index="2"><img src="https://msjwt.szga.gov.cn/jwdzdt/static/img/button-cross.png" alt="" /></span>
+                                    	</div>
+                                    </div>
+                                </div>
+                                <div class="mymessage">
+                                	<span>（最多上传三张图片）</span>
+                                </div>
+                        	</div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="button" class="btn btn-primary ">提交</button>
+                            </div>
+                        </div>
+						                        
+                        <div id="container" style="height:300px"></div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+<script type="text/javascript" src="../../static/js/global.js" ></script>
+<script type="text/javascript" src="../../static/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../../static/js/jquery.form.min.js" ></script>
+<script type="text/javascript" src="../../static/js/jquery.validate.min.js" ></script>
+<script type="text/javascript" src="../../static/assets/bootstrap-3.3.7/js/bootstrap.min.js" ></script>
+<script type="text/javascript" src="../../static/js/messages_zh.min.js" ></script>
+<script type="text/javascript" src="../../static/js/layer.js" ></script>
+
+<script type="text/javascript">
+$(function(){
+	initPage("aio");
+})
+
+</script>
+<script type="text/javascript">
+	var arrPic = [0,1,2];//记录初始加载的图片url
+	var imgArr = [0,0,0];//默认图片数组为3个
+	var maxSize = 5120000;//5Mb
 	
-	                }
-		        console.log(f.size);
-		        // 设置文件大小限制
-		        if(f.size>maxSize){
-		        	return alert('圖片大小不能超过5MB');
-		        }
-	            imgArr.push(f.name);
-	            console.log(imgArr);
-	            var reader = new FileReader();
-	            reader.onload = (function (theFile) {
-	                return function (e) {
-	                	/*$(_this).prev().attr("src",e.target.result);*/
-	                	/*console.log(theFile);*/
-	                	$(_this).parent().css({"background":"url("+e.target.result+") no-repeat center","background-size":"cover"});
-	                	$(_this).parent().parent().addClass('myheng');
-	                	$(_this).parent().attr("data-name",theFile.name);
-	                };
-	            })(f);
-	            reader.readAsDataURL(f);
-	            break;
-		    }
-		})
-		 $(".mypic").on("click","span",function(){
-					console.log(1);
-					console.log(imgArr);
-					if($(this).parent().attr("data-name")!=undefined){
-						console.log($(this).parent().attr("data-name"));
-						var myname = $(this).parent().attr("data-name");
-						var index = imgArr.indexOf(myname);
-						if(index>-1){
-							imgArr.splice(index,1);
-						}
-						/*$(this).parent().css("background","none");*/
-						$(this).parent().parent().remove();
-						var str = `<div class="weui-uploader__input-box">
-	                                    	<div class="myfl">
-		                                        <input style="cursor: pointer;" name="uploadFiles" class="weui-uploader__input uploaderInput" type="file" accept="image/*" multiple>
-		                                    	<span></span>
-	                                    	</div>
-	                                    </div>`;
-	                    $(".upload_area").append(str);
-						$(this).parent().parent().removeClass('myheng');
-						console.log(imgArr);
+	$(".mypic").on('change','.uploaderInput',function(evt){
+		var files = evt.target.files;
+		var _this = this;
+		var myindex = $(this).attr("data-index");
+		console.log(myindex);
+		console.log(imgArr,files.length);
+		/*console.log($(_this));*/
+	    for(var i = 0,f,len = files.length; i < len; i++){
+	    	f = files[i];
+	    	/*console.log(f);*/
+	        // 过滤掉非图片类型文件
+	        if(!f.type.match('image.*')){
+	            continue;
+	        }
+	        // 过滤掉重复上传的图片
+	        if (imgArr.indexOf(f.name) != -1) {
+                    return alert('已上传的图片不能再次上传!');
+
+                }
+	        /*console.log(f.size);*/
+	        // 设置文件大小限制
+	        if(f.size>maxSize){
+	        	return alert('图片大小不能超过5MB');
+	        }
+            imgArr.splice(myindex,1,f.name);//替换
+            console.log(imgArr);
+            var reader = new FileReader();
+            reader.onload = (function (theFile) {
+                return function (e) {
+                	/*$(_this).prev().attr("src",e.target.result);*/
+                	console.log(theFile);
+                	console.log(e);
+                	$(_this).parent().css({"background":"url("+e.target.result+") no-repeat center","background-size":"cover"});
+                	$(_this).parent().parent().addClass('myheng');
+                	$(_this).parent().attr("data-name",theFile.name);
+                };
+            })(f);
+            reader.readAsDataURL(f);
+            break;//此操作是为了无论你选几张图片，我只加载第一次
+	    }
+	})
+	 $(".mypic").on("click","span",function(){//删除
+				/*console.log(1);*/
+				console.log(imgArr);
+				var myindex = $(this).attr("data-index");
+				console.log(myindex);
+				if($(this).parent().attr("data-name")!=undefined){
+					console.log($(this).parent().attr("data-name"));
+					var myname = $(this).parent().attr("data-name");
+					var index = imgArr.indexOf(myname);
+					if(index>-1){
+						imgArr.splice(myindex,1,0);//替换，将指定位置替换成0
 					}
-				})
-		
-		
-	</script>
+					/*$(this).parent().css("background","none");*/
+					$(this).parent().parent().remove();
+					var str = `<div class="weui-uploader__input-box">
+                                    	<div class="myfl">
+	                                        <input style="cursor: pointer;" data-index="${myindex}" name="uploadFiles" class="weui-uploader__input uploaderInput" type="file" accept="image/*" multiple>
+	                                    	<span data-index="${myindex}"><img src="https://msjwt.szga.gov.cn/jwdzdt/static/img/button-cross.png" alt="" /></span>
+                                    	</div>
+                                    </div>`;
+                    $(".upload_area").append(str);
+					$(this).parent().parent().removeClass('myheng');
+					console.log(imgArr);
+				}
+			})
+	
+	
+</script>
+<script type="text/javascript" src="../../static/js/from.js" ></script>
 </html>

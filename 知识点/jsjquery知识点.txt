@@ -118,3 +118,15 @@ layer.open({
 29.Object.create()创建一个新对象，使用现有的对象来提供新创建的对象的__proto__。（可以用此方法来实现类式继承）
 
 30.Symbol的作用非常的专一，换句话说其设计出来就只有一个目的——作为对象属性的唯一标识符，防止对象属性冲突发生。(https://www.zhangxinxu.com/wordpress/2018/04/known-es6-symbol-function/)
+
+31.js移除Array中指定元素：
+
+首先需要找到元素的下标：
+
+var array = [2, 5, 9];
+var index = array.indexOf(5);
+使用splice函数进行移除：
+
+if (index > -1) {
+    array.splice(index, 1);
+}
