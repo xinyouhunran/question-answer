@@ -152,20 +152,25 @@
         	/*console.log(m.find("img").attr("src"));*/
         	console.log(m.html());
         	var str = m.html();//记录原始数据
+        	
+        	//测试正则表达式替换src
+        	var s = str.replace(/src="\S*"/g,"src=''");
+        	console.log(s);
+        	
         	console.log(m.find("img"));
         	//将所具有的img标签的src存到imgArr数组里
         	if(m.find("img")){
         		var myimg = m.find("img");
         		for(var i=0;i<myimg.length;i++){
         			imgArr.push(myimg.eq(i).attr("src"));
-        			myimg.eq(i).attr("src","");
+        			/*myimg.eq(i).attr("src","");*/
         		}
         	}
         	/*if(m.find("img").attr("src")){
         		imgArr.push(m.find("img").attr("src"));
         		m.find("img").attr("src","");
         	}*/
-        	if(m.find("iframe").attr("src")){
+        	/*if(m.find("iframe").attr("src")){
         		m.find("iframe").attr("src","");
         	}
         	if(m.find("audio").attr("src")){
@@ -173,11 +178,11 @@
         	}
         	if(m.find("video").attr("src")){
         		m.find("video").attr("src","");
-        	}
-        	var str1 = m.html()//记录去除src后的数据，也就是除去数据的具有样式的模板
-        	console.log(str1);
+        	}*/
+        	/*var str1 = m.html()//记录去除src后的数据，也就是除去数据的具有样式的模板
+        	console.log(str1);*/
         	m.html(str);//重置编辑区的内容
-        	$("#test").html(str1);
+        	$("#test").html(s);
         	/*editor.cmd.do('insertHTML', editor.txt.html());*/
         })
         

@@ -137,3 +137,5 @@ var array = ['a', 'b'];
 var elements = [0, 1, 2];
 array.push.apply(array, elements);
 console.info(array); // ["a", "b", 0, 1, 2]
+
+33.正则表达式中\s代表匹配空格；\S代表非空白字符。
