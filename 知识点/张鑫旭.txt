@@ -47,3 +47,9 @@ JS实现照片图片变成黑白线条线稿
 利用HTML5 Web Audio API给网页JS交互增加声音
 
 使用CSS offset-path让元素沿着不规则路径运动
+
+小tips:了解CSS/CSS3原生变量var
+
+解决文字和text-decoration:underline下划线重叠问题
+
+CSS content换行实现字符点点点loading效果

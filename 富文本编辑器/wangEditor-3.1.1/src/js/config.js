@@ -48,7 +48,6 @@ const config = {
         '#f9963b',
         '#ffffff'
     ],
-
     // // 语言配置
     // lang: {
     //     '设置标题': 'title',

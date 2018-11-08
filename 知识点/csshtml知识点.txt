@@ -47,3 +47,13 @@
 12.conic-gradient锥形渐变，mask遮罩属性。
 
 13.shape-outside:可以让内联元素以不规则的形状进行外部排列
+
+14.background-size是css3中新增的属性，background-size的cover特定值会保持图像本身的宽高比例，将图片缩放到正好完全覆盖定义背景的区域。
+
+15.CSS中原生的变量定义语法是：--*，变量使用语法是：var(--*)，其中*表示我们的变量名称。
+:root {            //根元素
+  --1: #369;
+}
+body {
+  background-color: var(--1);
+}

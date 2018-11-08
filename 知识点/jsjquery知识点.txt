@@ -130,3 +130,10 @@ var index = array.indexOf(5);
 if (index > -1) {
     array.splice(index, 1);
 }
+
+32.用 apply 将数组添加到另一个数组
+concat确实具有我们想要的行为，但它实际上并不附加到现有数组，而是创建并返回一个新数组。 但是我们想要附加到我们现有的阵列：
+var array = ['a', 'b'];
+var elements = [0, 1, 2];
+array.push.apply(array, elements);
+console.info(array); // ["a", "b", 0, 1, 2]
