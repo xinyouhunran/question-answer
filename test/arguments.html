@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		function test(){
+			var arg = arguments;
+			var a = Array.from(arg);
+			console.log(a);
+			console.log(arg);
+			console.log(arguments.length);
+			var arr = Array.prototype.slice.call(arg);
+			console.log(arr);
+			var str = Array.prototype.join.call(arg);
+			console.log(str);
+			return arguments[0]+arguments[1];
+		}
+		test(1,2);
+		console.log(test(1,2));
+	</script>
+</html>

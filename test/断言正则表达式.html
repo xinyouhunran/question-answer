@@ -8,9 +8,20 @@
 	</body>
 	<script type="text/javascript">
 		var str = "http://www.baidu.?/com?id=1";
-		var arr = str.match(/\/(.*)(?=\?)/);
+		var arr = str.match(/\/(\S*)(?=\?)/);
 		console.log(arr);
 		var s = arr[1].slice(1);
 		console.log(s);
+		
+		var array = ['a', 'b'];
+		var elements = [0, 1, 2];
+		array.push.apply(array, elements);
+		console.info(array); // ["a", "b", 0, 1, 2]
+		
+		var a = [...array,...elements];
+		console.log(a);
+		
+		var b = array.concat(elements);
+		console.log(b)
 	</script>
 </html>

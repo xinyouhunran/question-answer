@@ -117,7 +117,8 @@ layer.open({
 
 29.Object.create()创建一个新对象，使用现有的对象来提供新创建的对象的__proto__。（可以用此方法来实现类式继承）
 
-30.Symbol的作用非常的专一，换句话说其设计出来就只有一个目的——作为对象属性的唯一标识符，防止对象属性冲突发生。(https://www.zhangxinxu.com/wordpress/2018/04/known-es6-symbol-function/)
+30.Symbol的作用非常的专一，换句话说其设计出来就只有一个目的——作为对象属性的唯一标识符，防止对象属性冲突发生。
+(https://www.zhangxinxu.com/wordpress/2018/04/known-es6-symbol-function/)
 
 31.js移除Array中指定元素：
 
@@ -139,3 +140,17 @@ array.push.apply(array, elements);
 console.info(array); // ["a", "b", 0, 1, 2]
 
 33.正则表达式中\s代表匹配空格；\S代表非空白字符。
+
+34.我也不知道为什么，网上也有很多iframe获取父页面的元素和获取子页面的元素，可我偏偏就只能从子iframe获取父页面的dom元素；奇了怪了，记录一下：
+window.parent.document.getElementById("id");子iframe获取父级的元素。
+
+35.正则表达式懒惰限定符：（列举两个）（详情见https://www.cnblogs.com/lizhenlin/p/6654934.html）
+"*?"   重复任意次，但尽可能少重复 
+　　    如 "acbacb"  正则  "a.*?b" 只会取到第一个"acb" 原本可以全部取到但加了限定符后，只会匹配尽可能少的字符 ，而"acbacb"最少字符的结果就是"acb" 
+
+"??"  重复0次或1次，但尽可能少重复
+　　    如 "aaacb" 正则 "a.??b" 只会取到最后的三个字符"acb"
+
+36.伪数组转化为数组：(均不改变原伪数组)
+   可以用es6的Array.from();
+   var arr = Array.prototype.slice.call(arguments);
