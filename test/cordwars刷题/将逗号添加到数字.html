@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			img{
+				border: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div><img style="width: 100px;height: 100px;" border="0"/></div>
+		<script type="text/javascript">
+			function commas(num){
+				var str = num.toString().split('').reverse().join('');
+				var str = str.match(/\d{3}/g);
+				console.log(str);
+			}
+			commas(1000000);
+		</script>
+	</body>
+</html>

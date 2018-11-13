@@ -154,3 +154,5 @@ window.parent.document.getElementById("id");子iframe获取父级的元素。
 36.伪数组转化为数组：(均不改变原伪数组)
    可以用es6的Array.from();
    var arr = Array.prototype.slice.call(arguments);
+
+37.$("table").on("click","tbody tr td:nth-child(n)",function(){})  //n取整数，代表点击表格的第几列触发
