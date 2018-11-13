@@ -57,3 +57,7 @@
 body {
   background-color: var(--1);
 }
+
+16.要想使图片边框不存在，img标签需带有属性alt=“ ”。
+
+17.如果想利用  position：absolute；top：0；right：0；bottom:0;left:0;margin：auto；实现子盒子垂直水平居中；则子盒子需要给width和height；
