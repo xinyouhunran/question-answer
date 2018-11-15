@@ -238,19 +238,19 @@
 </div>
 </body>
 <script type="text/javascript" src="../../static/js/global.js" ></script>
-<script type="text/javascript" src="../../static/js/jquery.min.js" ></script>
+<script type="text/javascript" src="jquery-1.11.1.min.js" ></script>
 <script type="text/javascript" src="../../static/js/jquery.form.min.js" ></script>
 <script type="text/javascript" src="../../static/js/jquery.validate.min.js" ></script>
 <script type="text/javascript" src="../../static/assets/bootstrap-3.3.7/js/bootstrap.min.js" ></script>
 <script type="text/javascript" src="../../static/js/messages_zh.min.js" ></script>
 <script type="text/javascript" src="../../static/js/layer.js" ></script>
 
-<script type="text/javascript">
+<!--<script type="text/javascript">
 $(function(){
 	initPage("aio");
 })
 
-</script>
+</script>-->
 <script type="text/javascript">
 	var arrPic = [0,1,2];//记录初始加载的图片url
 	var imgArr = [0,0,0];//默认图片数组为3个
@@ -272,6 +272,7 @@ $(function(){
 	            continue;
 	        }
 	        // 过滤掉重复上传的图片
+	        console.log($(this).val());//可以得到此文本框的值
 	        if (imgArr.indexOf(f.name) != -1) {
                     return alert('已上传的图片不能再次上传!');
 

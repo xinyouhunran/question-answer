@@ -11,3 +11,5 @@
 4.font-awesome一套无需js的图标库，只需引入css即可
 
 5.layui弹出层时，想要实现一直弹，可以采用type：2；也就是加载一个页面，你可以传递参数过去，在此页面根据window.location.search可以获取参数，从而动态加载表格数据。
+
+6.bluebird.js解决promise的兼容问题。
