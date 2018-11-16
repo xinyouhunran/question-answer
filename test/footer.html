@@ -4,11 +4,12 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
-		<script>
+		<!--<script type="text/javascript" src ="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6"></script>--><!--解决promise兼容ie-->
+		<!--<script>
 			$(function(){
 				console.log($(".container"));
 			})
-		</script>
+		</script>-->
 		<style>
 			*{
 				margin: 0;
@@ -50,12 +51,19 @@ document.write("<div class='bdsharebuttonbox'><a title='分享到QQ空间' class
 window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
 </script>-->
 	</body>
+	<script src="../插件js/bluebird.min.js" type="text/javascript" charset="utf-8"></script>
 	<script>
-			var x = $("#footer").height();
+			/*var x = $("#footer").height();
 			console.log(x);
-			console.log($(".container,.box"));
-			
+			console.log($(".container,.box"));*/
+			new Promise(function(resolve,reject){
+				setTimeout(function(){console.log(1);resolve()},3000);
+			}).then(function(){
+				setTimeout(function(){console.log(2);},1000);
+			})
+
 		</script>
+		
 	<script>
 		/*function dd(){
 			var bh = $(".box").height();
@@ -120,4 +128,5 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic
 		
 		
 	</script>
+	<!--<script src="../插件js/browser.min.js" type="text/javascript" charset="utf-8"></script>-->
 </html>
