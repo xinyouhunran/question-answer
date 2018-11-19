@@ -26,7 +26,26 @@
 		
 		var p = "Package [com.beyondscreen.mazemonster] (1915ab06):fhasiudff";
 		console.log(p)
-	    var pr = p.match(/.+\s\[com\.beyondscreen\.\w*\]\s\(\w+\):/);
+	    var pr = p.match(/.+\s\[com\.beyondscreen\.[a-z]*\]\s\(\w{8}\):/);
 	    console.log(pr);
+	    
+	    var c = "src=\"https://www.abc.com/wp-content/uploads/2017/03/MAMP-PRO.png\"";
+	    var reg = /src="(\S*(?=\/))/;
+	    var cr = c.match(reg);
+	    var c1 = c.replace(reg,"src=\"www.aaa.com");
+	    console.log(c1,cr);
+	    
+	    $(function(){
+	    	
+	    })
+	    
+	    $(window).resize(function(){
+	    	var ww = $(window).width();//屏幕宽
+	    	var wh = $(window).height();//屏幕高
+	    	var w = 50;//你要设置的宽
+	    	var h = 50;//你要设置的高
+	    	$("img").width(w);
+	    	$("img").height(h);
+	    })
 	</script>
 </html>

@@ -61,3 +61,7 @@ body {
 16.要想使图片边框不存在，img标签需带有属性alt=“ ”。
 
 17.如果想利用  position：absolute；top：0；right：0；bottom:0;left:0;margin：auto；实现子盒子垂直水平居中；则子盒子需要给width和height；
+
+18.position：sticky；
+position属性中最有意思的就是sticky了，设置了sticky的元素，在屏幕范围（viewport）时该元素的位置并不受到定位影响（设置是top、left等属性无效），
+当该元素的位置将要移出偏移范围时，定位又会变成fixed，根据设置的left、top等属性成固定位置的效果。（不会脱离文档流）
