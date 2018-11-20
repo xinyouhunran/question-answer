@@ -1,0 +1,43 @@
+1.XML被设计用来传输和存储数据（焦点是数据的内容），HTML被设计用来显示数据（焦点是数据的外观）。
+
+2.XML标签没有被预定义，需要自定义标签。
+
+3.XML把数据从HTML分离。
+如果你需要在 HTML 文档中显示动态数据，那么每当数据改变时将花费大量的时间来编辑 HTML。
+
+通过 XML，数据能够存储在独立的 XML 文件中。这样你就可以专注于使用 HTML 进行布局和显示，并确保修改底层数据不再需要对 HTML 进行任何的改变。
+
+通过使用几行 JavaScript，你就可以读取一个外部 XML 文件，然后更新 HTML 中的数据内容。
+
+4.XML文档形成一种树结构
+XML 文档必须包含根元素。该元素是所有其他元素的父元素。
+
+XML 文档中的元素形成了一棵文档树。这棵树从根部开始，并扩展到树的最底端。
+
+5.XML标签必须闭合，且对大小写敏感
+
+6.实体引用：请用&lt，&gt，%amp，&apos，&quot代表<,>,&,‘，“。否则例如<会被解析成新元素的开始。
+
+7.避免XML属性：
+属性无法包含多重的值（元素可以）
+属性无法描述树结构（元素可以）
+属性不易扩展（为未来的变化）
+属性难以阅读和维护
+
+8.通过使用 CSS，可为 XML 文档添加显示信息。
+
+9.XMLHttpRequest 对象用于在后台与服务器交换数据。
+ie5,6使用ActiveXObject；
+
+10.XML能够解析XML文件，也能够解析XML字符串。（http://www.w3school.com.cn/xml/xml_parser.asp）
+
+11.XML DOM
+xmlDoc.getElementsByTagName("to")[0].childNodes[0].nodeValue
+xmlDoc -由解析器创建的 XML 文档
+getElementsByTagName("to")[0] - 第一个 <to> 元素
+childNodes[0] - <to> 元素的第一个子元素（文本节点）
+nodeValue - 节点的值（文本本身）
+
+12.使用命名空间（Namespaces）；XML Namespace (xmlns) 属性
+xmlns:namespace-prefix="namespaceURI"
+当命名空间被定义在元素的开始标签中时，所有带有相同前缀的子元素都会与同一个命名空间相关联。

@@ -166,3 +166,6 @@ window.parent.document.getElementById("id");子iframe获取父级的元素。
 41.前端图片压缩上传(纯js的质量压缩，非长宽压缩)（https://www.cnblogs.com/007sx/p/7583202.html）
 
 42.$("<img/>")为一个set的方法，是建立一个新的标签元素"img"并赋予相应标签相应的属性，如：$("<img/>").attr("src", src).load(function () {})
+
+43.ajax设置成同步时（async:false），浏览器的渲染(UI)线程和js线程是互斥的，在执行js耗时操作时，页面渲染会被阻塞掉。
+当我们执行异步ajax的时候没有问题，但当设置为同步请求时，其他的动作（ajax函数后面的代码，还有渲染线程）都会停止下来。
