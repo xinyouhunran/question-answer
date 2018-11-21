@@ -1,0 +1,77 @@
+1.Vue构造其中有一个el参数，它是dom元素中的id。
+
+2.Vue中的实例属性与方法都有前缀$,以便与用户定义的属性区分开来。如：$el。
+
+3.v-html指令用于输出html代码。
+
+4.修饰符是以半角句号 . 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。
+例如，.prevent 修饰符告诉 v-on 指令对于触发的事件调用 event.preventDefault()。
+.stop 阻止事件冒泡
+.capture 使用事件捕获
+.self 只在该元素本身出发，子元素不会触发
+.once 事件只触发一次（版本:2.1.4新增）
+
+5.过滤器，由管道符指示，过滤器函数接受表达式的值作为第一个参数。
+<!-- 在两个大括号中 -->
+{{ message | capitalize }}
+
+<!-- 在 v-bind 指令中 -->
+<div v-bind:id="rawId | formatId"></div>
+
+data:{rawId:1},
+filters:{formatId:(value)=>{return value++;}}
+
+6.v-bind：id缩写：id
+  v-on:click缩写@click
+
+7.当我们给一个比如 props 中，或者 data 中被观测的对象添加一个新的属性的时候，不能直接添加，必须使用 Vue.set 方法。
+
+8.计算属性computed{
+	newId:{//可以直接使用
+	get:function(){},
+        set:function(value){}
+ }
+}
+当newId属性值改变的时候，会触发跟这个属性相关的视图的改变。
+
+9.监听属性watch
+data{id：1}
+watch：{id：function（val）{axios......then().catch()}}
+watch用来监听一个data里的属性值；当此值改变的时候，会触发数据的变化。
+一般情况下涉及到异步请求数据就在watch里写。
+
+10.class属性绑定 
+对象语法：v-bind:class="{ active: isActive, 'text-danger': hasError }"
+都为true的情况下，应用样式，后面的会覆盖前面的样式。
+数组语法： v-bind:class="[activeClass, errorClass]"
+
+11.style(内联样式绑定)
+对象：v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"
+数组：v-bind:style="[baseStyles, overridingStyles]"
+
+12.按键修饰符:如v-on:keyup.enter
+.enter
+.tab
+.delete (捕获 "删除" 和 "退格" 键)
+.esc
+.space
+.up
+.down
+.left
+.right
+.ctrl
+.alt
+.shift
+.meta
+
+13.input修饰符
+.lazy:在默认情况下， v-model 在 input 事件中同步输入框的值与数据，但你可以添加一个修饰符 lazy ，从而转变为在 change 事件中同步：
+.number
+.trim
+
+14.props父组件传递给子组件。
+
+15.自定义事件$on(eventName);父组件接收子组件事件
+   $emit(eventName);子组件发出事件
+
+16.监听原生事件：.native修饰：<my-component v-on:click.native="doTheThing"></my-component>
