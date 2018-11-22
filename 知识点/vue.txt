@@ -75,3 +75,8 @@ watch用来监听一个data里的属性值；当此值改变的时候，会触发数据的变化。
    $emit(eventName);子组件发出事件
 
 16.监听原生事件：.native修饰：<my-component v-on:click.native="doTheThing"></my-component>
+
+17.router-link to=""  渲染结果 a href=""
+   设置 replace 属性的话，当点击时，会调用 router.replace() 而不是 router.push()，导航后不会留下 history 记录。
+   设置 append 属性后，则在当前 (相对) 路径前添加基路径。例如，我们从 /a 导航到一个相对路径 b，如果没有配置 append，则路径为 /b，如果配了，则为 /a/b
+   有时候想要 <router-link> 渲染成某种标签，例如 <li>。 于是我们使用 tag prop 类指定何种标签，同样它还是会监听点击，触发导航。
