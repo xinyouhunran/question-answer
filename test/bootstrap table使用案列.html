@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title></title>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="../../static/assets/bootstrap-3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../static/css/bootstrap-table.min.css" />
+<!--[if lt IE 9]>
+<script src="/jwdzdt/static/js/html5shiv.min.js" th:src="@{/jwdzdt/static/js/html5shiv.min.js}"></script>
+<script src="/jwdzdt/static/js/respond.min.js" th:src="@{/jwdzdt/static/js/respond.min.js}"></script>
+<!--[endif]-->
+<style type="text/css">
+    body{
+        background-color: #eee;
+    }
+</style>
+</head>
+<body>
+<section class="content-header">
+    <h4 style="text-align: center;">分局管理</h4>
+</section>
+<div id="toolbar">
+    <a href="./from.html" class="btn btn-primary" >添加分局</a>
+</div>
+<section class="content table-content" style="width: 97%;margin: 0 auto;">
+    <table id="dataGrid"></table>
+</section>
+</body>
+<script type="text/javascript" src="../../static/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../../static/assets/bootstrap-3.3.7/js/bootstrap.min.js" ></script>
+<script type="text/javascript" src="../../static/js/bootstrap-table.min.js" ></script>
+<script type="text/javascript" src="../../static/js/layer.js" ></script>
+<script type="text/javascript" src="../../static/js/bootstrap-table-zh-CN.min.js" ></script>
+<script type="text/javascript" src="../../static/js/common.js" ></script>
+<script type="text/javascript" src="../../../static/js/global.js" ></script>
+<script>
+    $table = $("#dataGrid");
+    $(function () {
+        initDataGrid();
+    });
+    function initDataGrid(){
+        $table.bootstrapTable({
+            height : tableModel.getHeight(),
+            idField : "subbureauId",
+            columns: [[
+                {title: "名称", field: "subbureauName"},
+                {title: "地址", field: "address"},
+                {title: "值班电话", field: "dutyPhones"},
+                {title: "简介", field: "serviceContent",overflow:'hidden',width:'200px'},
+                {title: "备注", field: "note"},
+                {title: "状态", field: "status",formatter:"statusfor"},
+                {title: "服务时间", field: "serviceTime"},
+                {title: "所属区域", field: "districtId",formatter:"districtfor"},
+                {title: "操作", field: "operate", align: 'center', events: operateEvents, formatter: operateFormatter}
+            ]],
+            url: serviceUrl+"/subbureau/commonList",  //请求后台的URL（*）
+            method: 'post', //请求方式（*）
+            contentType: "application/x-www-form-urlencoded", //发送到服务器的数据编码类型
+            queryParams: function(params){ //传递参数（*）
+            	//这里应该返回一个如{param1:value1,param2:value2}的Object，比如搜索某些列的内容时在此构建查询的字段的参数
+            	var param = {
+                    	offset: params.offset,
+                    	limit: params.limit,
+                    	sort: params.sort,
+                    	order: params.order,
+                    	searchAttributes: ["subbureauName","address"],
+						accessToken:frontendAccessToken,
+                	};
+            	return param;
+            },
+            ajaxOptions: {
+            	traditional: true,//此时你就可以传数组到后台了
+             	xhrFields: {
+                withCredentials: true,//执行跨域名请求，正常情况下，跨域名请求不带cookie等用户认证凭据；设置为true则会带
+            }, 
+            headers:{'requestType':"tymh",'applyID':frontendApplyID,'secretKey':frontendSecretKey},
+			},
+            responseHandler : function (res) {  //client分页和server分页的结果数据结构不同，服务端分页要求返回结果数据必须包含rows（查询内容）和total（数据总数）
+            	return {
+                    rows : res.result.pageInfo.list,  //在ajax获取到数据、渲染表格之前，可以修改数据
+                    total : res.result.pageInfo.total
+                }
+            },
+        	sortName: "subbureauId",
+        	sortOrder: "asc",
+            cache : false,
+            clickToSelect: true, //是否启用点击选中行
+            striped: true, //是否隔行变色
+            pagination : true, //是否显示分页（*）
+            sidePagination : 'server', //分页方式（*）：client客户端分页，server服务端分页
+            pageNumber: 1,
+            pageSize: 20,	//每页的记录行数（*）
+            pageList : [20, 40], //可供选择的每页的行数（*）
+            toolbar : "#toolbar", //工具按钮用哪个容器
+            showRefresh : true,	//是否显示刷新按钮
+            showToggle : true //是否显示详细视图和列表视图的切换按钮
+        });
+    }
+
+    //非常有用的列配置项，可以在表格中写html，使表格内容不限于文本内容
+    //当前行的格式化操作方法，value代表该列的值，row代表该行对应的实例
+    function operateFormatter(value, row, index) {
+        return [
+            '<a href="/jwdzdt/templates/subbureau/from.html?id='+row.subbureauId+'" >',
+            '<i class="glyphicon glyphicon-edit"></i>修改',
+            '</a> ',
+            '<a class="remove" href="javascript:void(0);">',
+            '<i class="glyphicon glyphicon-remove"></i>删除',
+            '</a>'
+        ].join('');
+    }
+
+    //当前行的点击操作事件
+    window.operateEvents = {
+        'click .remove' : function (e, value, row, index) {
+        	operaModel.delRow(row.subbureauId, '/jwdzdt/subbureau/commonDelete', 'subbureauId');
+        }
+    };
+    
+    //分页后从第一页开始搜索，以免浏览非第一页时进行搜索从当前页开始，解决方法：点击查询按钮时，响应一下事件：
+    function totalSearch(){
+    	$table.bootstrapTable('refreshOptions',{pageNumber:1,pageSize:20});
+    	
+    	//$table.bootstrapTable('refresh'); //进行表格刷新
+    }
+
+</script>
+
+</html>
+

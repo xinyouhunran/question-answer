@@ -169,3 +169,14 @@ window.parent.document.getElementById("id");子iframe获取父级的元素。
 
 43.ajax设置成同步时（async:false），浏览器的渲染(UI)线程和js线程是互斥的，在执行js耗时操作时，页面渲染会被阻塞掉。
 当我们执行异步ajax的时候没有问题，但当设置为同步请求时，其他的动作（ajax函数后面的代码，还有渲染线程）都会停止下来。
+
+44.$("img").size()计算文档中所有图片的数量==$("img").length。
+
+45.$("img").selector返回传给jQuery（）的原始选择器，此处为ul。
+
+46.jquery ajax参数：traditional:true时，传值时可以传数组。
+
+47.ajax 与 xhrFields: { withCredentials: true }：
+xhrFields 大概的意思是，默认情况下，标准的跨域请求是不会发送cookie等用户认证凭据的。
+所以，当你再次访问远程api的时候，cookie是不会被带上的，于是乎，服务器理所当然地认为你还没有登录。
+用XMLHttpRequest请求的时候，我们需要设置属性 withCredentials=true ;
