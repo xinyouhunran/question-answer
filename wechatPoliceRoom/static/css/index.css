@@ -1,0 +1,183 @@
+.message{
+	color: red;
+	text-align: center;
+	font-size: 12px;
+}
+img{
+	width: 100%;
+	height: 100%;
+}
+p{
+	margin: 0;
+}
+/*首页*/
+.section-t{
+	height: 3rem;
+	background-color: blue;
+}
+.section-t div{
+	overflow: hidden;
+	width: 85%;
+	margin: 0 auto;
+	height: 3rem;
+}
+.section-t img{
+	float: left;
+	width: 1.5rem;
+	height: 1.5rem;
+	margin: 0.7rem 0;
+}
+.section-t p{
+	float: right;
+	color: #fff;
+	font-size: 10px;
+	text-align: center;
+	line-height: 3rem;
+	width: 300px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.nearly,.neighbor{
+	border-bottom: 2rem solid #efeff4;
+}
+.nearly h4,.neighbor h4{
+	text-align: center;
+	color: #676565;
+}
+.nearly ul li,.neighbor ul li{
+	width: 95%;
+	margin: 0 auto;
+	box-shadow: 0 0 0.5rem #aaa;
+	padding: 0.5rem 1rem;
+}
+.nearly p,.neighbor p{
+	color: #847f7f;
+	font-size: 12px;
+}
+.nearly p strong,.neighbor p strong{
+	color: #232323;
+	font-size: 15px;
+}
+.nearly p i,.neighbor p i{
+	color: orangered;
+}
+.neighbor ul li{
+	margin-top: 1rem;
+}
+.nearly ul li a,.neighbor ul li a{
+	display: block;
+	text-decoration: none;
+}
+
+/*detialList*/
+.section-h{
+	height: 3rem;
+	background: green;
+	overflow: hidden;
+}
+.section-h p{
+	float: left;
+	width: 50%;
+	text-align: center;
+	line-height: 3rem;
+}
+.section-h p i{
+	font-size: 11px;
+	margin-left: 0.2rem;
+}
+.section-h p:nth-of-type(1){
+	color: #fff;
+}
+.section-h p:nth-of-type(2){
+	color: blue;
+	font-weight: 600;
+}
+.mylist ul{
+	overflow: hidden;
+	margin: 0;
+}
+.mylist ul li{
+	float: left;
+	width: 49.99%;
+	padding: 2rem;
+	border-bottom: 1px solid #ccc;
+}
+.mylist ul li:nth-of-type(2n){
+	border-left: 1px solid #ccc;
+}
+.mylist ul li a{
+	display: block;
+	overflow: hidden;
+}
+.mylist ul li a img{
+	float: left;
+	width: 4rem;
+	height: 4rem;
+	border: 1px solid blue;
+}
+.mylist ul li a p{
+	float: left;
+	line-height: 4rem;
+	margin-left: 1.5rem;
+}
+
+/*introduce*/
+.intro{
+	padding: 0 2rem;
+	color: #555;
+}
+
+/*propaganda*/
+.propaganda{
+	color: #555;
+}
+.solid{
+	height: 1px;
+	background: #eee;
+}
+.propaganda h5{
+	color: #555;
+	text-align: center;
+}
+.propaganda ul li{
+	width: 95%;
+	margin: 0 auto;
+	box-shadow: 0 0 0.5rem #aaa;
+	padding: 1rem;
+	margin-bottom: 1rem;
+}
+.propaganda ul li a{
+	display: block;
+	overflow: hidden;
+}
+.propaganda ul li a img{
+	float: left;
+	width: 4rem;
+	height: 4rem;
+}
+.propaganda ul li a p{
+	float: left;
+	line-height: 4rem;
+	margin-left: 1rem;
+}
+
+/*content*/
+.content{
+	padding: 0 1rem;
+}
+.content h2{
+	text-align: center;
+    font-size: 18px;
+    color: #555;
+    margin: 20px 0;
+}
+.content .zhushi{
+	color: #aaa;
+	font-size: 12px;
+	text-align: center;
+	margin: 1.5rem 0;
+}
+.content .article p{
+	color: #676161;
+	text-indent: 2em;
+}
