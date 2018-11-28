@@ -172,7 +172,7 @@ window.parent.document.getElementById("id");子iframe获取父级的元素。
 
 44.$("img").size()计算文档中所有图片的数量==$("img").length。
 
-45.$("img").selector返回传给jQuery（）的原始选择器，此处为ul。
+45.$("img").selector返回传给jQuery（）的原始选择器，此处为img。
 
 46.jquery ajax参数：traditional:true时，传值时可以传数组。
 
@@ -180,3 +180,8 @@ window.parent.document.getElementById("id");子iframe获取父级的元素。
 xhrFields 大概的意思是，默认情况下，标准的跨域请求是不会发送cookie等用户认证凭据的。
 所以，当你再次访问远程api的时候，cookie是不会被带上的，于是乎，服务器理所当然地认为你还没有登录。
 用XMLHttpRequest请求的时候，我们需要设置属性 withCredentials=true ;
+
+48.document.getElementById().scrollIntoView();让制定id的元素出现在滚动层顶部。
+
+49.当涉及到滚动事件的时候，如果哪一个元素给了定高且有overflow：auto；则已这个元素为节点触发滚动事件,而不仅仅局限于屏幕滚动。
+如：$("#id").scroll(function（）{})；

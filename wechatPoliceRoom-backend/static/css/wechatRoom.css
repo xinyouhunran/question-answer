@@ -1,3 +1,17 @@
 .mycontainer{
 	padding: 10px;
 }
+.fl{float: left;}
+.selectList{margin-top: 10px;overflow: hidden;}
+.selectList select{width:90px;height:26px;color: #aaa;}
+.selectList span{color: #595656;}
+.ml{margin-left: 10px;}
+.seaKey button{
+    background: #286090;
+    border: none;
+    color: #fff;
+    padding: 3px;
+    width: 58px;
+    cursor: pointer;
+    border-radius: 5px;
+    }

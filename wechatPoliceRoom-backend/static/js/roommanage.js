@@ -15,6 +15,13 @@ $(function(){
 			flag = true;
 		}
 	})
+	
+	//显示修改密码
+	$(".opeater").children().eq(0).hover(function(){
+		$(".updatePass").show();
+	},function(){
+		$(".updatePass").hide();
+	})
 	/*$(".menu_section").eq(0).css("display","block").siblings().css("display","none");*/
 	//控制谁出现谁隐藏
 	$(".mynav ul li").click(function(){
@@ -25,23 +32,23 @@ $(function(){
 		$(".menu_section").eq(index).css("display","block").siblings().css("display","none");
 	})
 	
-	$(".sideright iframe").attr("src","./personal/updatePass.html");
+	$(".sideright iframe").attr("src","./room/room.html");
 
 	$("a").click(function(){
 		//个人设置
-		if($(this).attr("id")=="updatePass"){
+		/*if($(this).attr("id")=="updatePass"){
 			$(".sideright iframe").attr("src","./personal/updatePass.html");
 			
-		}
+		}*/
 		//警务室
 		if($(this).attr("id")=="room"){
 			$(".sideright iframe").attr("src","./room/room.html");
 		}
-		if($(this).attr("id")=="chartOfClassifiedVisits"){
-			$(".sideright iframe").attr("src","./jwdzdt/console/chartOfClassifiedVisits.html");
+		if($(this).attr("id")=="station"){
+			$(".sideright iframe").attr("src","./station/station.html");
 		}
-		if($(this).attr("id")=="amountOfClassifiedVisits"){
-			$(".sideright iframe").attr("src","./jwdzdt/console/amountOfClassifiedVisits.html");
+		if($(this).attr("id")=="leavemessage"){
+			$(".sideright iframe").attr("src","./leavemessage/leavemessage.html");
 		}
 		if($(this).attr("id")=="amountOfHomePageVisits"){
 			$(".sideright iframe").attr("src","./jwdzdt/console/amountOfHomePageVisits.html");
@@ -86,10 +93,6 @@ $(function(){
 		if($(this).attr("id")=="subbureau"){
 			$(".sideright iframe").attr("src","./jwdzdt/templates/subbureau/index.html");
 			//$(".sideright").load("./jwdzdt/console/subbureau/index.html");
-		}
-		if($(this).attr("id")=="station"){
-			$(".sideright iframe").attr("src","./jwdzdt/templates/station/index.html");
-			//$(".sideright").load("./jwdzdt/templates/station/index.html");
 		}
 		//自助机管理
 		if($(this).attr("id")=="aio"){
