@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//懒加载图片
+	function reImg(){
+		$("img").each(function(i,v){
+			var mysrc = $("img").eq(i).attr("data-src");
+			//mysrc  = mysrc.slice(3,mysrc.length-1);
+			if($("img").eq(i).offset().top<mh+$(document).scrollTop()){
+				$("img").eq(i).attr("src",mysrc);
+			}
+		})
+	}
+	</script>
+</html>
