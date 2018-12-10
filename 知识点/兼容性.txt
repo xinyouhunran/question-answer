@@ -51,3 +51,83 @@
 https://www.zhangxinxu.com/wordpress/2009/08/ie6%E4%B8%8Bpng%E8%83%8C%E6%99%AF%E4%B8%8D%E9%80%8F%E6%98%8E%E9%97%AE%E9%A2%98%E7%9A%84%E7%BB%BC%E5%90%88%E6%8B%93%E5%B1%95/
 
 19.ie6不支持png24格式保存下的透明背景，支持png8：因为png24格式下的透明是Alpha透明。
+
+H5移动端ios/Android兼容性：
+
+1.写背景图时最好加上top left 或者0 0 不然写运动效果时容易出现跳
+
+2.禁止复制、选中文本
+.el {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+   user-select: none;
+}
+
+3.苹果手机固定定位有bug 检查html和body是不是设置了overflow-x:hidden;
+
+
+4.给不同屏幕大小的手机设置特殊样式
+@media only screen  and (min-device-width : 320px)  and (max-device-width : 375px){}
+
+
+
+5.ios 设置input 按钮样式会被默认样式覆盖
+解决方式如下：
+input,textarea {
+  border: 0;
+  -webkit-appearance: none;
+}
+
+6.消除 IE10 里面的那个叉号:input:-ms-clear{display:none;}
+
+7.input 的placeholder属性会使文本位置偏上
+line-height: （和input框的高度一样高）---pc端解决方法
+line-height：normal ---移动端解决方法
+
+8.input type=number之后，pc端出现上下箭头
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+}
+
+
+
+9.实现android和ios系统手机打开相机并可选择相册功能
+
+<input class="js_upFile cover1" type="file" name="cover" accept="image/*" capture="camera" multiple/>
+
+
+
+$(function () {
+    
+//获取浏览器的userAgent,并转化为小写
+    var ua = navigator.userAgent.toLowerCase();
+    
+//判断是否是苹果手机，是则是true
+    var isIos = (ua.indexOf('iphone') != -1) || (ua.indexOf('ipad') != -1);
+    
+if (isIos) {
+        $("input:file").removeAttr("capture");
+    };
+})
+
+
+
+10.移动端 HTML5 audio autoplay 失效问题
+这个不是 BUG，由于自动播放网页中的音频或视频，会给用户带来一些困扰或者不必要的流量消耗，
+所以苹果系统和安卓系统通常都会禁止自动播放和使用 JS 的触发播放，必须由用户来触发才可以播放。
+
+解决方法思路：先通过用户 touchstart 触碰，触发播放并暂停（音频开始加载，后面用 JS 再操作就没问题了）。
+
+
+
+11.iOS 浏览器横屏时会重置字体大小，设置 text-size-adjust 为 none 可以解决 iOS 上的问题，但桌面版 Safari 的字体缩放功能会失效，
+因此最佳方案是将 text-size-adjust 为 100% 。
+-webkit-text-size-adjust:100%;
+-ms-text-size-adjust:100%;
+text-size-adjust:100%;
+
+12.移动端尽量用touch的相关事件去代替click等其他鼠标事件。

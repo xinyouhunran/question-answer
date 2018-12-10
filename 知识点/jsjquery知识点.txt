@@ -141,7 +141,7 @@ console.info(array); // ["a", "b", 0, 1, 2]
 
 33.正则表达式中\s代表匹配空格；\S代表非空白字符。
 
-34.我也不知道为什么，网上也有很多iframe获取父页面的元素和获取子页面的元素，可我偏偏就只能从子iframe获取父页面的dom元素；奇了怪了，记录一下：
+34.我也不知道为什么，网上也有很多iframe获取父页面的元素和获取子页面的元素，可我偏偏就只能从子iframe获取父页面的dom元素；奇了怪了，记录一下：（已解决，博客园已记录）
 window.parent.document.getElementById("id");子iframe获取父级的元素。
 
 35.正则表达式懒惰限定符：（列举两个）（详情见https://www.cnblogs.com/lizhenlin/p/6654934.html）
