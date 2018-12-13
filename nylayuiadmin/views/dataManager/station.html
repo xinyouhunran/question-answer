@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="static/assets/bootstrap-3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/bootstrap-table.min.css"/>
+		<link rel="stylesheet" href="static/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/assets/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/wechatRoom.css"/>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="mycontainer">
+			<div class="layui-inline">
+				<a class="layui-btn newsAdd_btn addStation">添加派出所</a>
+			</div>
+			<div class="selectList">
+				<div class="fl">
+					<span>所属分局：</span>
+					<select name="" id="">
+						<option value="" selected="">不限</option>
+						<option value="宝安分局">宝安分局</option>
+						<option value="大鹏分局">大鹏分局</option>
+						<option value="福田分局">福田分局</option>
+						<option value="光明分局">光明分局</option>
+						<option value="机场分局">机场分局</option>
+						<option value="龙岗分局">龙岗分局</option>
+						<option value="龙华分局">龙华分局</option>
+						<option value="罗湖分局">罗湖分局</option>
+						<option value="南山分局">南山分局</option>
+						<option value="坪山分局">坪山分局</option>
+						<option value="盐田分局">盐田分局</option>
+					</select>
+				</div>
+				
+				<div class="fl ml seaKey">
+					<span>关键词：</span>
+					<input type="text" style="height: 26px;"/>
+					<button type="button">搜索</button>
+				</div>
+			</div>
+		</div>
+		
+		<script src="static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/assets/bootstrap-3.3.7/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript" src="static/assets/layui-v2.4.5/layui/layui.js"></script>
+		<script src="static/js/layer.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			layui.use(['layer','carousel'],function(){
+				var layer = layui.layer;
+				var carousel = layui.carousel;
+				var flow = layui.flow;
+				layer.photos({//图片放大
+				  photos: '#layer-photos-demo'
+				  ,anim: 0 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+				  ,tab: function(pic, layero){
+				    console.log(pic) //当前图片的一些信息
+				  }
+				}); 
+				carousel.render({//图片轮播
+				    elem: '#test1'
+				    ,width: '100%' //设置容器宽度
+				    ,arrow: 'hover' //始终显示箭头
+				    //,anim: 'updown' //切换动画方式
+				 });
+				 
+				 //编辑警务室
+				 var areah = parseInt(($(window).height()))
+				 var areaw = parseInt(($(window).width()));
+				 $(".addStation").click(function(){
+					var data = {
+						title:"添加派出所",
+						href:"editStation.html"
+					}
+					navtab = top.layui.navtab({
+						elem: '.larry-tab-box'
+					});
+					navtab.tabAdd(data);
+					})
+				})
+		</script>
+	</body>
+</html>

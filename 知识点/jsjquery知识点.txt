@@ -189,3 +189,9 @@ xhrFields 大概的意思是，默认情况下，标准的跨域请求是不会发送cookie等用户认证凭据
 50.debugger；会中断程序运行，可以用来调试。
 
 51.trigger（event,[param]）;触发某个元素的绑定事件。
+
+52.window是javascript的顶层对象，所有的全局变量都是它的属性。（V8，Rhino引擎除外）
+
+53.（0，eval）（“this”）;//逗号表达式只解析逗号后面的，此表达式相当于eval（‘this’）
+因为在严格模式下，匿名函数中的this为undefined；
+为了防止在严格模式下window变量被赋予undefined，使用(0, eval)(‘this’)就可以把this重新指向顶层对象。

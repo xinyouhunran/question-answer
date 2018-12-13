@@ -15,3 +15,5 @@
 6.bluebird.js解决promise的兼容问题。
 
 7.browser.min.js解决兼容es6语法。
+
+8.js模糊搜索插件fuzzysearch.js(结合ztree模糊搜索https://blog.csdn.net/g_blue_wind/article/details/78722487)

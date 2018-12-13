@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>深圳市纪委监委办公系统</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="../layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../layuiadmin/style/admin.css" media="all">
+
+		<script>
+			/^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问');
+		</script>
+	</head>
+
+	<body class="layui-layout-body" layadmin-themealias="ocean">
+
+		<div id="LAY_app">
+			<div class="layui-layout layui-layout-admin">
+				<div class="layui-header">
+					<!-- 头部区域 -->
+					<ul class="layui-nav layui-layout-left">
+						<li class="layui-nav-item layadmin-flexible" lay-unselect>
+							<a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+								<i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+							</a>
+						</li>
+						<li class="layui-nav-item" lay-unselect>
+							<a href="javascript:;" layadmin-event="refresh" title="刷新">
+								<i class="layui-icon layui-icon-refresh-3"></i>
+							</a>
+						</li>
+					</ul>
+					<ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
+
+						<!--<li class="layui-nav-item" lay-unselect>-->
+						<!--<a lay-href="app/message/index.html" layadmin-event="message" lay-text="消息中心">-->
+						<!--<i class="layui-icon layui-icon-notice"></i>  -->
+						<!-- -->
+						<!--&lt;!&ndash; 如果有新消息，则显示小圆点 &ndash;&gt;-->
+						<!--<span class="layui-badge-dot"></span>-->
+						<!--</a>-->
+						<!--</li>-->
+						<li class="layui-nav-item layui-hide-xs" lay-unselect>
+							<a href="javascript:;" layadmin-event="theme">
+								<i class="layui-icon layui-icon-theme"></i>
+							</a>
+						</li>
+						<li class="layui-nav-item layui-hide-xs" lay-unselect>
+							<a href="javascript:;" layadmin-event="note">
+								<i class="layui-icon layui-icon-note"></i>
+							</a>
+						</li>
+						<li class="layui-nav-item layui-hide-xs" lay-unselect>
+							<a href="javascript:;" layadmin-event="fullscreen">
+								<i class="layui-icon layui-icon-screen-full"></i>
+							</a>
+						</li>
+						<li class="layui-nav-item" lay-unselect>
+							<a href="javascript:;">
+								<cite id="username">贤心</cite>
+							</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a lay-href="set/user/info.html">基本资料</a>
+								</dd>
+								<dd>
+									<a lay-href="set/user/password.html">修改密码</a>
+								</dd>
+								<hr>
+								<dd layadmin-event="logout" style="text-align: center;">
+									<a>退出</a>
+								</dd>
+							</dl>
+						</li>
+
+						<li class="layui-nav-item layui-hide-xs" lay-unselect>
+							<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							<!--<a href="javascript:;" layadmin-event="about"><i class="layui-icon layui-icon-more-vertical"></i></a>-->
+						</li>
+						<li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-unselect>
+							<a href="javascript:;" layadmin-event="more"><i class="layui-icon layui-icon-more-vertical"></i></a>
+						</li>
+					</ul>
+				</div>
+
+				<!-- 侧边菜单 -->
+				<div class="layui-side layui-side-menu">
+					<div class="layui-side-scroll">
+						<div class="layui-logo" lay-href="home/home-index.html">
+							<span><!--<img src="home/img/logo.png" style="width:100%;"/>-->微信警务室</span>
+						</div>
+
+						<ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
+							<li class="layui-nav-item layui-nav-itemed">
+								<a data-options="{icon:'',title:'流程审批',id:'2358c24673b04b089dcb50edfa7afaa7'}"><i class="layui-icon"></i><span>数据管理</span><span class="layui-nav-more"></span></a>
+								<dl class="layui-nav-child">
+									<dd class="">
+										<a lay-href="dataManager/room.html" data-options="{icon:'',title:'我的待办',id:'b63d5182833d485a8ea060c101b205b5'}"><i class="layui-icon"></i><span>警务室</span></a>
+									</dd>
+									<dd class="">
+										<a lay-href="act/task/doing-list.html" data-options="{icon:'',title:'在办事项',id:'c37a5d38d3c64687bea3db8be330f03d'}"><i class="layui-icon"></i><span>派出所</span></a>
+									</dd>
+									<dd class="">
+										<a lay-href="act/task/historic-list.html" data-options="{icon:'',title:'办结事项',id:'4b6c7bd1efae456d91ed2a88bbf0ea08'}"><i class="layui-icon"></i><span>留言管理</span></a>
+									</dd>
+									<dd>
+										<a lay-href="act/task/pass-read-list.html" data-options="{icon:'',title:'传阅事项',id:'7639fc76a8354367a3beb9b0f07adf55'}"><i class="layui-icon"></i><span>防范宣传</span></a>
+									</dd>
+									<dd>
+										<a lay-href="act/task/pass-read-list.html" data-options="{icon:'',title:'传阅事项',id:'7639fc76a8354367a3beb9b0f07adf55'}"><i class="layui-icon"></i><span>警情通报</span></a>
+									</dd>
+								</dl>
+							</li>
+							<li class="layui-nav-item">
+								<a data-options="{icon:'',title:'公文类',id:'fdc14973858b44b4ad56d7d3950aa928'}"><i class="layui-icon"></i><span>公文类</span><span class="layui-nav-more"></span></a>
+								<dl class="layui-nav-child">
+									<dd>
+										<a lay-href="document/dispatch/dispatch-list.html" data-options="{icon:'',title:'发文管理',id:'d18b21837bbe4b31806024191ffbeeca'}"><i class="layui-icon"></i><span>发文管理</span></a>
+									</dd>
+									<dd>
+										<a lay-href="document/receipt/receipt-list.html" data-options="{icon:'',title:'来文管理',id:'39a423d5e3d0454d846d74ce9a3247dd'}"><i class="layui-icon"></i><span>来文管理</span></a>
+									</dd>
+								</dl>
+							</li>
+							<li class="layui-nav-item">
+								<a data-options="{icon:'',title:'事务类',id:'b563c41e0d6a442f9c7a055149ceed42'}"><i class="layui-icon"></i><span>事务类</span><span class="layui-nav-more"></span></a>
+								<dl class="layui-nav-child">
+									<dd>
+										<a lay-href="holidayApply/holidayApply-list.html" data-options="{icon:'',title:'请休假',id:'4a228d15041b49049e0d928d795ae387'}"><i class="layui-icon"></i><span>请休假</span></a>
+									</dd>
+									<dd>
+										<a lay-href="ygls/ygls-list.html" data-options="{icon:'',title:'因公离深',id:'f9d7a01f279242dea536eb3341429ad3'}"><i class="layui-icon"></i><span>因公离深</span></a>
+									</dd>
+									<dd>
+										<a lay-href="yscg/yscg-list.html" data-options="{icon:'',title:'因私出国（境）',id:'e26b831ce4e74272982b90e5017a77ee'}"><i class="layui-icon"></i><span>因私出国（境）</span></a>
+									</dd>
+									<dd>
+										<a lay-href="gwclsq/gwclsq-list.html" data-options="{icon:'',title:'公车申请',id:'c097ee2a1d0d44d8b7bb4dc8bc099f70'}"><i class="layui-icon"></i><span>公车申请</span></a>
+									</dd>
+								</dl>
+							</li>
+							<li class="layui-nav-item">
+								<a data-options="{icon:'',title:'通知通告',id:'084759129e8a425692764b683e6071f9'}"><i class="layui-icon"></i><span>通知通告</span><span class="layui-nav-more"></span></a>
+								<dl class="layui-nav-child">
+									<dd>
+										<a lay-href="oa/notify/notify-list.html" data-options="{icon:'',title:'通知管理',id:'318588f46f71400d8c4a6ff53918fe96'}"><i class="layui-icon"></i><span>通知管理</span></a>
+									</dd>
+									<dd>
+										<a lay-href="oa/workDynamic/workDynamic-list.html" data-options="{icon:'',title:'工作动态',id:'e13e5b25af824d8292d894afa728ac28'}"><i class="layui-icon"></i><span>工作动态</span></a>
+									</dd>
+									<dd>
+										<a lay-href="oa/notify/notify-moreList.html" data-options="{icon:'',title:'通知列表',id:'278d92cdf25c4e22929a1098b485ce9c'}"><i class="layui-icon"></i><span>通知列表</span></a>
+									</dd>
+								</dl>
+							</li>
+							<li class="layui-nav-item">
+								<a data-options="{icon:'',title:'资料库',id:'1e407641afb24246b44806958e23caf3'}"><i class="layui-icon"></i><span>资料库</span><span class="layui-nav-more"></span></a>
+								<dl class="layui-nav-child">
+									<dd>
+										<a lay-href="jw/data/custom-list.html" data-options="{icon:'',title:'目录管理',id:'a117c21461184c629304fabe21cf2358'}"><i class="layui-icon"></i><span>目录管理</span></a>
+									</dd>
+									<dd>
+										<a lay-href="jw/data/person-list.html" data-options="{icon:'',title:'我的文件',id:'ba745017e70f4792a3749f9670543d78'}"><i class="layui-icon"></i><span>我的文件</span></a>
+									</dd>
+									<dd>
+										<a lay-href="jw/data/share-list.html" data-options="{icon:'',title:'共享文件',id:'69f7dc87bcee400db43cc33a16415a3f'}"><i class="layui-icon"></i><span>共享文件</span></a>
+									</dd>
+								</dl>
+							</li>
+							<li class="layui-nav-item">
+								<a data-options="{icon:'',title:'流程管理',id:'54e23f08abb94208aca29421f860ade9'}"><i class="layui-icon"></i><span>流程管理</span><span class="layui-nav-more"></span></a>
+								<dl class="layui-nav-child">
+									<dd>
+										<a lay-href="act/model/model-list.html" data-options="{icon:'',title:'模型管理',id:'f7683b7007284c4b8988df7d4a7427f0'}"><i class="layui-icon"></i><span>模型管理</span></a>
+									</dd>
+									<dd>
+										<a lay-href="act/process/process-list.html" data-options="{icon:'',title:'流程管理',id:'213f73aa1e8d4dfcbc5c7c17de13046e'}"><i class="layui-icon"></i><span>流程管理</span></a>
+									</dd>
+								</dl>
+							</li>
+							<li class="layui-nav-item">
+								<a data-options="{icon:'',title:'系统管理',id:'cfda8029dfb311e7b555201a068c6482'}"><i class="layui-icon"></i><span>系统管理</span><span class="layui-nav-more"></span></a>
+								<dl class="layui-nav-child">
+									<dd>
+										<a lay-href="sys/job/schedule-log-list.html" data-options="{icon:'',title:'定时任务记录',id:'661667fb747b431682f9fa830279e6f9'}"><i class="layui-icon"></i><span>定时任务记录</span></a>
+									</dd>
+									<dd>
+										<a lay-href="sys/log/log-list.html" data-options="{icon:'',title:'日志管理',id:'ee1d5977b28049c796d667eba124348e'}"><i class="layui-icon"></i><span>日志管理</span></a>
+									</dd>
+									<dd>
+										<a lay-href="sys/config/config-list.html" data-options="{icon:'',title:'参数管理',id:'1035d3411fe743f784a21c938dbcbdfe'}"><i class="layui-icon"></i><span>参数管理</span></a>
+									</dd>
+									<dd>
+										<a lay-href="sys/job/schedule-list.html" data-options="{icon:'',title:'定时任务',id:'ad0d0d3531764a1c81e03fe3efde8a11'}"><i class="layui-icon"></i><span>定时任务</span></a>
+									</dd>
+									<dd>
+										<a lay-href="sys/user/user-list.html" data-options="{icon:'',title:'用户管理',id:'cfe54921dfb311e7b555201a068c6482'}"><i class="layui-icon"></i><span>用户管理</span></a>
+									</dd>
+									<dd>
+										<a lay-href="sys/dept/dept-list.html" data-options="{icon:'',title:'部门管理',id:'6a8dc5f6-f6e3-46ae-b6c4-60401c76f99f'}"><i class="layui-icon"></i><span>部门管理</span></a>
+									</dd>
+									<dd>
+										<a lay-href="sys/menu/menu-list.html" data-options="{icon:'',title:'菜单管理',id:'3873ccc2dfda11e7b555201a068c6482'}"><i class="layui-icon"></i><span>菜单管理</span></a>
+									</dd>
+									<dd>
+										<a lay-href="sys/role/role-list.html" data-options="{icon:'',title:'角色管理',id:'cff61424dfb311e7b555201a068c6482'}"><i class="layui-icon"></i><span>角色管理</span></a>
+									</dd>
+									<dd>
+										<a lay-href="sys/dict/dict-list.html" data-options="{icon:'',title:'数字字典管理',id:'f7861ee3-1888-47f5-94e7-13577e48838a'}"><i class="layui-icon"></i><span>数字字典管理</span></a>
+									</dd>
+									<dd>
+										<a lay-href="dbsx/dbsx-list.html" data-options="{icon:'',title:'待办事项配置',id:'242bc8e0241948d685ea328efeac529c'}"><i class="layui-icon"></i><span>待办事项配置</span></a>
+									</dd>
+								</dl>
+							</li><span class="layui-nav-bar" style="top: 28px; height: 0px; opacity: 0;"></span></ul>
+					</div>
+				</div>
+
+				<!-- 页面标签 -->
+				<div class="layadmin-pagetabs" id="LAY_app_tabs">
+					<div class="layui-icon layadmin-tabs-control layui-icon-prev" layadmin-event="leftPage"></div>
+					<div class="layui-icon layadmin-tabs-control layui-icon-next" layadmin-event="rightPage"></div>
+					<div class="layui-icon layadmin-tabs-control layui-icon-down">
+						<ul class="layui-nav layadmin-tabs-select" lay-filter="layadmin-pagetabs-nav">
+							<li class="layui-nav-item" lay-unselect>
+								<a href="javascript:;"></a>
+								<dl class="layui-nav-child layui-anim-fadein">
+									<dd layadmin-event="closeThisTabs">
+										<a href="javascript:;">关闭当前标签页</a>
+									</dd>
+									<dd layadmin-event="closeOtherTabs">
+										<a href="javascript:;">关闭其它标签页</a>
+									</dd>
+									<dd layadmin-event="closeAllTabs">
+										<a href="javascript:;">关闭全部标签页</a>
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+					<div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
+						<ul class="layui-tab-title" id="LAY_app_tabsheader">
+							<li lay-id="home/home-index.html" lay-attr="home/home-index.html" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- 主体内容 -->
+				<div class="layui-body" id="LAY_app_body"><!--http://172.168.1.126/OA/trunk/code/xinghuo-oa-web/views/index.html-->
+					<div class="layadmin-tabsbody-item layui-show">
+						<iframe src="home/home-index.html" frameborder="0" class="layadmin-iframe"></iframe>
+					</div>
+				</div>
+
+				<!-- 辅助元素，一般用于移动设备下遮罩 -->
+				<div class="layadmin-body-shade" layadmin-event="shade"></div>
+			</div>
+		</div>
+
+		<script src="../layuiadmin/layui/layui.js"></script>
+		<script>
+			var yourIp;
+			layui.config({
+				base: '../layuiadmin/' //静态资源所在路径
+			}).extend({
+				index: 'lib/index' //主入口模块
+			}).use(['index', 'message'], function() {
+				var $ = layui.jquery,
+					setter = layui.setter,
+					admin = layui.admin,
+					layer = layui.layer;
+				//将message设置为全局以便子页面调用
+				message = layui.message;
+
+				//alert(layui.data(setter.tableName)[setter.username]);
+				var userInfo = layui.data(setter.tableName)[setter.userInfo];
+				getYourIP();
+				/*setTimeout(function() {
+					if(yourIp != "") {
+						var ip = yourIp.split(".");
+						admin.getWaterMark(userInfo.userLoginId, ip[2] + "." + ip[3]);
+					} else {
+						admin.getWaterMark(userInfo.userLoginId, yourIp);
+					}
+
+				}, 100);*/
+
+				//$("#username").text(userInfo.userName);
+
+				//获取菜单信息
+				/*admin.req({
+					url: layui.setter.serverBase + 'sys/menu/nav',
+					type: 'post',
+					done: function(res) {
+						// alert(JSON.stringify(res.permissions));	
+						//TODO  处理菜单显示
+
+						var html = "";
+						for(var i = 0; i < res.menuList.length; i++) {
+							var node = res.menuList[i];
+							html += '<li class="layui-nav-item">' +
+								'<a ' + (node.url == null ? '' : 'lay-href="' + node.url + '"') + ' data-options="{icon:\'' + node.icon + '\',title:\'' + node.name + '\',id:\'' + node.menuId + '\'}">' +
+								'<i class="layui-icon">' + node.icon + '</i>' +
+								'<span>' + node.name + '</span>' +
+								'</a>';
+							if(node.children.length > 0) {
+								html += '<dl class="layui-nav-child">';
+								for(var j = 0; j < node.children.length; j++) {
+									var child = node.children[j];
+									html += '<dd>' +
+										'<a ' + (child.url == null ? '' : 'lay-href="' + child.url + '"') + ' data-options="{icon:\'' + child.icon + '\',title:\'' + child.name + '\',id:\'' + child.menuId + '\'}">' +
+										'<i class="layui-icon">' + child.icon + '</i>' +
+										'<span>' + child.name + '</span>' +
+										'</a>' +
+										'</dd>';
+								}
+								html += '</dl>';
+							}
+							html += '</li>';
+						}
+						$("#LAY-system-side-menu").html(html);
+						//重新渲染
+						var element = layui.element;
+						element.init();
+
+						//处理权限信息
+						sessionStorage.setItem('permissions', JSON.stringify(res.permissions || '[]'));
+					}
+				});*/
+
+			});;
+
+			function getYourIP() {
+
+				var RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
+				if(RTCPeerConnection)(function() {
+					var rtc = new RTCPeerConnection({
+						iceServers: []
+					});
+					if(1 || window.mozRTCPeerConnection) {
+						rtc.createDataChannel('', {
+							reliable: false
+						});
+					};
+
+					rtc.onicecandidate = function(evt) {
+						if(evt.candidate) grepSDP("a=" + evt.candidate.candidate);
+					};
+					rtc.createOffer(function(offerDesc) {
+						grepSDP(offerDesc.sdp);
+						rtc.setLocalDescription(offerDesc);
+					}, function(e) {
+						console.warn("offer failed", e);
+					});
+
+					var addrs = Object.create(null);
+					addrs["0.0.0.0"] = false;
+
+					function updateDisplay(newAddr) {
+						if(newAddr in addrs) return;
+						else addrs[newAddr] = true;
+						var displayAddrs = Object.keys(addrs).filter(function(k) {
+							return addrs[k];
+						});
+						for(var i = 0; i < displayAddrs.length; i++) {
+							if(displayAddrs[i].length > 16) {
+								displayAddrs.splice(i, 1);
+								i--;
+							}
+						}
+						yourIp = displayAddrs[0];
+					}
+
+					function grepSDP(sdp) {
+						var hosts = [];
+						sdp.split('\r\n').forEach(function(line, index, arr) {
+							if(~line.indexOf("a=candidate")) {
+								var parts = line.split(' '),
+									addr = parts[4],
+									type = parts[7];
+								if(type === 'host') updateDisplay(addr);
+							} else if(~line.indexOf("c=")) {
+								var parts = line.split(' '),
+									addr = parts[2];
+								updateDisplay(addr);
+							}
+						});
+					}
+				})();
+				else {
+					//          alert("请使用主流浏览器：chrome,firefox,opera,safari");
+					yourIp = "";
+				}
+			}
+		</script>
+
+	</body>
+
+</html>
