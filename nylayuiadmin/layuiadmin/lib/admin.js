@@ -921,9 +921,10 @@ layui.define('view', function(exports){
     admin.tabsPage.elem = othis;
     //admin.prevRouter[router.path[0]] = router.href; //记录上一次各菜单的路由信息
 
-    //执行跳转
+    //执行跳转             侧边栏的点击出现tab也在此处
     var topLayui = parent === self ? layui : top.layui;
-    topLayui.index.openTabsPage(href, text || othis.text());
+    //topLayui.index.openTabsPage(href, text || othis.text());源代码
+    topLayui.index.openTabsPage(href, text || othis.find("span").text());//ls代码
   });
   
   //点击事件

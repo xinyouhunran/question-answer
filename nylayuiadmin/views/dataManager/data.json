@@ -1,0 +1,61 @@
+{
+	"code":"200",
+	"msg":"success",
+	"total":"5",
+	"data":[{
+	"id":"1"
+	,"username":"1"
+	,"experience":"1"
+      ,"sex": "派出所电话"
+      ,"score": "警务室名称"
+      ,"city": "地址"
+      ,"sign": "警长"
+      ,"classify": "成员"
+      ,"wealth": "前端可见"
+      ,"area": "区域"
+	},{
+	"id":"1"
+	,"username":"1"
+	,"experience":"1"
+      ,"sex": "派出所电话"
+      ,"score": "警务室名称"
+      ,"city": "地址"
+      ,"sign": "警长"
+      ,"classify": "成员"
+      ,"wealth": "前端可见"
+      ,"area": "区域"
+	},{
+	"id":"1"
+	,"username":"1"
+	,"experience":"1"
+      ,"sex": "派出所电话"
+      ,"score": "警务室名称"
+      ,"city": "地址"
+      ,"sign": "警长"
+      ,"classify": "成员"
+      ,"wealth": "前端可见"
+      ,"area": "区域"
+	},{
+	"id":"1"
+	,"username":"1"
+	,"experience":"1"
+      ,"sex": "派出所电话"
+      ,"score": "警务室名称"
+      ,"city": "地址"
+      ,"sign": "警长"
+      ,"classify": "成员"
+      ,"wealth": "前端可见"
+      ,"area": "区域"
+	},{
+	"id":"1"
+	,"username":"1"
+	,"experience":"1"
+      ,"sex": "派出所电话"
+      ,"score": "警务室名称"
+      ,"city": "地址"
+      ,"sign": "警长"
+      ,"classify": "成员"
+      ,"wealth": "前端可见"
+      ,"area": "区域"
+	}]
+}

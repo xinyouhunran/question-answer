@@ -6,13 +6,14 @@
 <button id="btn">js控制页面的全屏展示和退出全屏显示</button>
 <div id="content" style="margin:0 auto;height:500px;width:700px; background:#900;" >
 <h1 id="h1">js控制页面的全屏展示和退出全屏显示</h1>
-<button id="btn" onclick="exitFull()">js控制页面的退出全屏显示</button>
+<button id="btn1" onclick="exitFull()">js控制页面的退出全屏显示</button>
 </div>
 </div>
 </body>
 <script language="JavaScript">
 
 document.getElementById("btn").onclick=function(){
+	window.history.pushState(null,null,"wufeng.html");
     var elem = document.getElementById("content");
     var h1 = document.getElementById("h1");
     requestFullScreen(elem);// 某个页面元素

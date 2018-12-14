@@ -61,14 +61,14 @@
 						</li>
 						<li class="layui-nav-item" lay-unselect>
 							<a href="javascript:;">
-								<cite id="username">贤心</cite>
+								<cite id="username">liusong</cite>
 							</a>
 							<dl class="layui-nav-child">
-								<dd>
+								<!--<dd>
 									<a lay-href="set/user/info.html">基本资料</a>
-								</dd>
+								</dd>-->
 								<dd>
-									<a lay-href="set/user/password.html">修改密码</a>
+									<a lay-href="dataManager/changepwd.html" lay-text="修改密码">修改密码</a>
 								</dd>
 								<hr>
 								<dd layadmin-event="logout" style="text-align: center;">
@@ -96,89 +96,22 @@
 
 						<ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
 							<li class="layui-nav-item layui-nav-itemed">
-								<a data-options="{icon:'',title:'流程审批',id:'2358c24673b04b089dcb50edfa7afaa7'}"><i class="layui-icon"></i><span>数据管理</span><span class="layui-nav-more"></span></a>
+								<a data-options="{icon:'',title:'数据管理',id:'2358c24673b04b089dcb50edfa7afaa7'}"><i class="layui-icon"></i><span>数据管理</span><span class="layui-nav-more"></span></a>
 								<dl class="layui-nav-child">
 									<dd class="">
-										<a lay-href="dataManager/room.html" data-options="{icon:'',title:'我的待办',id:'b63d5182833d485a8ea060c101b205b5'}"><i class="layui-icon"></i><span>警务室</span></a>
+										<a lay-href="dataManager/room.html" data-options="{icon:'',title:'警务室',id:'b63d5182833d485a8ea060c101b205b5'}"><i class="layui-icon"></i><span>警务室</span></a>
 									</dd>
 									<dd class="">
-										<a lay-href="act/task/doing-list.html" data-options="{icon:'',title:'在办事项',id:'c37a5d38d3c64687bea3db8be330f03d'}"><i class="layui-icon"></i><span>派出所</span></a>
+										<a lay-href="dataManager/station.html" data-options="{icon:'',title:'派出所',id:'c37a5d38d3c64687bea3db8be330f03d'}"><i class="layui-icon"></i><span>派出所</span></a>
 									</dd>
 									<dd class="">
-										<a lay-href="act/task/historic-list.html" data-options="{icon:'',title:'办结事项',id:'4b6c7bd1efae456d91ed2a88bbf0ea08'}"><i class="layui-icon"></i><span>留言管理</span></a>
+										<a lay-href="dataManager/leavemessage.html" data-options="{icon:'',title:'留言管理',id:'4b6c7bd1efae456d91ed2a88bbf0ea08'}"><i class="layui-icon"></i><span>留言管理</span></a>
 									</dd>
 									<dd>
-										<a lay-href="act/task/pass-read-list.html" data-options="{icon:'',title:'传阅事项',id:'7639fc76a8354367a3beb9b0f07adf55'}"><i class="layui-icon"></i><span>防范宣传</span></a>
+										<a lay-href="dataManager/propaganda.html" data-options="{icon:'',title:'防范宣传',id:'7639fc76a8354367a3beb9b0f07adf55'}"><i class="layui-icon"></i><span>防范宣传</span></a>
 									</dd>
 									<dd>
-										<a lay-href="act/task/pass-read-list.html" data-options="{icon:'',title:'传阅事项',id:'7639fc76a8354367a3beb9b0f07adf55'}"><i class="layui-icon"></i><span>警情通报</span></a>
-									</dd>
-								</dl>
-							</li>
-							<li class="layui-nav-item">
-								<a data-options="{icon:'',title:'公文类',id:'fdc14973858b44b4ad56d7d3950aa928'}"><i class="layui-icon"></i><span>公文类</span><span class="layui-nav-more"></span></a>
-								<dl class="layui-nav-child">
-									<dd>
-										<a lay-href="document/dispatch/dispatch-list.html" data-options="{icon:'',title:'发文管理',id:'d18b21837bbe4b31806024191ffbeeca'}"><i class="layui-icon"></i><span>发文管理</span></a>
-									</dd>
-									<dd>
-										<a lay-href="document/receipt/receipt-list.html" data-options="{icon:'',title:'来文管理',id:'39a423d5e3d0454d846d74ce9a3247dd'}"><i class="layui-icon"></i><span>来文管理</span></a>
-									</dd>
-								</dl>
-							</li>
-							<li class="layui-nav-item">
-								<a data-options="{icon:'',title:'事务类',id:'b563c41e0d6a442f9c7a055149ceed42'}"><i class="layui-icon"></i><span>事务类</span><span class="layui-nav-more"></span></a>
-								<dl class="layui-nav-child">
-									<dd>
-										<a lay-href="holidayApply/holidayApply-list.html" data-options="{icon:'',title:'请休假',id:'4a228d15041b49049e0d928d795ae387'}"><i class="layui-icon"></i><span>请休假</span></a>
-									</dd>
-									<dd>
-										<a lay-href="ygls/ygls-list.html" data-options="{icon:'',title:'因公离深',id:'f9d7a01f279242dea536eb3341429ad3'}"><i class="layui-icon"></i><span>因公离深</span></a>
-									</dd>
-									<dd>
-										<a lay-href="yscg/yscg-list.html" data-options="{icon:'',title:'因私出国（境）',id:'e26b831ce4e74272982b90e5017a77ee'}"><i class="layui-icon"></i><span>因私出国（境）</span></a>
-									</dd>
-									<dd>
-										<a lay-href="gwclsq/gwclsq-list.html" data-options="{icon:'',title:'公车申请',id:'c097ee2a1d0d44d8b7bb4dc8bc099f70'}"><i class="layui-icon"></i><span>公车申请</span></a>
-									</dd>
-								</dl>
-							</li>
-							<li class="layui-nav-item">
-								<a data-options="{icon:'',title:'通知通告',id:'084759129e8a425692764b683e6071f9'}"><i class="layui-icon"></i><span>通知通告</span><span class="layui-nav-more"></span></a>
-								<dl class="layui-nav-child">
-									<dd>
-										<a lay-href="oa/notify/notify-list.html" data-options="{icon:'',title:'通知管理',id:'318588f46f71400d8c4a6ff53918fe96'}"><i class="layui-icon"></i><span>通知管理</span></a>
-									</dd>
-									<dd>
-										<a lay-href="oa/workDynamic/workDynamic-list.html" data-options="{icon:'',title:'工作动态',id:'e13e5b25af824d8292d894afa728ac28'}"><i class="layui-icon"></i><span>工作动态</span></a>
-									</dd>
-									<dd>
-										<a lay-href="oa/notify/notify-moreList.html" data-options="{icon:'',title:'通知列表',id:'278d92cdf25c4e22929a1098b485ce9c'}"><i class="layui-icon"></i><span>通知列表</span></a>
-									</dd>
-								</dl>
-							</li>
-							<li class="layui-nav-item">
-								<a data-options="{icon:'',title:'资料库',id:'1e407641afb24246b44806958e23caf3'}"><i class="layui-icon"></i><span>资料库</span><span class="layui-nav-more"></span></a>
-								<dl class="layui-nav-child">
-									<dd>
-										<a lay-href="jw/data/custom-list.html" data-options="{icon:'',title:'目录管理',id:'a117c21461184c629304fabe21cf2358'}"><i class="layui-icon"></i><span>目录管理</span></a>
-									</dd>
-									<dd>
-										<a lay-href="jw/data/person-list.html" data-options="{icon:'',title:'我的文件',id:'ba745017e70f4792a3749f9670543d78'}"><i class="layui-icon"></i><span>我的文件</span></a>
-									</dd>
-									<dd>
-										<a lay-href="jw/data/share-list.html" data-options="{icon:'',title:'共享文件',id:'69f7dc87bcee400db43cc33a16415a3f'}"><i class="layui-icon"></i><span>共享文件</span></a>
-									</dd>
-								</dl>
-							</li>
-							<li class="layui-nav-item">
-								<a data-options="{icon:'',title:'流程管理',id:'54e23f08abb94208aca29421f860ade9'}"><i class="layui-icon"></i><span>流程管理</span><span class="layui-nav-more"></span></a>
-								<dl class="layui-nav-child">
-									<dd>
-										<a lay-href="act/model/model-list.html" data-options="{icon:'',title:'模型管理',id:'f7683b7007284c4b8988df7d4a7427f0'}"><i class="layui-icon"></i><span>模型管理</span></a>
-									</dd>
-									<dd>
-										<a lay-href="act/process/process-list.html" data-options="{icon:'',title:'流程管理',id:'213f73aa1e8d4dfcbc5c7c17de13046e'}"><i class="layui-icon"></i><span>流程管理</span></a>
+										<a lay-href="dataManager/policealarm.html" data-options="{icon:'',title:'警情通报',id:'7639fc76a8354367a3beb9b0f07adf52'}"><i class="layui-icon"></i><span>警情通报</span></a>
 									</dd>
 								</dl>
 							</li>
@@ -186,37 +119,14 @@
 								<a data-options="{icon:'',title:'系统管理',id:'cfda8029dfb311e7b555201a068c6482'}"><i class="layui-icon"></i><span>系统管理</span><span class="layui-nav-more"></span></a>
 								<dl class="layui-nav-child">
 									<dd>
-										<a lay-href="sys/job/schedule-log-list.html" data-options="{icon:'',title:'定时任务记录',id:'661667fb747b431682f9fa830279e6f9'}"><i class="layui-icon"></i><span>定时任务记录</span></a>
+										<a lay-href="systemManager/manager.html" data-options="{icon:'',title:'管理员管理',id:'d18b21837bbe4b31806024191ffbeeca'}"><i class="layui-icon"></i><span>管理员管理</span></a>
 									</dd>
 									<dd>
-										<a lay-href="sys/log/log-list.html" data-options="{icon:'',title:'日志管理',id:'ee1d5977b28049c796d667eba124348e'}"><i class="layui-icon"></i><span>日志管理</span></a>
-									</dd>
-									<dd>
-										<a lay-href="sys/config/config-list.html" data-options="{icon:'',title:'参数管理',id:'1035d3411fe743f784a21c938dbcbdfe'}"><i class="layui-icon"></i><span>参数管理</span></a>
-									</dd>
-									<dd>
-										<a lay-href="sys/job/schedule-list.html" data-options="{icon:'',title:'定时任务',id:'ad0d0d3531764a1c81e03fe3efde8a11'}"><i class="layui-icon"></i><span>定时任务</span></a>
-									</dd>
-									<dd>
-										<a lay-href="sys/user/user-list.html" data-options="{icon:'',title:'用户管理',id:'cfe54921dfb311e7b555201a068c6482'}"><i class="layui-icon"></i><span>用户管理</span></a>
-									</dd>
-									<dd>
-										<a lay-href="sys/dept/dept-list.html" data-options="{icon:'',title:'部门管理',id:'6a8dc5f6-f6e3-46ae-b6c4-60401c76f99f'}"><i class="layui-icon"></i><span>部门管理</span></a>
-									</dd>
-									<dd>
-										<a lay-href="sys/menu/menu-list.html" data-options="{icon:'',title:'菜单管理',id:'3873ccc2dfda11e7b555201a068c6482'}"><i class="layui-icon"></i><span>菜单管理</span></a>
-									</dd>
-									<dd>
-										<a lay-href="sys/role/role-list.html" data-options="{icon:'',title:'角色管理',id:'cff61424dfb311e7b555201a068c6482'}"><i class="layui-icon"></i><span>角色管理</span></a>
-									</dd>
-									<dd>
-										<a lay-href="sys/dict/dict-list.html" data-options="{icon:'',title:'数字字典管理',id:'f7861ee3-1888-47f5-94e7-13577e48838a'}"><i class="layui-icon"></i><span>数字字典管理</span></a>
-									</dd>
-									<dd>
-										<a lay-href="dbsx/dbsx-list.html" data-options="{icon:'',title:'待办事项配置',id:'242bc8e0241948d685ea328efeac529c'}"><i class="layui-icon"></i><span>待办事项配置</span></a>
+										<a lay-href="systemManager/role.html" data-options="{icon:'',title:'角色管理',id:'39a423d5e3d0454d846d74ce9a3247dd'}"><i class="layui-icon"></i><span>角色管理</span></a>
 									</dd>
 								</dl>
-							</li><span class="layui-nav-bar" style="top: 28px; height: 0px; opacity: 0;"></span></ul>
+							</li>
+							<span class="layui-nav-bar" style="top: 28px; height: 0px; opacity: 0;"></span></ul>
 					</div>
 				</div>
 

@@ -195,3 +195,24 @@ xhrFields 大概的意思是，默认情况下，标准的跨域请求是不会发送cookie等用户认证凭据
 53.（0，eval）（“this”）;//逗号表达式只解析逗号后面的，此表达式相当于eval（‘this’）
 因为在严格模式下，匿名函数中的this为undefined；
 为了防止在严格模式下window变量被赋予undefined，使用(0, eval)(‘this’)就可以把this重新指向顶层对象。
+
+54.JS添加事件和解绑事件：addEventListener()与removeEventListener()
+正确用法：function bodyScroll(event){
+    event.preventDefault();
+}
+document.body.addEventListener('touchmove',bodyScroll,false);
+document.body.removeEventListener('touchmove',bodyScroll,false);//共用函数bodyScroll不能带参数
+
+55.取消事件：对象.事件模型 = null；
+
+56.window.history.pushState(null,null,url)无刷新页面改变页面路径，url为改变后的路径。
+（服务器端被搜索的内容放进<noscript></noscript>中，结合这个可以让搜索引擎抓取AJAX内容？
+http://www.ruanyifeng.com/blog/2013/07/how_to_make_search_engines_find_ajax_content.html）
+
+57.猜想：感觉能利用history.length来获取网页浏览历史物品详情页的数据。
+
+58.popstate事件
+
+每当同一个文档的浏览历史(即history对象)出现变化时，就会触发popstate事件
+
+59.require.js模块化开发：http://www.ruanyifeng.com/blog/2012/11/require_js.html（三部曲）

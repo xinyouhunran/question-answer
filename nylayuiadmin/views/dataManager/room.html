@@ -86,26 +86,42 @@
 		</div>-->
 		<table id="roomTable" lay-filter="roomTable"></table>
 		
-		<div id="test"></div>
+		<div id="roomPage"></div>
 		<script type="text/html" id="barDemo">
-		  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-		  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-		  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+		  <!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
+		  <a class="layui-btn layui-btn-xs" lay-event="editRoom">编辑</a>
+		  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="editIntro">编辑简介</a>
+		</script>
+		<script type="text/html" id="room-toolbar">
+		  <div class="layui-btn-container">		  
+		  
+			<button class="layui-btn layui-btn-normal" lay-event="add">解除警长绑定</button>	
+		    <button class="layui-btn layui-btn-danger" lay-event="del">删除</button>   
+		  	<button class="layui-btn layui-btn-warm" lay-event="print">打印二维码</button> 
+		  </div>
+		</script>
+		
+		<script type="text/html" id="titleTpl">
+		  {{#  if(d.id < 100){ }}
+		    <a href="/detail/{{d.id}}" class="layui-table-link">{{d.sign}}</a>
+		  {{#  } else { }}
+		    {{d.title}}(普通用户)
+		  {{#  } }}
 		</script>
 		<!--图片点击查看及轮播-->
 		<div id="layer-photos-demo" class="layer-photos-demo">
 			<div class="layui-carousel" id="test1">
 				<div carousel-item>
-					<img layer-pid="图片id，可以不写" layer-src="images/lockscreenbg.jpg" src="images/lockscreenbg.jpg" alt="图片名" width="100" height="100">
-					<img layer-pid="图片id，可以不写" layer-src="images/user.jpg" src="images/user.jpg" alt="图片名" width="100%" height="288px">
+					<img layer-pid="图片id，可以不写" layer-src="../static/img/add.png" src="../static/img/add.png" alt="图片名" width="100" height="100">
+					<img layer-pid="图片id，可以不写" layer-src="../static/img/500.png" src="../static/img/500.png" alt="图片名" width="100%" height="288px">
 				</div>
 			</div>
 		</div>
 		
-		<div class="layui-inline">
+		<!--<div class="layui-inline">
 			<a class="layui-btn newsAdd_btn" id="editRoom">编辑警务室</a>
 			<a class="layui-btn newsAdd_btn" id="editIntro">编辑简介</a>
-		</div>
+		</div>-->
 		<script src="../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../static/assets/bootstrap-3.3.7/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../layuiadmin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
@@ -128,50 +144,104 @@
 				,table = layui.table
 				,laypage = layui.laypage;
 				
+				var curnum = 1;//记录第几页的数据
+				var limitcount = 2;//每页限制条数
+				
+				roomInit(curnum,limitcount);
+				function roomInit(start,limitSize){//第几页，显示条数
 				table.render({
 				    elem: '#roomTable'
 				    ,height: 420
-				    //,url: '/demo/table/user/' //数据接口
+				    ,url: 'data.json' //数据接口
 				    ,title: '警务室'
-				    ,page: true //开启分页
-				    ,toolbar: '#roomtoolbar' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+				    //,page: true //开启分页
+				    ,toolbar: '#room-toolbar' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
 				    //,totalRow: true //开启合计行
 				    ,cols: [[ //表头
-				      {type: 'checkbox'}
-				      ,{field: 'id', title: 'ID', width:60}
+				      {type: 'checkbox',fixed:'left'}
+				      ,{field: 'id', title: 'ID', width:60,templet:"#titleTpl"}
 				      ,{field: 'username', title: '所属分局', width:120}
 				      ,{field: 'experience', title: '上级派出所', width: 120}
-				      ,{field: 'sex', title: '派出所电话', width:100}
+				      ,{field: 'sex', title: '派出所电话', width:100,edit:"text"}
 				      ,{field: 'score', title: '警务室名称', width: 120}
 				      ,{field: 'city', title: '地址', width:150} 
 				      ,{field: 'sign', title: '警长', width: 100}
 				      ,{field: 'classify', title: '成员', width: 100}
 				      ,{field: 'wealth', title: '前端可见', width: 100}
-				      ,{field: 'area', title: '区域', width: 80}
-				      ,{title: '操作', width: 165, align:'center', toolbar: '#barDemo'}
-				    ]]
+				      ,{field: 'area', title: '区域', width: 80,style:"color:blue;text-decoration:underline;"}
+				      ,{title: '操作', width: 165, align:'center', toolbar: '#barDemo',fixed:'right'}
+				    ]],
+				   response: {
+					   statusName: 'code' //规定数据状态的字段名称，默认：code
+					    ,statusCode: 200 //规定成功的状态码，默认：0
+					    ,msgName: 'msg' //规定状态信息的字段名称，默认：msg
+					    ,dataName: 'data' //规定数据列表的字段名称，默认：data
+					 }
+				   ,done:function(res,curr,count){
+				    	laypage.render({
+						  	elem:"roomPage",
+						  	count:res.total,
+						  	curr:curnum,
+						  	limit:2,
+						  	limits:[2,4,6],
+						  	layout: ['prev', 'page', 'next', 'skip','count','limit'],
+						  	jump:function(obj,first){
+						  		if(!first){
+                                curnum = obj.curr;
+                                limitcount = obj.limit;
+                                //console.log("curnum"+curnum);
+                                //console.log("limitcount"+limitcount);
+                                //layer.msg(curnum+"-"+limitcount);
+                                roomInit(curnum,limitcount);
+                           		}
+						  	}
+						  })
+				    }
+				  });
+				 }
+				  //监听头工具栏事件
+				  table.on('toolbar(roomTable)', function(obj){
+				    var checkStatus = table.checkStatus(obj.config.id)
+				    ,data = checkStatus.data; //获取选中的数据
+				    console.log(obj);
+				    switch(obj.event){
+				      case 'add':
+				        layer.msg('添加');
+				      break;
+				      case 'print':
+				        if(data.length === 0){
+				          layer.msg('请选择一行');
+				        } else if(data.length > 1){
+				          layer.msg('只能同时编辑一个');
+				        } else {
+				          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
+				        }
+				      break;
+				      case 'del':
+				        if(data.length === 0){
+				          layer.msg('请选择一行');
+				        } else {
+				          layer.msg('删除');
+				        }
+				      break;
+				    };
 				  });
 				  //监听行工具事件
-				  table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+				  table.on('tool(roomTable)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
 				    var data = obj.data //获得当前行数据
 				    ,layEvent = obj.event; //获得 lay-event 对应的值
 				    if(layEvent === 'detail'){
 				      layer.msg('查看操作');
-				    } else if(layEvent === 'del'){
-				      layer.confirm('真的删除行么', function(index){
-				        obj.del(); //删除对应行（tr）的DOM结构
-				        layer.close(index);
-				        //向服务端发送删除指令
-				      });
-				    } else if(layEvent === 'edit'){
-				      layer.msg('编辑操作');
+				    } else if(layEvent === 'editRoom'){
+				      var topLayui = parent === self ? layui : top.layui;
+    				topLayui.index.openTabsPage("dataManager/editRoom.html?id=1", "编辑警务室");
+				    } else if(layEvent === 'editIntro'){
+				     var topLayui = parent === self ? layui : top.layui;
+    				topLayui.index.openTabsPage("dataManager/editIntro.html", "编辑简介");
 				    }
 				  });
 				  
-				  laypage.render({
-				  	elem:"test",
-				  	count:50
-				  })
+				  
 				layer.photos({//图片放大
 				  photos: '#layer-photos-demo'
 				  ,anim: 0 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
@@ -189,7 +259,7 @@
 				 //编辑警务室
 				 var areah = parseInt(($(window).height()))
 				 var areaw = parseInt(($(window).width()));
-				 $("#editRoom").click(function(){
+				 /*$("#editRoom").click(function(){
 				 	var topLayui = parent === self ? layui : top.layui;
     				topLayui.index.openTabsPage("dataManager/editRoom.html?id=1", "编辑警务室");
 					
@@ -197,7 +267,7 @@
 				 $("#editIntro").click(function(){
 					var topLayui = parent === self ? layui : top.layui;
     				topLayui.index.openTabsPage("dataManager/editIntro.html", "编辑简介");
-					})
+					})*/
 			})
 
 			
