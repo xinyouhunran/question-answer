@@ -67,3 +67,26 @@ position属性中最有意思的就是sticky了，设置了sticky的元素，在屏幕范围（viewport）
 当该元素的位置将要移出偏移范围时，定位又会变成fixed，根据设置的left、top等属性成固定位置的效果。（不会脱离文档流）
 
 19.当父元素有transfrom属性时，给子元素设置fixed会被影响，会被解析成absolute。
+
+20.解决复选框，单选框与文字不对齐：（此处列举两种,给复/单选框加样式）
+基于vertical-align:top;height：父盒子的高度；margin-top:0;
+基于vertical-align：text-top;height:文字的大小；margin-top：0；
+
+21.flex-grow:默认值0；分配剩余空间的扩张比例；
+
+flex-basis:默认值auto；倘若设置了此属性，那么计算剩余空间之前要优先减去此属性，且它的层级比width高，会将width覆盖。
+
+有一点需要注意，如果flex-basis和width其中有一个是auto，那么另外一个非auto的属性优先级会更高。（也就是非auto的会覆盖auto的）。
+
+flex-shrink：默认值1；分配多余的空间压缩比例。
+
+设为0则代表无论如何都不压缩此子盒子。
+
+flex:flex-grow flex-shrink flex-basis;默认0 1 auto；
+当flex取值为none，则计算值为0 0 auto；
+当flex取值为auto，则计算值为1 1 auto；
+当flex取值为一个非负数字，则该数字为flex-grow的值，计算值为 非负数字 1 0%；
+当flex取值为一个长度或百分比，则该值为flex-basis的值，计算值为1 1 该值；
+当flex取值为两个非负数字，则分别视为flex-grow flex-shrink的值，计算值为两个非负数字 0%；
+当flex取值为一个非负数字和一个长度或百分比，则分别视为flex-grow flex-basis的值，计算值为非负数字 1 长度或百分比；
+

@@ -54,7 +54,7 @@ https://www.zhangxinxu.com/wordpress/2009/08/ie6%E4%B8%8Bpng%E8%83%8C%E6%99%AF%E
 
 H5移动端ios/Android兼容性：
 
-1.写背景图时最好加上top left 或者0 0 不然写运动效果时容易出现跳
+1.写背景图background时最好加上top left 或者0 0 不然写运动效果时容易出现跳
 
 2.禁止复制、选中文本
 .el {
