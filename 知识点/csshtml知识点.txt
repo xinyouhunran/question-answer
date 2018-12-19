@@ -90,3 +90,5 @@ flex:flex-grow flex-shrink flex-basis;默认0 1 auto；
 当flex取值为两个非负数字，则分别视为flex-grow flex-shrink的值，计算值为两个非负数字 0%；
 当flex取值为一个非负数字和一个长度或百分比，则分别视为flex-grow flex-basis的值，计算值为非负数字 1 长度或百分比；
 
+22.crossorigin="anonymous"表示，读取文件不需要身份信息，即不需要 cookie 和 HTTP 认证信息。
+如果设为crossorigin="use-credentials"，就表示浏览器会上传 cookie 和 HTTP 认证信息，同时还需要服务器端打开 HTTP 头信息Access-Control-Allow-Credentials。

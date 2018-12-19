@@ -10,13 +10,15 @@ you.second();
 console.log(you.name);*/
 
 import * as module from "./test.js";
-
+var mine=module.my;
 var you = {
+	
 	second:function(){
-		module.my.test()
+		mine.test()
 	},
-	name:module.my.name
+	name:mine.name
 }
+
 you.second();
 console.log(you.name);
 console.log(module.default);

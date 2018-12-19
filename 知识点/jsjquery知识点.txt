@@ -216,3 +216,31 @@ http://www.ruanyifeng.com/blog/2013/07/how_to_make_search_engines_find_ajax_cont
 每当同一个文档的浏览历史(即history对象)出现变化时，就会触发popstate事件
 
 59.require.js模块化开发：http://www.ruanyifeng.com/blog/2012/11/require_js.html（三部曲）
+
+60.es6数组的扩展方法
+includes（）判断数组中是否包含；
+find（）查找对应的值
+findIndex（）
+
+61.var arr = [1,2,3];
+type of arr //obj
+Array.isArray(arr) //true判断是数组
+
+62.浅拷贝指的是新数组拷贝的是对象的引用，即原对象值改变，数组也变。
+
+63.indexOf（）传两个参数的时候，第二个参数为搜索的开始位置。
+
+64.跨域通信：window.postMessage(message, targetOrigin);
+message :信息内容，低版本浏览器只支持字符串，高版本可以各种数据都行
+targetOrigin :目标窗口的源，可以是字符串*表示无限制，或URI,需要协议端口号和主机都匹配才会发送
+接收postMessage发送的信息MessageEvent
+window.addEventListener("message", function(e){
+  //var origin = event.origin || event.originalEvent.origin; 
+if(e.source!=window.parent) return;//不是父窗口发的就不接收
+  ....
+  }, false);
+MessageEvent四个属性：
+1.message（类型）
+2.data（window.postMessage的第一个参数）
+3.origin（调用postMessage时页面的当前状态）
+4.source（调用postMessage的窗口信息）

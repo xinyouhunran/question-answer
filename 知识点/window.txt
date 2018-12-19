@@ -1,0 +1,112 @@
+1.window.name
+属性是一个字符串，表示当前窗口的名字，只有当浏览器窗口关闭的时候，此属性才会消失。
+
+2.window.closed
+属性返回一个布尔值，表示窗口是否关闭。此属性一般用来检查使用脚本打开的窗口是否关闭，如：
+var popup = window.open();
+if ((popup !== null) && !popup.closed) {
+  // 窗口仍然打开着
+}
+
+3.window.self和window.window
+属性都指向窗口本身，这两个属性只读。
+
+4.window.frames
+属性返回一个类似数组的对象，成员为页面内所有框架窗口，包括frame元素和iframe元素。
+
+5.window.length
+属性返回当前网页包含的框架总数
+
+6.window.frameElement
+属性主要用于当前窗口嵌在另一个网页的情况（嵌入<object>、<iframe>或<embed>元素），返回当前窗口所在的那个元素节点。
+
+7.window.top,window.parent
+window.top属性指向最顶层窗口，主要用于在子窗口里面获取顶层的父窗口。
+window.parent属性指向父窗口。如果当前窗口没有父窗口，window.parent指向自身。
+
+8.window.devicePixelRatio
+属性返回一个数值，表示一个 CSS 像素的大小与一个物理像素的大小之间的比率.如果这个比例大，表示用户正在使用高清屏幕。
+
+9.组件属性：（只读）
+window.locationbar：地址栏对象
+window.menubar：菜单栏对象
+window.scrollbar：窗口的滚动条对象
+window.toolbar：工具栏对象
+window.statusbar：状态栏对象
+window.personalbar：用户安装的个人工具栏对象
+
+10.全局对象属性
+window.document：指向document对象。注意，这个属性有同源限制。只有来自同源的脚本才能读取这个属性。
+window.location：指向Location对象，用于获取当前窗口的 URL 信息。它等同于document.location属性。
+window.navigator：指向Navigator对象，用于获取环境信息。
+window.history：指向History对象，表示浏览器的浏览历史。
+window.localStorage：指向本地储存的 localStorage 数据。
+window.sessionStorage：指向本地储存的 sessionStorage 数据。
+window.console：指向console对象，用于操作控制台。
+window.screen：指向Screen对象，表示屏幕信息。
+
+11.window.isSecureContext
+属性返回一个布尔值，表示当前窗口是否处在加密环境。如果是 HTTPS 协议，就是true，否则就是false。
+
+12.screen对象
+Screen.height：浏览器窗口所在的屏幕的高度（单位像素）。
+除非调整显示器的分辨率，否则这个值可以看作常量，不会发生变化。显示器的分辨率与浏览器设置无关，缩放网页并不会改变分辨率。
+Screen.width：浏览器窗口所在的屏幕的宽度（单位像素）。
+Screen.availHeight：浏览器窗口可用的屏幕高度（单位像素）。
+因为部分空间可能不可用，比如系统的任务栏或者 Mac 系统屏幕底部的 Dock 区，这个属性等于height减去那些被系统组件的高度。
+Screen.availWidth：浏览器窗口可用的屏幕宽度（单位像素）。
+Screen.pixelDepth：整数，表示屏幕的色彩位数，比如24表示屏幕提供24位色彩。
+Screen.colorDepth：Screen.pixelDepth的别名。
+严格地说，colorDepth 表示应用程序的颜色深度，pixelDepth 表示屏幕的颜色深度，绝大多数情况下，它们都是同一件事。
+Screen.orientation：返回一个对象，表示屏幕的方向。
+该对象的type属性是一个字符串，表示屏幕的具体方向，
+landscape-primary表示横放，landscape-secondary表示颠倒的横放，portrait-primary表示竖放，portrait-secondary。
+
+13.Navigator对象属性指向一个包含浏览器信息的 Navigator 对象。脚本通过这个属性了解用户使用的是哪一种浏览器。
+
+14.navigator.userAgent属性返回浏览器的 User Agent 字符串，表示浏览器的厂商和版本信息。
+通过userAgent可以大致准确地识别手机浏览器，方法就是测试是否包含mobi字符串。
+var ua = navigator.userAgent.toLowerCase();
+if (/mobi/i.test(ua)) {
+  // 手机浏览器
+} else {
+  // 非手机浏览器
+}
+如果想要识别所有移动设备的浏览器，可以测试更多的特征字符串。
+/mobi|android|touch|mini/i.test(ua)
+
+15.Navigator.plugins属性返回一个类似数组的对象，成员是 Plugin 实例对象，表示浏览器安装的插件，比如 Flash、ActiveX 等。
+
+16.Navigator.platform属性返回用户的操作系统信息，比如MacIntel、Win32、Linux x86_64等 。
+
+17.navigator.onLine属性返回一个布尔值，表示用户当前在线还是离线（浏览器断线）。
+用户变成在线会触发online事件，变成离线会触发offline事件，可以通过window.ononline和window.onoffline指定这两个事件的回调函数。
+window.addEventListener('offline', function(e) { console.log('offline'); });
+window.addEventListener('online', function(e) { console.log('online'); });
+
+18.Navigator.language属性返回一个字符串，表示浏览器的首选语言。该属性只读。
+
+19.Navigator.languages属性返回一个数组，表示用户可以接受的语言。Navigator.language总是这个数组的第一个成员。
+HTTP 请求头信息的Accept-Language字段，就来自这个数组。
+如果这个属性发生变化，就会在window对象上触发languagechange事件。
+
+20.Navigator.geolocation属性返回一个 Geolocation 对象，包含用户地理位置的信息。
+注意，该 API 只有在 HTTPS 协议下可用，否则调用下面方法时会报错。
+Geolocation 对象提供下面三个方法。
+Geolocation.getCurrentPosition()：得到用户的当前位置
+Geolocation.watchPosition()：监听用户位置变化
+Geolocation.clearWatch()：取消watchPosition()方法指定的监听函数
+注意，调用这三个方法时，浏览器会跳出一个对话框，要求用户给予授权。
+
+21.Navigator.cookieEnabled属性返回一个布尔值，表示浏览器的 Cookie 功能是否打开。
+
+22.Navigator.javaEnabled()方法返回一个布尔值，表示浏览器是否能运行 Java Applet 小程序。
+
+23.Navigator.sendBeacon()方法用于向服务器异步发送数据。
+
+24.window.open(url, windowName, [windowFeatures])第三个参数为定义浏览器所具备的窗口参数。
+
+25.window.close方法用于关闭当前窗口，一般只用来关闭window.open方法新建的窗口。
+该方法只对顶层窗口有效，iframe框架之中的窗口使用该方法无效。
+
+26.window.stop()方法完全等同于单击浏览器的停止按钮，会停止加载图像、视频等正在或等待加载的对象。

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p>123456</p>
+		<div class="">
+			afdasfa
+		</div>
+		<a href="wufeng.html">hello</a>
+		<script src="jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			(function($){
+				$.fn.heightLight = function(options){
+					var opts = $.extend({},$.fn.heightLight.default,options);
+					var self = $(this);
+					self.css("color",opts.color);
+					var history = window.history;
+					var len = history.length;
+					history.pushState(null,null,"./wufeng.html");
+					history.
+					console.log(history);
+				}
+				$.fn.heightLight.default = {
+					color:"yellow"
+				}
+			})(jQuery)
+			
+			$(function(){
+				$("*").heightLight();
+			})
+		
+		</script>
+	</body>
+</html>

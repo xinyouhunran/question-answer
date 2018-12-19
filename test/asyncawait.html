@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			async function fn(){
+				let p = new Promise((resolve,reject)=>{
+					setTimeout(()=>{resolve(1)},1000)
+				})
+				let x = await p;
+				console.log(x);
+				
+			}
+			fn()
+
+			
+		</script>
+	</body>
+</html>
