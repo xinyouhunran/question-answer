@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<div id="test">
+			<iframe src="wufeng.html" frameborder="0" width="1200" height="400" id="myfir"></iframe>
+		</div>
+	</body>
+	<script>
+		window.onload = function(){
+			window.frames[0].postMessage("123","http://localhost:8020");
+		}
+		
+		window.addEventListener("message",function(e){
+			console.log(e);
+			console.log(e.data);
+		})
+	</script>
+</html>
