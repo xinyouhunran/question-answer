@@ -247,3 +247,7 @@ MessageEvent四个属性：
 2.data（window.postMessage的第一个参数）
 3.origin（调用postMessage时页面的当前状态）
 4.source（调用postMessage的窗口信息）
+
+65.复选框全选赋值时用$('input[type=checkbox]').prop('checked',true);
+用attr时有些版本会只能执行一次，所以用prop
+如果你要去恢复或者改变DOM状态值，类似checked，selected，disabled等表单元素的状态，最好使用.prop()方法。

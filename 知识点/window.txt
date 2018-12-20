@@ -110,3 +110,14 @@ Geolocation.clearWatch()：取消watchPosition()方法指定的监听函数
 该方法只对顶层窗口有效，iframe框架之中的窗口使用该方法无效。
 
 26.window.stop()方法完全等同于单击浏览器的停止按钮，会停止加载图像、视频等正在或等待加载的对象。
+
+27.window.moveTo()方法用于移动浏览器窗口到指定位置
+window.moveBy方法将窗口移动到一个相对位置
+
+28.window.resizeTo()方法用于缩放窗口到指定大小。
+window.resizeTo(
+  window.screen.availWidth / 2,
+  window.screen.availHeight / 2
+)
+
+29.window.getSelection方法返回一个Selection对象，表示用户现在选中的文本。

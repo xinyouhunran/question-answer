@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="jquery.treeTable.css"/>
+	</head>
+
+	<body>
+
+		<table id="mytable">
+			<th class="text-l cu-span" style="padding-left:30px;"><span onclick="javascript:$('input[type=checkbox]').prop('checked', true)">全选</span>/<span onclick="javascript:$('input[type=checkbox]').prop('checked', false)">取消</span></th>
+			<tr data-tt-id="1">
+				<td><input type="checkbox" name="" id="" value="" />Parent</td>
+			</tr>
+			<tr data-tt-id="2" data-tt-parent-id="1">
+				<td><input type="checkbox" name="" id="" value="" />Child</td>
+			</tr>
+			<tr data-tt-id="3" data-tt-parent-id="2">
+				<td><input type="checkbox" name="" id="" value="" />son</td>
+			</tr>
+			<tr data-tt-id="4" data-tt-parent-id="1">
+				<td><input type="checkbox" name="" id="" value="" />Child</td>
+			</tr>
+			<tr data-tt-id="5" data-tt-parent-id="4">
+				<td><input type="checkbox" name="" id="" value="" />Child</td>
+			</tr>
+		</table>
+		<script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="jquery.treetable.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$("#mytable").treetable({
+				expandable: true,
+				onInitialized:function(){
+						//$("#mytable").treetable("expandNode","1")展开某个节点
+						$("#mytable").treetable("reveal","3")//让某个节点展示出来
+				}
+			});
+			
+		</script>
+	</body>
+
+</html>
