@@ -92,3 +92,17 @@ flex:flex-grow flex-shrink flex-basis;默认0 1 auto；
 
 22.crossorigin="anonymous"表示，读取文件不需要身份信息，即不需要 cookie 和 HTTP 认证信息。
 如果设为crossorigin="use-credentials"，就表示浏览器会上传 cookie 和 HTTP 认证信息，同时还需要服务器端打开 HTTP 头信息Access-Control-Allow-Credentials。
+
+23.<map><area /></map>
+<img> 标签中的 usemap 属性与 map 元素 name 属性相关联，创建图像与映射之间的联系。
+
+24.<base /> 标签为页面上的所有链接规定默认地址或默认目标。在head中用
+
+25.<bdo dir="rtl">Here is some text</bdo>规定文本输出的方向
+
+26.<blockquote> 与 </blockquote> 之间的所有文本都会从常规文本中分离出来，经常会在左、右两边进行缩进（增加外边距），而且有时会使用斜体。也就是说，块引用拥有它们自己的空间。
+
+27.<cite> 标签通常表示它所包含的文本对某个参考文献的引用，比如书籍或者杂志的标题。
+
+28.<fieldset>左上角有文字的框
+legend 元素为 fieldset 元素定义标题（caption）。

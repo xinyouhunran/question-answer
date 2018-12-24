@@ -1,0 +1,73 @@
+html,body{margin: 0;padding: 0;background: #f8f9fb;}
+.left{float: left;}
+.right{float: right;}
+.clearFloat:after{content: "";clear: both;display: block;height: 0;overflow: hidden;visibility: hidden;}
+.clearFloat{zoom:1;}
+
+/*子页头部*/
+.topTitle{height: 18px;margin: 28px 0;border-left: 4px solid #5b9cff;line-height: 18px;margin-left: 20px;position: relative;}
+.topTitle span{display: inline-block;font-size: 18px;margin-left: 12px;}
+.topTitle .keywords{position: absolute;right: 40px;width: 480px;top:-10px;}
+
+/*子页左侧*/
+.content{margin-left: 20px;margin-bottom: 40px;position: relative;}
+.send,.detial{width: 1128px;height: 758px;border: 1px solid #f1f1f1;border-radius: 4px;background-color: #fff;overflow: auto;}
+.sendMessage{width: 70%;}
+.mylabel{font-size: 15px;color: #555;font-weight: 500;float: left;line-height: 18px;padding: 10px;width: 104px;text-align: left;}
+
+/*右侧*/
+.personList{width: 25%;margin-left: 20px;border: 1px solid #e6e6e6;height: 518px;margin-top: 30px;position: relative;}
+.personList .search{width: 90%;margin: 20px auto;}
+.personList .search input{width: 100%;height: 28px;line-height: 28px;border: 1px solid #e7e7e7;border-radius: 3px;color: #555555;padding-left: 30px;background: url(../img/sousuo.png) no-repeat 10px center;}
+.jzsstation{width: 100%;height: 32px;background-color: #f5f8ff;}
+.jzsstation h4{margin-left: 5%;line-height: 32px;font-size: 20px;}
+.person ul li{height: 30px;line-height: 30px;padding: 0 5%;}
+.person ul li:hover{background: #FFF6DF;}
+.person ul li span{margin-right: 5px;}
+.person ul li strong{float: right;width: 20px;height: 20px;border: 1px solid #ccc;margin: 5px;}
+
+/*覆盖样式*/
+.layui-input-block{display: inline-block;width: 85%;margin-left: 10px;}
+.layui-form-item{margin-left: 20px;}
+.layui-input{font-size: 15px;color: #555555;}
+.layui-table thead tr,.layui-table-tool{background-color: #FAFBFD;}
+
+/*详情页样式*/
+.detialtop{margin: 40px auto;width: 94%;height: 40px;}
+.detialtop .tou{margin-right: 10px;}
+.detialtop .tou img{width: 40px;height: 40px;}
+.detialtop .mes p{font-size: 14px;color: #212121;}
+.detialtop .mes span{font-size: 12px;color: #888888;}
+.detialtop .time{line-height: 40px;}
+.detialtop .time strong{margin-right: 10px;}
+.detialtop .time strong,.detialtop .time span{font-weight: 500;font-size: 12px;color: #888888;}
+
+.detialperson{margin-left: 90px;}
+.detialperson p{color: #888888;font-size: 12px;line-height: 24px;}
+.detialperson p .myself{color: #5B90FF;}
+
+.detialartical{margin-left: 90px;width: 70%;}
+.detialartical .myartical{width: 100%;}
+.detialartical h2{margin-top: 40px;margin-bottom: 40px;font-size: 24px;color: #222222;}
+
+.detialattachment{margin-left: 90px;margin-top: 80px;}
+#attachmentList{margin-top: 20px;overflow: hidden;}
+#attachmentList>div{float: left;margin-right: 10px;width: 188px;height: 98px;padding: 20px;}
+#attachmentList>div>div{margin-right: 5px;}
+#attachmentList .doc{background-color: #e8edfb;color: #5F96E7;}
+#attachmentList .pdf{background-color: #FBE9E8;color: #FC6D62;}
+#attachmentList .xls{background-color: #E9F9F1;color: #4EB683;}
+#attachmentList .ppt{background-color: #FBE9E8;color: #FC6D62;}
+#attachmentList a{text-decoration: underline;cursor: pointer;}
+#attachmentList .yulan{cursor: pointer;}
+#attachmentList .doc a{color: #5F96E7;}
+#attachmentList .pdf a{color: #FC6D62;}
+#attachmentList .xls a{color: #4EB683;}
+#attachmentList .ppt a{color: #FC6D62;}
+#attachmentList .opeater{line-height: 24px;}
+
+.detialsign{margin-left: 90px;margin-top: 40px;}
+.detialsign ul{margin-top: 20px;overflow: hidden;list-style: none;}
+.detialsign ul li{float: left;margin-right: 12px;}
+.detialsign ul li img{width: 40px;height: 40px;margin-bottom: 10px;}
+.detialsign ul li p{font-size: 12px;color: #222222;text-align: center;}

@@ -7,7 +7,7 @@
 	<body>
 	</body>
 	<script type="text/javascript">
-		var str = "http://www.baidu.?/com?id=1";
+		/*var str = "http://www.baidu.?/com?id=1";
 		var arr = str.match(/\/(\S*)(?=\?)/);
 		console.log(arr);
 		var s = arr[1].slice(1);
@@ -46,6 +46,13 @@
 	    	var h = 50;//你要设置的高
 	    	$("img").width(w);
 	    	$("img").height(h);
-	    })
+	    })*/
+	    
+	    var str = "Plagiogyria stenoptera var. major";
+	    var str1 = "Pteris vittata f. cristata";
+	    var regExp = /(.+)(var\.|f\.|subsp\.|\"X|Sect\.)(.+)/;
+	    var s = str.match(regExp);
+	    var s1 = str1.match(regExp);
+	    console.log(s,s1);
 	</script>
 </html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="./static/layui-v2.4.5/layui/css/layui.css" />
+		<style type="text/css">
+			.layui-logo{background: #5B90FF!important;color: #fff!important;font-size: 22px!important;}
+			.layui-layout-admin .layui-header {background-color: #fff;}
+			.layui-layout-admin .layui-side{background: #fff!important;}
+			.layui-nav{background: #fff!important;}
+			.layui-nav .layui-nav-item a{color: #222!important;font-size: 16px;padding: 0 62px;}
+			.layui-nav-tree .layui-nav-item a:hover{color: #5b9cff!important;background-color: #ecf1f9;}
+			.layui-nav-tree .layui-this>a{color: #5b9cff!important;background-color: #ecf1f9!important;}
+			.layui-nav-tree .layui-nav-bar{background-color: #5b9cff;}
+			#myPic{width: 200px;margin-bottom: 50px;}
+			#myPic dt{width: 80px;height: 80px;border-radius: 40px;margin: 40px auto 20px;}
+			#myPic dd p{font-size: 16px;color: #222;text-align: center;}
+			#myPic dd span{font-size: 14px;color: #222;text-align: center;display: inline-block;width: 100%;margin-top: 4px;}
+			.sendFile{background: url(static/img/fawenjian.png) no-repeat 26px center;}
+			.sendFile:hover,.sendFiles{background: url(static/img/fawenjian_selected.png) no-repeat 26px center;}
+			.saveFile{background: url(static/img/shoujianxiang.png) no-repeat 26px center;}
+			.saveFile:hover,.saveFiles{background: url(static/img/shoujianxiang_selected.png) no-repeat 26px center;}
+			.sendedFile{background: url(static/img/yifaxiang.png) no-repeat 26px center;}
+			.sendedFile:hover,.sendedFiles{background: url(static/img/yifaxiang_selected.png) no-repeat 26px center;}
+		</style> 
+	</head>
+
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<div class="layui-header">
+				<div class="layui-logo"><img src="static/img/logo.png" style="margin-right: 10px;height: 32px;"/>文件速递</div>
+				<!-- 头部区域（可配合layui已有的水平导航） -->
+				<ul class="layui-nav layui-layout-left">
+					<li class="layui-nav-item">
+						<a href="" style="color: #5b90ff!important;font-size: 20px;padding: 0;margin-left: 14px;">晋中市公安局</a>
+					</li>
+				</ul>
+				<ul class="layui-nav layui-layout-right">
+					<li class="layui-nav-item">
+						<a href="" style="color: #323232;">退出</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="layui-side layui-bg-black">
+				
+				<div class="layui-side-scroll">
+					<div id="myPic">
+						<dl>
+							<dt><img src="static/img/chakan_ppt.png" style="width: 80px;height: 80px;"/></dt>
+							<dd>
+								<p>123</p>
+								<span>456</span>
+							</dd>
+						</dl>
+					</div>
+					<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+					<ul class="layui-nav layui-nav-tree" lay-filter="test">
+						<li class="layui-nav-item layui-nav-active">
+							<a class="sendFile" href="javascript:;">发文件</a>
+						</li>
+						<li class="layui-nav-item layui-this">
+							<a href="javascript:;" class="saveFile saveFiles">收件箱</a>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;" class="sendedFile">已发箱</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="layui-body" style="border-top:1px solid #e7eaef;background: #f8f9fb;bottom: 0;">
+				<!-- 内容主体区域 -->
+				<iframe src="view/detial.html" width="100%" height="874" style="border: none;"></iframe>
+			</div>
+
+		</div>
+		<script src="./static/layui-v2.4.5/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			//JavaScript代码区域
+			layui.use(['element'], function() {
+				var element = layui.element
+				,$ = layui.jquery;
+				$(".layui-nav-tree a").click(function(){
+					if($(this).hasClass("sendFile")){
+						$(this).addClass("sendFiles").parent().next().children().eq(0).removeClass("saveFiles");
+						$(this).parent().next().next().children().eq(0).removeClass("sendedFiles");
+						$("iframe").attr("src","view/sendFile.html");
+					}
+					if($(this).hasClass("saveFile")){
+						$(this).addClass("saveFiles").parent().next().children().eq(0).removeClass("sendedFiles");
+						$(this).parent().prev().children().eq(0).removeClass("sendFiles");
+						$("iframe").attr("src","view/receiveFile.html");
+					}
+					if($(this).hasClass("sendedFile")){
+						$(this).addClass("sendedFiles").parent().prev().children().eq(0).removeClass("saveFiles");
+						$(this).parent().prev().prev().children().eq(0).removeClass("sendFiles");
+						$("iframe").attr("src","view/alreadySend.html");
+					}
+				})
+			});
+		</script>
+	</body>
+
+</html>

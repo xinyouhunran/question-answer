@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<link rel="stylesheet" type="text/css" href="../static/bootstrap-3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/layui-v2.4.5/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/myfile.css"/>
+		<style type="text/css">
+			#test1 img{width: 100%;height: 100%;display: inline-block}
+			#test1{width: 30%;height: 42px;text-align: center;line-height: 42px;color: #555555;cursor: pointer;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+			#fabu{width: 126px;height: 39px;line-height: 39px;background-color: #5B90FF;}
+			#que{width: 80%;height: 36px;position: absolute;bottom: 20px;background-color: #fff;color: #c2cad8;left: 50%;margin-left: -40%;border: 1px solid #c2cad8;}
+			    
+			.keywords input{width: 370px;float: left;}
+			.keywords button{float: right;width: 100px;background-color: #5b9cff;}
+			.layui-laypage-em{background-color: #5b9cff!important;}
+			.content .layui-btn{background-color: #fff;color: #555555;}
+			.layui-btn-container img{margin-right: 5px;}
+			.content .layui-inline{position: absolute;right: 40px;z-index: 999;top: 20px;line-height: 38px;}
+			.content .layui-inline input{float: left;width: 200px;}
+			.content .layui-inline span{float: left;margin: 0 8px;color: #555555;}
+		</style>
+	</head>
+	<body>
+		<div class="topTitle">
+			<span>已发箱</span>
+			<div class="keywords">
+				<input type="text" name="" id="" placeholder="请输入关键词" class="layui-input"/>
+				<button type="button" class="layui-btn">搜索</button>
+			</div>
+		</div>
+		<div class="content clearFloat">
+			<div class="layui-inline">
+			  <span>日期</span>
+			  <input type="text" class="layui-input" id="date1">
+			  <span>至</span>
+			  <input type="text" class="layui-input" id="date2">
+			</div>
+			<table id="receiveTable" lay-filter="receiveTable"></table>
+			<!--分页-->
+			<div id="roomPage" style="text-align: right;"></div>
+			
+			<!--行工具栏-->
+			<script type="text/html" id="barDemo">
+			  <!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
+			  <a class="layui-btn layui-btn-xs" lay-event="editRoom">编辑</a>
+			  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="editIntro">编辑简介</a>
+			</script>
+			
+			<!--头工具栏-->
+			<script type="text/html" id="toolbar">
+			  <div class="layui-btn-container">		  
+			    <button class="layui-btn" lay-event="del"><img src="../static/img/shanchu.png"/>删除</button>
+			    <button class="layui-btn" lay-event="zhuanfa"><img src="../static/img/zhuanfa.png"/>转发</button>
+			    <button class="layui-btn" lay-event="yidu"><img src="../static/img/yidu.png"/>已读</button>
+			    <button class="layui-btn" lay-event="weidu"><img src="../static/img/weidu.png"/>未读</button>
+			  </div>
+			</script>
+			
+			<!--自定义模板-->
+			<!--<script type="text/html" id="titleTpl">
+			  {{#  if(d.id < 100){ }}
+			    <a href="/detail/{{d.id}}" class="layui-table-link">{{d.sign}}</a>
+			  {{#  } else { }}
+			    {{d.sign}}(普通用户)
+			  {{#  } }}
+			</script>-->
+		</div>
+		<script src="../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/layui-v2.4.5/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/js/myfile.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			layui.use(['upload','layer','table','laydate'],function(){
+				var upload = layui.upload
+				,$ = layui.jquery
+				,table = layui.table
+				,laypage = layui.laypage
+				,laydate = layui.laydate;
+				
+				laydate.render({
+					elem:"#date1"
+				})
+				laydate.render({
+					elem:"#date2"
+				})
+				
+				upload.render({
+				    elem: '#test1'
+				    //,url: '/upload/'
+				    ,multiple: true
+				    ,auto:false//不自动上传
+				    ,bindAction:'#fabu'
+				    ,accept:'file'
+				    //,acceptMime: 'image/*'
+				    ,size:2000
+				    ,choose:function(obj){
+				    	//预读本地文件示例，不支持ie8
+				      obj.preview(function(index, file, result){
+				        //$('#test1').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+				        $('#test1').html(file.name);
+				      });
+				    }
+				    ,before: function(obj){
+				      
+				    }
+				    ,done: function(res){
+				      //上传完毕
+				    }
+				  });
+				
+				var curnum = 1;//记录第几页的数据
+				var limitcount = 2;//每页限制条数
+				
+				roomInit(curnum,limitcount);
+				function roomInit(start,limitSize){//第几页，显示条数
+				table.render({
+				    elem: '#receiveTable'
+				    ,height: 684
+				    ,url: 'data.json' //数据接口
+				    ,title: '警务室'
+				    //,page: true //开启分页
+				    ,toolbar: '#toolbar' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+				    //,totalRow: true //开启合计行
+				    ,cols: [[ //表头
+				      {type: 'checkbox',width:'10%'}
+				      ,{field: 'id', title: '<img src="../static/img/weidu.png" style="margin-right:5px"/><img src="../static/img/lianjie_lan.png"/>', width:'10%'}
+				      ,{field: 'username', title: '发件人', width:'20%',style:"height:60px;"}
+				      ,{field: 'experience', title: '主题', width: '40%'}
+				      ,{field: 'sex', title: '时间', width:'20%',edit:"text"}
+				    ]],
+				   response: {
+					   statusName: 'code' //规定数据状态的字段名称，默认：code
+					    ,statusCode: 200 //规定成功的状态码，默认：0
+					    ,msgName: 'msg' //规定状态信息的字段名称，默认：msg
+					    ,dataName: 'data' //规定数据列表的字段名称，默认：data
+					 }
+				   ,done:function(res,curr,count){
+				   		$(".layui-table-tool-self").hide();
+				    	laypage.render({
+						  	elem:"roomPage",
+						  	count:res.total,
+						  	curr:curnum,
+						  	limit:2,
+						  	limits:[2,4,6],
+						  	layout: ['prev', 'page', 'next', 'skip','count','limit'],
+						  	jump:function(obj,first){
+						  		if(!first){
+                                curnum = obj.curr;
+                                limitcount = obj.limit;
+                                //console.log("curnum"+curnum);
+                                //console.log("limitcount"+limitcount);
+                                //layer.msg(curnum+"-"+limitcount);
+                                roomInit(curnum,limitcount);
+                           		}
+						  	}
+						  })
+				    }
+				  });
+				 }
+				  //监听头工具栏事件
+				  table.on('toolbar(receiveTable)', function(obj){
+				    var checkStatus = table.checkStatus(obj.config.id)
+				    ,data = checkStatus.data; //获取选中的数据
+				    console.log(obj);
+				    switch(obj.event){
+				      case 'add':
+				        layer.msg('添加');
+				      break;
+				      case 'print':
+				      	var str = myhtml = $("body").html();
+				      	$("#mydiv").html(str);
+				        window.print();
+				      break;
+				      case 'del':
+				        if(data.length === 0){
+				          layer.msg('请选择一行');
+				        } else {
+				          layer.msg('删除');
+				        }
+				      break;
+				    };
+				  });
+			})
+		</script>
+	</body>
+</html>

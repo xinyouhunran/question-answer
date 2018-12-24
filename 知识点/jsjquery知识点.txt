@@ -251,3 +251,5 @@ MessageEvent四个属性：
 65.复选框全选赋值时用$('input[type=checkbox]').prop('checked',true);
 用attr时有些版本会只能执行一次，所以用prop
 如果你要去恢复或者改变DOM状态值，类似checked，selected，disabled等表单元素的状态，最好使用.prop()方法。
+
+66.在layui中，凡是动态加载的表单，表格数据都要重新render一下。
