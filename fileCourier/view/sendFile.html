@@ -35,6 +35,7 @@
 				height: 300px;
 				border: 1px solid #ccc;
 			}
+			.w-e-toolbar .w-e-menu{padding: 5px!important;}
 		</style>
 	</head>
 	<body>
@@ -142,7 +143,16 @@
 				var upload = layui.upload
 				,$ = layui.jquery;
 				
+				//编辑器操作
+				var E = window.wangEditor;
+				var editor = new E('#bar', '#edit');
+				editorConfig(editor);
 				
+				console.log(editor);
+				var imgArr = []; //记录编辑区图片
+				var iframeArr = []; //记录iframe的src
+				var audioArr = []; //记录audio的src
+			
 				upload.render({
 			    elem: '#test1'
 			    //,url: '/upload/'
@@ -171,15 +181,7 @@
 			})
 		</script>
 		<script type="text/javascript">
-			//编辑器操作
-			var E = window.wangEditor;
-			var editor = new E('#bar', '#edit');
-			editorConfig(editor);
 			
-			console.log(editor);
-			var imgArr = []; //记录编辑区图片
-			var iframeArr = []; //记录iframe的src
-			var audioArr = []; //记录audio的src
 			$(".btn").click(function() {
 				var myedit = editor.$textElem[0];
 				var myId = editor.textElemId;

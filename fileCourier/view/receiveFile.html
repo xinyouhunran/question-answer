@@ -22,6 +22,7 @@
 			.content .layui-inline{position: absolute;right: 40px;z-index: 999;top: 20px;line-height: 38px;}
 			.content .layui-inline input{float: left;width: 200px;}
 			.content .layui-inline span{float: left;margin: 0 8px;color: #555555;}
+			.layui-table-tool-self{display: none;}
 		</style>
 	</head>
 	<body>
@@ -87,55 +88,31 @@
 					elem:"#date2"
 				})
 				
-				upload.render({
-				    elem: '#test1'
-				    //,url: '/upload/'
-				    ,multiple: true
-				    ,auto:false//不自动上传
-				    ,bindAction:'#fabu'
-				    ,accept:'file'
-				    //,acceptMime: 'image/*'
-				    ,size:2000
-				    ,choose:function(obj){
-				    	//预读本地文件示例，不支持ie8
-				      obj.preview(function(index, file, result){
-				        //$('#test1').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
-				        $('#test1').html(file.name);
-				      });
-				    }
-				    ,before: function(obj){
-				      
-				    }
-				    ,done: function(res){
-				      //上传完毕
-				    }
-				  });
-				
 				var curnum = 1;//记录第几页的数据
-				var limitcount = 2;//每页限制条数
+				var limitcount = 10;//每页限制条数
 				
 				roomInit(curnum,limitcount);
 				function roomInit(start,limitSize){//第几页，显示条数
 				table.render({
 				    elem: '#receiveTable'
 				    ,height: 684
-				    ,url: 'data.json' //数据接口
-				    ,title: '警务室'
+				    ,url: 'http://10.97.81.26:8000/sendfiles/sendFiles/getFiles' //数据接口
+				    ,title: '收件箱'
 				    //,page: true //开启分页
 				    ,toolbar: '#toolbar' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
 				    //,totalRow: true //开启合计行
 				    ,cols: [[ //表头
 				      {type: 'checkbox',width:'10%'}
 				      ,{field: 'id', title: '<img src="../static/img/weidu.png" style="margin-right:5px"/><img src="../static/img/lianjie_lan.png"/>', width:'10%'}
-				      ,{field: 'username', title: '发件人', width:'20%',style:"height:60px;"}
-				      ,{field: 'experience', title: '主题', width: '40%'}
-				      ,{field: 'sex', title: '时间', width:'20%',edit:"text"}
+				      ,{field: 'senderName', title: '发件人', width:'20%',/*style:"height:60px;"*/}
+				      ,{field: 'titile', title: '主题', width: '40%'}
+				      ,{field: 'createTime', title: '时间', width:'20%',edit:"text"}
 				    ]],
 				   response: {
 					   statusName: 'code' //规定数据状态的字段名称，默认：code
 					    ,statusCode: 200 //规定成功的状态码，默认：0
 					    ,msgName: 'msg' //规定状态信息的字段名称，默认：msg
-					    ,dataName: 'data' //规定数据列表的字段名称，默认：data
+					    ,dataName: 'obj' //规定数据列表的字段名称，默认：data
 					 }
 				   ,done:function(res,curr,count){
 				   		$(".layui-table-tool-self").hide();
@@ -143,8 +120,8 @@
 						  	elem:"roomPage",
 						  	count:res.total,
 						  	curr:curnum,
-						  	limit:2,
-						  	limits:[2,4,6],
+						  	limit:10,
+						  	limits:[5,10,20],
 						  	layout: ['prev', 'page', 'next', 'skip','count','limit'],
 						  	jump:function(obj,first){
 						  		if(!first){

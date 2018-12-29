@@ -48,7 +48,7 @@
 	</head>
 	<body>
 		<p style="background:#fffff0;color:#999999;text-align:center;padding:0.5em;">输入警务室名称，按回车键，可自动地图定位并填入相关信息。</p>
-		<form action="" method="post" class="latui-form">
+		<form action="" method="post" class="layui-form">
 			<div class="layui-form-item">
 				<label class="mylabel">警务室名称：</label>
 				<div class="layui-input-block">  
@@ -70,7 +70,7 @@
 			<div class="layui-form-item">
 				<label class="mylabel"></label>
 				<div class="layui-input-block" style="line-height: 36px;">  
-				  	<input type="checkbox" title="前端可见" lay-skin="primary" checked/>
+				  	<input type="checkbox" title="前端可见" lay-skin="primary" checked style="vertical-align: text-bottom;margin-top: 0;height: 16px;"/>
 				  	<em>前端可见</em>
 				</div>
 				
@@ -125,6 +125,7 @@
 		<script type="text/javascript">
 			layui.use(['form'],function(){
 				var form = layui.form;
+				
 			})
 		</script>
 	</body>

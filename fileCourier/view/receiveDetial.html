@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<link rel="stylesheet" type="text/css" href="../static/bootstrap-3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/layui-v2.4.5/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/myfile.css"/>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<div class="topTitle">
+			<span>已发箱</span><span>></span><span>扫除邪恶文件</span>
+		</div>
+		<div class="content clearFloat detial">
+			<div class="detialtop">
+				<div class="tou left">
+					<img src="../static/img/chakan_doc.png"/>
+				</div>
+				<div class="mes left">
+					<p>刘警官</p>
+					<span>晋中市公安局</span>
+				</div>
+				<div class="time right">
+					<strong>2018-11-13</strong><span>14:17:02</span>
+				</div>
+			</div>
+			<div class="detialperson">
+				<p>收件人：<span>吴警官</span><span>14641865106</span></p>
+				<p>发件人：<span class="myself">我自己</span><span>489654189+4</span></p>
+			</div>
+			<div class="detialartical">
+				<h2>扫除邪恶文件</h2>
+				<div class="myartical">
+					<p>返回肯德基撒发回来好放得开沙发看了会分开积分卡法兰克福了</p>
+				</div>
+			</div>
+			<div class="detialattachment">
+				<h4>附件：</h4>
+				<div id="attachmentList">
+					<div class="doc">
+						<div class="left">
+							<img src="../static/img/doc.png"/>
+						</div>
+						<div class="left opeater">
+							<h4>扫除邪恶.doc</h4>
+							<p>264.20k</p>
+							<a>下载</a>
+						</div>
+						<div class="left yulan">
+							<img src="../static/img/chakan_doc.png"/>
+						</div>
+					</div>
+					<div class="ppt">
+						<div class="left">
+							<img src="../static/img/doc.png"/>
+						</div>
+						<div class="left opeater">
+							<h4>扫除邪恶.doc</h4>
+							<p>264.20k</p>
+							<a>下载</a>
+						</div>
+						<div class="left yulan">
+							<img src="../static/img/chakan_doc.png"/>
+						</div>
+					</div>
+					<div class="pdf">
+						<div class="left">
+							<img src="../static/img/doc.png"/>
+						</div>
+						<div class="left opeater">
+							<h4>扫除邪恶.doc</h4>
+							<p>264.20k</p>
+							<a>下载</a>
+						</div>
+						<div class="left yulan">
+							<img src="../static/img/chakan_doc.png"/>
+						</div>
+					</div>
+					<div class="xls">
+						<div class="left">
+							<img src="../static/img/doc.png"/>
+						</div>
+						<div class="left opeater">
+							<h4>扫除邪恶.doc</h4>
+							<p>264.20k</p>
+							<a>下载</a>
+						</div>
+						<div class="left yulan">
+							<img src="../static/img/chakan_doc.png"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/layui-v2.4.5/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/js/myfile.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			layui.use(['upload','layer'],function(){
+				var upload = layui.upload
+				,$ = layui.jquery;
+				
+				
+				upload.render({
+			    elem: '#test1'
+			    //,url: '/upload/'
+			    ,multiple: true
+			    ,auto:false//不自动上传
+			    ,bindAction:'#fabu'
+			    ,accept:'file'
+			    //,acceptMime: 'image/*'
+			    ,size:2000
+			    ,choose:function(obj){
+			    	//预读本地文件示例，不支持ie8
+			      obj.preview(function(index, file, result){
+			        //$('#test1').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+			        $('#test1').html(file.name);
+			      });
+			    }
+			    ,before: function(obj){
+			      
+			    }
+			    ,done: function(res){
+			      //上传完毕
+			    }
+			  });
+			})
+		</script>
+	</body>
+</html>

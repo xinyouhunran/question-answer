@@ -118,7 +118,7 @@
 			<div class="layui-form-item">
 				<label class="mylabel">微信二维码:</label>
 				<div class="layui-input-block" style="line-height: 36px;">  
-				  	<button type="button" class="layui-btn">上传图片</button>
+				  	<button type="button" class="layui-btn myupload">上传图片</button>
 				  	<div class="">
 				  		<img src="" width="92px" height="92px"/>
 				  	</div>
@@ -130,7 +130,7 @@
 			<div class="layui-form-item">
 				<label class="mylabel">三合一设备：</label>
 				<div class="layui-input-block" style="line-height: 36px;">  
-				  	<input type="checkbox" title="前端可见" lay-skin="primary" checked/>
+				  	<input type="checkbox" title="前端可见" lay-skin="primary" checked style="vertical-align: text-bottom;margin-top: 0;height: 16px;"/>
 				  	<em>
 				有出入境，交管，户政自助服务功能设备
 				</em>
@@ -170,8 +170,20 @@
 		<script type="text/javascript" src="../static/assets/wangEditor-3.1.1/release/wangEditor.min.js"></script>
 		<script src="../static/js/editorConfig.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			layui.use(['form'],function(){
-				var form = layui.form;
+			layui.use(['form','layer'],function(){
+				var form = layui.form
+				,layer = layui.layer;
+				
+				$(".myupload").click(function(){
+					console.log(1);
+					top.layer.open({
+						title:"上传图片",
+						type:2,
+						area:['600px','600px'],
+						content:"./dataManager/uploadfile.html",
+						btn:['确定','取消']
+					})
+				})
 			})
 			
 			

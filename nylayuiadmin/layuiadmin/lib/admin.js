@@ -923,7 +923,7 @@ layui.define('view', function(exports){
 
     //执行跳转             侧边栏的点击出现tab也在此处
     var topLayui = parent === self ? layui : top.layui;
-    //topLayui.index.openTabsPage(href, text || othis.text());源代码
+    //topLayui.index.openTabsPage(href, text || othis.text());//源代码
     topLayui.index.openTabsPage(href, text || othis.find("span").text());//ls代码
   });
   

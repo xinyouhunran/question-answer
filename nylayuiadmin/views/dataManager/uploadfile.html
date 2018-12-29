@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../static/assets/bootstrap-3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-table.min.css"/>
+		<link rel="stylesheet" href="../static/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/assets/layui-v2.4.5/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/css/wechatRoom.css"/>
+		<style type="text/css">
+			#demo2 img{
+				width: 100px;height: 100px;
+			}
+			.mylabel{
+				float: left;
+			    line-height: 18px;
+			    padding: 10px;
+			    color: #393D49;
+			    width: 150px;
+			    text-align: right;
+			}
+			.layui-input-block{line-height: 36px;width: 85%;float: left;margin-left: 0;}
+			
+			.layui-input-block .layui-input{
+				width: 70%;
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+		  <ul class="layui-tab-title">
+		    <li class="layui-this">上传附件</li>
+		    <li>网络文件</li>
+		    <li>图库</li>
+		    <li>目录浏览</li>
+		  </ul>
+		  <div class="layui-tab-content" style="height: 100px;">
+		    <div class="layui-tab-item layui-show">
+		    	<div class="layui-upload">
+				  <button type="button" class="layui-btn" id="test2">图片上传</button>
+				  <button type="button" class="layui-btn" id="test3"><i class="layui-icon"></i>上传文件</button>
+				  <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+				    预览图：
+				    <div class="layui-upload-list" id="demo2"></div>
+				 </blockquote>
+				</div>
+		    </div>
+		    <div class="layui-tab-item">
+				<label class="mylabel">请输入网络地址</label>
+				<div class="layui-input-block" style="line-height: 36px;">  
+				  	<input type="text" name="picture" class="layui-input"/>
+				</div>
+		    </div>
+		    <div class="layui-tab-item">
+		    	<div class="selectList">
+					<div class="fl">
+						<span>名称：</span>
+						<input type="text" style="height: 26px;"/>
+					</div>
+					<div class="fl ml seaKey">
+						<span>日期：</span>
+						<input type="text" style="height: 26px;" id="date1"/>
+						<button lay-submit="" lay-filter="demo1">搜索</button>
+					</div>
+				</div>
+				
+				<div class="mypic">
+					
+				</div>
+				<!--分页-->
+				<div id="roomPage" style="text-align: center;"></div>
+		    </div>
+		    <div class="layui-tab-item" style="text-align: center;">
+		    	<iframe src="directory.html" width="500" height="436" style="border: 0;"></iframe>
+		    </div>
+		  </div>
+		</div> 
+		
+		<script src="../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/assets/bootstrap-3.3.7/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../layuiadmin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+
+		<!--<script type="text/javascript" src="js/index.js"></script>-->
+		<script src="../static/js/layer.min.js" type="text/javascript"></script>
+		<script>
+			//注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+			layui.use(['element','upload','laydate','laypage'], function(){
+			  var element = layui.element;
+			  var upload = layui.upload;
+			  var laydate = layui.laydate;
+			  var laypage = layui.laypage;
+			  
+			  var curnum = 1;//记录第几页的数据
+              var limitcount = 8;//每页限制条数
+			  
+			  laypage.render({
+			  	elem:"roomPage",
+			  	count:50,
+			  	curr:curnum,
+			  	limit:8,
+			  	limits:[8,16,24],
+			  	layout: ['prev', 'page', 'next', 'skip','count','limit'],
+			  	jump:function(obj,first){
+			  		if(!first){
+                    curnum = obj.curr;
+                    limitcount = obj.limit;
+                    //console.log("curnum"+curnum);
+                    //console.log("limitcount"+limitcount);
+                    //layer.msg(curnum+"-"+limitcount);
+               		}
+			  	}
+			  })
+				    
+			  //执行一个laydate实例
+			  laydate.render({
+			    elem: '#date1' //指定元素
+			  });
+			  //执行实例
+			  //多图片上传
+			  upload.render({
+			    elem: '#test2'
+			    ,url: '/upload/'
+			    ,multiple: true
+			    ,auto:false//不自动上传
+			    ,bindAction:'#test3'
+			    ,accept:'images'
+			    ,acceptMime: 'image/*'
+			    ,size:2000
+			    ,choose:function(obj){
+			    	//预读本地文件示例，不支持ie8
+			      obj.preview(function(index, file, result){
+			        $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+			      });
+			    }
+			    ,before: function(obj){
+			      
+			    }
+			    ,done: function(res){
+			      //上传完毕
+			    }
+			  });
+			  //…
+			});
+		</script>
+	</body>
+</html>

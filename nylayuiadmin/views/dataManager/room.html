@@ -84,14 +84,21 @@
 		  <img layer-pid="图片id，可以不写" layer-src="images/lockscreenbg.jpg" src="images/lockscreenbg.jpg" alt="图片名" width="100" height="100">
 		  <img layer-pid="图片id，可以不写" layer-src="images/user.jpg" src="images/user.jpg" alt="图片名" width="100" height="100">
 		</div>-->
+		
+		<!--表格渲染-->
 		<table id="roomTable" lay-filter="roomTable"></table>
 		
-		<div id="roomPage"></div>
+		<!--分页-->
+		<div id="roomPage" style="text-align: center;"></div>
+		
+		<!--行工具栏-->
 		<script type="text/html" id="barDemo">
 		  <!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
 		  <a class="layui-btn layui-btn-xs" lay-event="editRoom">编辑</a>
 		  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="editIntro">编辑简介</a>
 		</script>
+		
+		<!--头工具栏-->
 		<script type="text/html" id="room-toolbar">
 		  <div class="layui-btn-container">		  
 		  
@@ -101,27 +108,27 @@
 		  </div>
 		</script>
 		
+		<!--自定义模板-->
 		<script type="text/html" id="titleTpl">
 		  {{#  if(d.id < 100){ }}
 		    <a href="/detail/{{d.id}}" class="layui-table-link">{{d.sign}}</a>
 		  {{#  } else { }}
-		    {{d.title}}(普通用户)
+		    {{d.sign}}(普通用户)
 		  {{#  } }}
 		</script>
 		<!--图片点击查看及轮播-->
-		<div id="layer-photos-demo" class="layer-photos-demo">
+		<!--<div id="layer-photos-demo" class="layer-photos-demo">
 			<div class="layui-carousel" id="test1">
 				<div carousel-item>
 					<img layer-pid="图片id，可以不写" layer-src="../static/img/add.png" src="../static/img/add.png" alt="图片名" width="100" height="100">
 					<img layer-pid="图片id，可以不写" layer-src="../static/img/500.png" src="../static/img/500.png" alt="图片名" width="100%" height="288px">
 				</div>
 			</div>
-		</div>
-		
-		<!--<div class="layui-inline">
-			<a class="layui-btn newsAdd_btn" id="editRoom">编辑警务室</a>
-			<a class="layui-btn newsAdd_btn" id="editIntro">编辑简介</a>
 		</div>-->
+		
+		<div id="mydiv" style="display: none;">
+			
+		</div>
 		<script src="../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../static/assets/bootstrap-3.3.7/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../layuiadmin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
@@ -137,7 +144,7 @@
 			
 			//console.log(parent.$(".layui-this"))
 			
-			layui.use(['layer','carousel','table'],function(){
+			layui.use(['layer','carousel','table','laypage'],function(){
 				var layer = layui.layer
 				,carousel = layui.carousel
 				,flow = layui.flow
@@ -168,7 +175,7 @@
 				      ,{field: 'sign', title: '警长', width: 100}
 				      ,{field: 'classify', title: '成员', width: 100}
 				      ,{field: 'wealth', title: '前端可见', width: 100}
-				      ,{field: 'area', title: '区域', width: 80,style:"color:blue;text-decoration:underline;"}
+				      ,{field: 'area', title: '区域', width: 80,/*style:"color:blue;text-decoration:underline;cursor:pointer;"*/}
 				      ,{title: '操作', width: 165, align:'center', toolbar: '#barDemo',fixed:'right'}
 				    ]],
 				   response: {
@@ -209,13 +216,9 @@
 				        layer.msg('添加');
 				      break;
 				      case 'print':
-				        if(data.length === 0){
-				          layer.msg('请选择一行');
-				        } else if(data.length > 1){
-				          layer.msg('只能同时编辑一个');
-				        } else {
-				          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
-				        }
+				      	var str = myhtml = $("body").html();
+				      	$("#mydiv").html(str);
+				        window.print();
 				      break;
 				      case 'del':
 				        if(data.length === 0){
@@ -259,15 +262,6 @@
 				 //编辑警务室
 				 var areah = parseInt(($(window).height()))
 				 var areaw = parseInt(($(window).width()));
-				 /*$("#editRoom").click(function(){
-				 	var topLayui = parent === self ? layui : top.layui;
-    				topLayui.index.openTabsPage("dataManager/editRoom.html?id=1", "编辑警务室");
-					
-					})
-				 $("#editIntro").click(function(){
-					var topLayui = parent === self ? layui : top.layui;
-    				topLayui.index.openTabsPage("dataManager/editIntro.html", "编辑简介");
-					})*/
 			})
 
 			

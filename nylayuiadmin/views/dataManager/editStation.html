@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../static/assets/bootstrap-3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-table.min.css"/>
+		<link rel="stylesheet" href="../static/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/assets/layui-v2.4.5/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/css/wechatRoom.css"/>
+		<style>
+			.mylabel{
+				float: left;
+			    line-height: 18px;
+			    padding: 10px;
+			    color: #393D49;
+			    width: 104px;
+			    text-align: right;
+			}
+			.layui-input-block{line-height: 36px;width: 85%;float: left;margin-left: 0;}
+			
+			.layui-input-block .layui-input{
+				width: 70%;
+				display: inline-block;
+			}
+			.myresult{
+				line-height: 18px;
+			    padding: 10px;
+			    color: #5FB878;
+			}
+			.myresult i{margin-right: 10px;}
+			.layui-form-item{padding:0 20px}
+			.layui-input-block select{
+				height: 36px;
+			    border: 1px solid #e6e6e6;
+			    width: 150px;
+		    }
+		    .myerror{
+		    color: #FF5722;	
+		    }
+		    .mymap{
+		    	width: 80%;
+		    	margin: 0 auto;
+		    	min-height: 400px;
+		    }
+		</style>
+	</head>
+	<body>
+		<p style="background:#fffff0;color:#999999;text-align:center;padding:0.5em;">输入派出所名称，按回车键，可自动地图定位并填入相关信息。</p>
+		<form action="" method="post" class="latui-form">
+			<div class="layui-form-item">
+				<label class="mylabel">派出所名称：</label>
+				<div class="layui-input-block">  
+					<!--class="layui-disabled"样式不错-->
+				  	<input type="text" name="title"  autocomplete="off"  class="layui-input" placeholder="请输入名称" />
+				  	<span class="myresult"><i class="layui-icon layui-icon-ok-circle"></i>输出正确</span>
+				</div>
+				
+			</div>
+			<div class="layui-form-item">
+				<label class="mylabel">所属分局：</label>
+				<div class="layui-input-block">  
+					<!--class="layui-disabled"样式不错-->
+				  	<select name="">
+				  		<option value="宝安分局">宝安分局</option>
+						<option value="大鹏分局">大鹏分局</option>
+						<option value="福田分局">福田分局</option>
+						<option value="光明分局">光明分局</option>
+						<option value="机场分局">机场分局</option>
+						<option value="龙岗分局">龙岗分局</option>
+						<option value="龙华分局">龙华分局</option>
+						<option value="罗湖分局">罗湖分局</option>
+						<option value="南山分局">南山分局</option>
+						<option value="坪山分局">坪山分局</option>
+						<option value="盐田分局">盐田分局</option>
+				  	</select>
+				  	<!--<span class="myresult myerror"><i class="layui-icon layui-icon-close-fill"></i>请选择上级派出所</span>-->
+				</div>
+				
+			</div>
+			<div class="layui-form-item">
+				<label class="mylabel">派出所电话：</label>
+				<div class="layui-input-block">  
+					<!--class="layui-disabled"样式不错-->
+				  	<input type="text" name="title"  autocomplete="off"  class="layui-input" value="" lay-verify="phone"/>
+				  	<!--<span class="myresult"><i class="layui-icon layui-icon-ok-circle"></i>输出正确</span>-->
+				</div>
+				
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="mylabel">地址：</label>
+				<div class="layui-input-block">  
+					<!--class="layui-disabled"样式不错-->
+				  	<input type="text" name="title"  autocomplete="off"  class="layui-input" placeholder="请输入名称" />
+				  	<span class="myresult"><i class="layui-icon layui-icon-ok-circle"></i>输出正确</span>
+				</div>
+				
+			</div>
+			<div class="layui-form-item">
+				<label class="mylabel">地图定位：</label>
+				<div class="layui-input-block">  
+					<!--class="layui-disabled"样式不错-->
+				  	<input type="text" name="title"  autocomplete="off"  class="layui-input layui-disabled" placeholder="地址" disabled=""/>
+				  	<button type="button" class="layui-btn">重置定位</button>
+				  	<span class="myresult"><i class="layui-icon layui-icon-ok-circle"></i>已定位</span>
+				</div>
+				
+			</div>
+		</form>
+		<!--<p style="background:#fffff0;color:#999999;text-align:center;padding:0.5em;">双击顶点可删除，如果顶点太近，请放大地图</p>-->
+		
+		<div class="mymap">
+			
+		</div>
+		<div style="text-align: center;">
+			<button type="button" class="layui-btn">确定</button>
+			<button type="button" class="layui-btn">取消</button>
+		</div>
+		<script src="../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/assets/bootstrap-3.3.7/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../layuiadmin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+
+		<!--<script type="text/javascript" src="js/index.js"></script>-->
+		<script src="../static/js/layer.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			layui.use(['form'],function(){
+				var form = layui.form;
+			})
+		</script>
+	</body>
+</html>
+
