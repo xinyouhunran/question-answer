@@ -8,6 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="../static/bootstrap-3.3.7/css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../static/layui-v2.4.5/layui/css/layui.css" />
 		<link rel="stylesheet" type="text/css" href="../static/css/myfile.css"/>
+		<link rel="stylesheet" href="../static/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
 		<style type="text/css">
 			#test1 img{width: 100%;height: 100%;display: inline-block}
 			#test1{width: 30%;height: 42px;text-align: center;line-height: 42px;color: #555555;cursor: pointer;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
@@ -113,12 +114,12 @@
 			</div>
 			<div class="left personList">
 				<div class="search">
-					<input type="text" name="" id="" placeholder="查找联系人..." />
+					<input type="text" name="" id="key" placeholder="查找联系人..." />
 				</div>
 				<div class="jzsstation">
 					<h4>晋中市公安局</h4>
 					<div class="person">
-						<ul>
+						<ul id="deptTree" class="zTree">
 							<li><span><img src="../static/img/jia.png"/></span>政工监督室<strong></strong></li>
 							<li><span><img src="../static/img/jia.png"/></span>政工监督室<strong></strong>
 								<ul>
@@ -138,11 +139,67 @@
 		<script src="../static/js/myfile.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="../static/wangEditor-3.1.1/release/wangEditor.min.js"></script>
 		<script src="../static/js/editorConfig.js" type="text/javascript" charset="utf-8"></script>
+		
+		  <script type="text/javascript" src="../static/ztree/js/jquery.ztree.core.min.js"></script>
+		  <script type="text/javascript" src="../static/ztree/js/jquery.ztree.exhide.min.js"></script>
+		  <script type="text/javascript" src="../static/ztree/js/jquery.ztree.excheck.min.js" charset="utf-8"></script>
+		  <script type="text/javascript" src="../static/ztree/js/fuzzysearch.js"></script> 
 		<script type="text/javascript">
 			layui.use(['upload','layer'],function(){
 				var upload = layui.upload
 				,$ = layui.jquery;
 				
+				//部门警察人员树
+				var dept_ztree;
+				var dept_setting = {
+					data: {
+						simpleData: {
+							enable: true,
+							idKey: "deptId",
+							pIdKey: "parentId",
+							rootPId: 0
+						},
+						/*key: {
+							url:"nourl"
+						}*/			
+					},
+					callback: {
+						onClick: function (event, treeId, treeNode) {
+							table.reload('user-list',{
+								page:{
+									curr:1
+								},where:{
+									deptId:treeNode.deptId
+								}
+							});
+						},
+						onNodeCreated: function (event, treeId, treeNode) {
+						}
+					},
+					check:{
+						enable:true,
+						chkStyle: "radio",
+						radioType: "all"
+					},
+					view:{
+						showIcon:false,//不显示图标
+						selectedMulti:false//不可多选
+					}
+				};
+				
+				//加载部门数据
+				admin.req({
+					type:"post",
+					url:layui.setter.serverBase + "sys/dept/list",		
+					done:function(r){
+						menu_ztree = $.fn.zTree.init($("#deptTree"), dept_setting, r.data);
+			            //menu_ztree.expandAll(true);  ////展开所有节点
+						//initData();
+					}
+				});	
+				
+				$.fn.zTree.init($("#deptTree", null, null));
+				fuzzySearch('deptTree','#key',null,true); //初始化模糊搜索方法
 				//编辑器操作
 				var E = window.wangEditor;
 				var editor = new E('#bar', '#edit');
