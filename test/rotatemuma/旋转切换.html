@@ -1,0 +1,53 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<title>图片轮转切换效果demo</title>
+<link href="style.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+	li{border: 1px solid red;background: gray;}
+	li a{color: #fff;}
+</style>
+</head>
+<body style="">
+<div class="poster-main" style="width: 800px; height: 260px;">
+<div class="poster-btn poster-prev-btn" style="width: 175px; height: 260px; z-index: 3;"></div>
+<ul class="poster-list" style="width: 800px; height: 260px;">
+<li class="poster-item" style="width: 382px; height: 214px; top: 22.9412px; left: 87.5px; z-index: 1; opacity: 1;"><a href="#">123</a>
+<span class="poster-item-title" style="display: none;">Picture information 1</span>
+</li>
+<li class="poster-item" style="z-index: 2; width: 450px; height: 252px; opacity: 1; left: 175px; top: 4px;"><a href="#"></a>
+<span class="poster-item-title" style="display: block; overflow: hidden; height: 47.3507px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">Picture information 2</span>
+</li>
+<li class="poster-item" style="z-index: 1; width: 383px; height: 214px; opacity: 1; left: 330px; top: 22.9px;"><a href="#"></a>
+<span class="poster-item-title" style="display: none;">Picture information 3</span>
+</li>
+<li class="poster-item" style="z-index: 0; width: 325px; height: 182px; opacity: 0.5; left: 474.875px; top: 38.965px;"><a href="#"></a>
+<span class="poster-item-title" style="display: none;">Picture information 4</span>
+</li>
+<li class="poster-item" style="z-index: 0; width: 325px; height: 182px; opacity: 0.5; left: 0px; top: 39px;"><a href="#"></a>
+<span class="poster-item-title" style="display: none;">Picture information 5</span>
+</li>
+</ul>
+<div class="poster-btn poster-next-btn" style="width: 175px; height: 260px; z-index: 3;"></div>
+</div>
+<script src="../../fileCourier/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="Carousel.js"></script>
+<script>
+//$(".poster-main").Carousel("init");
+
+$(".poster-main").Carousel({
+"width":800,		
+"height":260,		
+"posterWidth":450,	
+"posterHeight":252,
+"scale":0.85,		
+"speed": 500,	
+"autoPlay":true,	
+"delay":1500,	
+"verticalAlign":"middle"	
+});
+
+$("img").hide();
+</script>
+</body></html>
