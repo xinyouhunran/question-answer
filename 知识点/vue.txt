@@ -81,4 +81,45 @@ watch用来监听一个data里的属性值；当此值改变的时候，会触发数据的变化。
    设置 append 属性后，则在当前 (相对) 路径前添加基路径。例如，我们从 /a 导航到一个相对路径 b，如果没有配置 append，则路径为 /b，如果配了，则为 /a/b
    有时候想要 <router-link> 渲染成某种标签，例如 <li>。 于是我们使用 tag prop 类指定何种标签，同样它还是会监听点击，触发导航。
 
-18.vue路由懒加载：进入首页不用一次加载过多资源造成用时过长
+18.vue路由懒加载：进入首页不用一次加载过多资源造成用时过长。
+
+19.只有data中的数据是响应式的，动态添加近来的数据默认为非响应式。
+可以通过以下方式实现动态添加数据的响应式
+var vm = new Vue({
+  data: {
+    stu: {
+      name: 'jack',
+      age: 19
+    }
+  }
+})
+1 Vue.set(object, key, value) - 适用于添加单个属性
+2 Object.assign() - 适用于添加多个属性
+Vue.set(vm.stu, 'gender', 'male')
+/* Object.assign 将参数中的所有对象属性和值 合并到第一个参数 并返回合并后的对象*/
+vm.stu = Object.assign({}, vm.stu, { gender: 'female', height: 180 })
+
+20.获取更新后dom中的数据 则需要通过 Vue.nextTick(callback)；实例调用vm.$nextTick(function () {})
+
+21.v-for="(item, key, index) in obj"<!-- item 为值，key 为键，index 为索引 -->
+
+22.注意：computed中的属性不能与data中的属性同名，否则会报错
+
+23.拦截器会拦截发送的每一个请求，请求发送之前执行request中的函数，请求发送完成之后执行response中的函数
+// 请求拦截器               //响应拦截器形似
+axios.interceptors.request.use(function (config) {
+    // 所有请求之前都要执行的操作
+    return config;
+  }, function (error) {
+    // 错误处理
+    return Promise.reject(error);
+  });
+
+24.非父子通讯可以用事件总线
+var bus = new Vue()
+// 在组件 B 绑定自定义事件
+bus.$on('id-selected', function (id) {
+  // ...
+})
+// 触发组件 A 中的事件
+bus.$emit('id-selected', 1)

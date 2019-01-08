@@ -253,3 +253,8 @@ MessageEvent四个属性：
 如果你要去恢复或者改变DOM状态值，类似checked，selected，disabled等表单元素的状态，最好使用.prop()方法。
 
 66.在layui中，凡是动态加载的表单，表格数据都要重新render一下。
+
+67.监听文本框改变的一种方法：
+addEventListener('keyup', function (event) {
+  obj.msg = event.target.value
+})

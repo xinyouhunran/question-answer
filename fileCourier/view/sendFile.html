@@ -195,11 +195,12 @@
 						menu_ztree = $.fn.zTree.init($("#deptTree"), dept_setting, r.data);
 			            //menu_ztree.expandAll(true);  ////展开所有节点
 						//initData();
+						fuzzySearch('deptTree','#key',null,true); //初始化模糊搜索方法
 					}
 				});	
 				
-				$.fn.zTree.init($("#deptTree", null, null));
-				fuzzySearch('deptTree','#key',null,true); //初始化模糊搜索方法
+				//$.fn.zTree.init($("#deptTree", null, null));
+				//fuzzySearch('deptTree','#key',null,true); 初始化模糊搜索方法
 				//编辑器操作
 				var E = window.wangEditor;
 				var editor = new E('#bar', '#edit');
