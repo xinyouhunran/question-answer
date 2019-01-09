@@ -258,3 +258,14 @@ MessageEvent四个属性：
 addEventListener('keyup', function (event) {
   obj.msg = event.target.value
 })
+
+68.在HTML body部分中的JavaScripts会在页面加载的时候被执行。 
+在HTML head部分中的JavaScripts会在被调用的时候才执行。
+
+69.任何对象转为布尔值，都为得到 true（切记！在 JS 中，只有 0，-0，NaN，""，null，undefined 这六个值转布尔值时，结果为 false）。
+
+70.在查找 b.n 是首先查找 b 对象自身有没有 n 属性，如果没有会去原型（prototype）上查找
+
+71.DHTML 的动态样式的作用是使网页作者改变内容的外部特征而不强制用户再次下载全部内容
+
+72.es6：‘Promise 对象代表一个异步操作，有3种状态：Pending(进行中)、Resolved(已完成，又称Fulfilled)和Rejected(已完成)’
