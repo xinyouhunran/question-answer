@@ -31,6 +31,41 @@
 		}
 		console.log(insert([1, 2, 3, 4], 'z', 2));
 		
+		function count(start, end) {
+			console.log(start++);
+		    var timer = setInterval(function(){
+		        if(start<=end){
+		            start++;          
+		        }else{
+		            clearInterval(timer);
+		        }
+		    },100)
+		    return {
+		        cancel:function(){
+		            clearInterval(timer)
+		        }
+		    }
+		}
+		count(1,4);
+		
+		function fizzBuzz(num) {
+			console.log(typeof num)
+	    if(num==null||typeof num!="number"){
+	    	return false;
+	    }else if(num%3==0&&num%5==0){
+	    	return "fizzbuzz";
+	    }else if(num%3==0){
+	    	return "fizz";
+	    }else if(num%5==0){
+	    	return "buzz";
+	    }else{
+	    	return num;
+	    }
+	}
+		console.log(fizzBuzz(15));
+		
+		var arr = [1,2,3];
+		console.log(...arr);
 	</script>
 	
 </html>

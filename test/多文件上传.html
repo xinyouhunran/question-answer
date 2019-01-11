@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<input type="file" name="myfile" id="myfile" value="" multiple="multiple"/>
+		<div id="">
+			<ul>
+				
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var list = {};
+			$("#myfile").change(function(obj){
+				var myfile = obj.target.files;
+				console.log(myfile);
+				for(var key in myfile){
+					if(!list[key]){
+						list[key]=myfile[key];
+					}else{
+						if(key<list.length){
+							list[list.length]=myfile[key];
+							list.length++;
+						}
+					}
+					
+				}
+				console.log(list);
+				$("ul").html("");
+				for(var i=0;i<list.length;i++){
+					
+					$("ul").append(`<li>${list[i].name}<span data-index=${i}>删除</span></li>`);
+				}
+				$("span").click(function(){
+					var index = $(this).data("index");
+					$(this).parent().remove();
+					delete list[index];
+					list.length--;
+					console.log(list);
+				})
+			})
+		</script>
+	</body>
+</html>
