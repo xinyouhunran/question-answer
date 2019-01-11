@@ -262,7 +262,7 @@ addEventListener('keyup', function (event) {
 68.在HTML body部分中的JavaScripts会在页面加载的时候被执行。 
 在HTML head部分中的JavaScripts会在被调用的时候才执行。
 
-69.任何对象转为布尔值，都为得到 true（切记！在 JS 中，只有 0，-0，NaN，""，null，undefined 这六个值转布尔值时，结果为 false）。
+69.任何对象转为布尔值，都会得到 true（切记！在 JS 中，只有 0，-0，NaN，""，null，undefined 这六个值转布尔值时，结果为 false）。
 
 70.在查找 b.n 是首先查找 b 对象自身有没有 n 属性，如果没有会去原型（prototype）上查找
 
@@ -274,3 +274,10 @@ addEventListener('keyup', function (event) {
 1.全局变量不会被回收。
 2.局部变量会被回收，也就是函数一旦运行完以后，函数内部的东西都会被销毁。
 3.只要被另外一个作用域所引用就不会被回收
+
+74.undefined和null与任何有意义的值比较返回的都是false，但是null与undefined之间互相比较返回的是true。
+
+75.1+ +"2"
++"2"中的加号是一元加操作符，+"2"会变成数值2，因此1+ +"2"相当于1+2=3.
+
+76.file文件对象是一个只读对象，想要改变需要定义全局变量遍历存储文件信息。

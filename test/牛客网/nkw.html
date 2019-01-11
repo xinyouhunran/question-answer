@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		function remove(arr, item) {
+			var reg = new RegExp(""+item+"","g");
+		    return arr.join("").replace(reg,"").split("");
+		}
+		console.log(remove([1,2,3,4,2],2));
+		
+		function truncate(arr) {
+		    return arr.slice(0,-1)
+		}
+		console.log(truncate([1,2,3,4]));
+		
+		function prepend(arr, item) {
+		    return [item,...arr]
+		}
+		console.log(prepend([1,2,3,4],10));
+		
+		function insert(arr, item, index) {
+			var arr1 = arr.slice(0,index);
+			var arr2 = arr.slice(index);
+		    arr1.push(item);
+		    return arr1.concat(arr2)
+		}
+		console.log(insert([1, 2, 3, 4], 'z', 2));
+		
+	</script>
+	
+</html>
