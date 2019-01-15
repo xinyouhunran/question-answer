@@ -66,6 +66,49 @@
 		
 		var arr = [1,2,3];
 		console.log(...arr);
+		
+		function getUrlParam(sUrl, sKey) {
+    		var str = sUrl.split('#')[0].split('?')[1];
+    		var arr = str.split("&");
+    		if(sKey){
+    			var reg = new RegExp(""+sKey);
+    			var ar = [];
+    			for(var i in arr){
+    				if(reg.test(arr[i])){
+    					ar.push(arr[i].split("=")[1]);
+    				}
+    			}
+    			if(ar.length==1){
+    				return ar[0];
+    			}
+    			if(ar.length==0){
+    				return "";
+    			}
+    			if(ar.length>1){
+    				return ar;
+    			}
+    		}else{
+    			if(str == undefined || str == ""){
+		            return {};
+		        }
+    			var obj = {};
+    			for(var i in arr){
+    				if(!obj[arr[i].split("=")[0]]){
+    					obj[arr[i].split("=")[0]]=[];
+    				}
+    				obj[arr[i].split("=")[0]].push(arr[i].split("=")[1]);
+    				console.log(obj);
+    			}
+    			return obj;		
+    		}
+		}
+		console.log(getUrlParam("http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe"));
+		
+		Array.prototype.uniq = function () {
+			return [...new Set(this)];
+		}
+		console.log([false, true, undefined, null, NaN, 0, 1, {}, {}, 'a', 'a', NaN].uniq());
+		//[false, true, undefined, null, NaN, 0, 1, {}, {}, 'a']
 	</script>
 	
 </html>

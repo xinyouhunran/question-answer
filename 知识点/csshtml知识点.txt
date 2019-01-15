@@ -109,4 +109,12 @@ legend 元素为 fieldset 元素定义标题（caption）。
 
 29.当margin-top、padding-top的值是百分比时，分别是如何计算的？相对最近父级块级元素的width，相对最近父级块级元素的width.
 
-30.背景图片设置display:none或visibility：hidden则不会请求图片路径
+30.背景图片设置display:none或visibility：hidden则不会请求图片路径.
+
+31.em单位，em单位是一个相对单位，用户的浏览器默认渲染的字体大小是16px；而em则是相对于父级的字体大小进行缩放；从而达到页面整体放大和缩小。
+
+32.em的值=1/父级的font-size*需要转化的像素比。
+
+33.em兼容问题html {font-size: 100%;}body {font-size: 1em;}
+
+34.rem单位，rem是一个相对单位，rem是相对于根元素的字体大小进行缩放，根元素泛指html。
