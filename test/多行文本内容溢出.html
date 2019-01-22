@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			p{width:50px;}
+			div{width: 50px;height: 50px;}
+		</style>
+		<script src="jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<p class="zxx_text_overflow">1231564fhsakd花费多少空间和覅哦啊的会否弗兰克撒活动发生掉返回</p>
+		
+		<div id="" style="display: none;">
+			
+		</div>
+		<script type="text/javascript">
+			//限制字符个数
+		$(".zxx_text_overflow").each(function(){
+		  var maxwidth=23;
+		  if($(this).text().length > maxwidth){
+		    $(this).text($(this).text().substring(0,maxwidth));
+		    $(this).html($(this).html()+'...');
+		  }
+		});
+		console.log($("div").width());
+		</script>
+	</body>
+	
+</html>

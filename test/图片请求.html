@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div style="background-image:url(images/ai1.png);" hidden>
+		    <div style="background-image:url(images/jxkh1.png);" hidden>
+				<img src="images/spdb1.png" hidden/>
+		    </div>
+		</div>
+<script type="text/javascript">
+	//上述会请求的是父盒子的背景和图片请求，图片无论如何会请求，父盒子的背景会请求，但是子盒子的背景由于父盒子hidden了，背景不回请求
+</script>
+	</body>
+</html>

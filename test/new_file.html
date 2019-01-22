@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.marqueeleft{height:102px;width:650px;overflow:hidden; }
+			.marqueeleft ul{float:left;margin:0 ;}
+			.marqueeleft li{ background-color:#FFFBF0; float:left;margin:0 3px;display:inline;width:128px;height:92px;overflow:hidden;padding:4px;border:1px solid #1f7fbc;}
+			.marqueeleft li .pic{display:block;width:128px;height:92px;overflow:hidden;}
+			.marqueeleft li .txt{display:none;text-align:center;height:23px;line-height:23px;}
+                        
+		</style>
+	</head>
+	<body>
+		<div id="marquee1" class="marqueeleft">
+                <div style="width:8000px;">
+                    <ul id="marquee1_1">
+                    	<li> 
+                    		<a class="pic" href="#" target="_blank"><img width="128" height="92" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542951951163&di=4b8bfaa4ffc043cf1c8ea76ff7f6178f&imgtype=0&src=http%3A%2F%2Fimg2.3lian.com%2Fimg2007%2F10%2F24%2F011.jpg" /></a>
+                            <div class="txt">
+                              111111111
+                            </div>
+                        </li>
+                        <li> 
+                    		<a class="pic" href="#" target="_blank"><img width="128" height="92" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542951951163&di=4b8bfaa4ffc043cf1c8ea76ff7f6178f&imgtype=0&src=http%3A%2F%2Fimg2.3lian.com%2Fimg2007%2F10%2F24%2F011.jpg" /></a>
+                            <div class="txt">
+                              222222
+                            </div>
+                        </li>
+                        <li> 
+                    		<a class="pic" href="#" target="_blank"><img width="128" height="92" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542951951163&di=4b8bfaa4ffc043cf1c8ea76ff7f6178f&imgtype=0&src=http%3A%2F%2Fimg2.3lian.com%2Fimg2007%2F10%2F24%2F011.jpg" /></a>
+                            <div class="txt">
+                              3333333
+                            </div>
+                        </li>
+                    </ul>
+                    <ul id="marquee1_2">
+                    </ul>
+                </div>
+        </div>
+        <script>
+        	function marquee(i, direction)
+			{
+				var obj = document.getElementById("marquee" + i);
+				var obj1 = document.getElementById("marquee" + i + "_1");
+				var obj2 = document.getElementById("marquee" + i + "_2");
+			
+				if (direction == "up")
+				{
+					if (obj2.offsetTop - obj.scrollTop <= 0)
+					{
+						obj.scrollTop -= (obj1.offsetHeight + 20);
+					}
+					else
+					{
+						var tmp = obj.scrollTop;
+						obj.scrollTop++;
+						if (obj.scrollTop == tmp)
+						{
+							obj.scrollTop = 1;
+						}
+					}
+				}
+				else
+				{
+					if (obj2.offsetWidth - obj.scrollLeft <= 0)
+					{
+						obj.scrollLeft -= obj1.offsetWidth;
+					}
+					else
+					{
+						obj.scrollLeft++;
+					}
+				}
+			}
+
+			function marqueeStart(i, direction)
+			{
+				var obj = document.getElementById("marquee" + i);
+				var obj1 = document.getElementById("marquee" + i + "_1");
+				var obj2 = document.getElementById("marquee" + i + "_2");
+
+				obj2.innerHTML = obj1.innerHTML;
+				var marqueeVar = window.setInterval("marquee("+ i +", '"+ direction +"')", 20);
+				obj.onmouseover = function()
+				{
+					window.clearInterval(marqueeVar);
+				}
+			
+				obj.onmouseout = function()
+				{
+					marqueeVar = window.setInterval("marquee("+ i +", '"+ direction +"')", 20);
+				}
+			}
+
+			function marqueeStart1(i, direction)
+			{
+				var obj = document.getElementById("marquee" + i);
+				var obj1 = document.getElementById("marquee" + i + "_1");
+				var obj2 = document.getElementById("marquee" + i + "_2");
+
+				obj2.innerHTML = obj1.innerHTML;
+				var marqueeVar = window.setInterval("marquee("+ i +", '"+ direction +"')", 20);
+				obj.onmouseover = function()
+				{
+					window.clearInterval(marqueeVar);
+				}
+				obj.onmouseout = function()
+				{
+					marqueeVar = window.setInterval("marquee("+ i +", '"+ direction +"')", 20);
+				}
+			}
+			marqueeStart(1, "right");
+			</script>
+	</body>
+</html>

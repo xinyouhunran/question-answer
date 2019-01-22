@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		function remove(arr, item) {
+			var reg = new RegExp(""+item+"","g");
+		    return arr.join("").replace(reg,"").split("");
+		}
+		console.log(remove([1,2,3,4,2],2));
+		
+		function truncate(arr) {
+		    return arr.slice(0,-1)
+		}
+		console.log(truncate([1,2,3,4]));
+		
+		function prepend(arr, item) {
+		    return [item,...arr]
+		}
+		console.log(prepend([1,2,3,4],10));
+		
+		function insert(arr, item, index) {
+			var arr1 = arr.slice(0,index);
+			var arr2 = arr.slice(index);
+		    arr1.push(item);
+		    return arr1.concat(arr2)
+		}
+		console.log(insert([1, 2, 3, 4], 'z', 2));
+		
+		function count(start, end) {
+			console.log(start++);
+		    var timer = setInterval(function(){
+		        if(start<=end){
+		            start++;          
+		        }else{
+		            clearInterval(timer);
+		        }
+		    },100)
+		    return {
+		        cancel:function(){
+		            clearInterval(timer)
+		        }
+		    }
+		}
+		count(1,4);
+		
+		function fizzBuzz(num) {
+			console.log(typeof num)
+	    if(num==null||typeof num!="number"){
+	    	return false;
+	    }else if(num%3==0&&num%5==0){
+	    	return "fizzbuzz";
+	    }else if(num%3==0){
+	    	return "fizz";
+	    }else if(num%5==0){
+	    	return "buzz";
+	    }else{
+	    	return num;
+	    }
+	}
+		console.log(fizzBuzz(15));
+		
+		var arr = [1,2,3];
+		console.log(...arr);
+		
+		function getUrlParam(sUrl, sKey) {
+    		var str = sUrl.split('#')[0].split('?')[1];
+    		var arr = str.split("&");
+    		if(sKey){
+    			var reg = new RegExp(""+sKey);
+    			var ar = [];
+    			for(var i in arr){
+    				if(reg.test(arr[i])){
+    					ar.push(arr[i].split("=")[1]);
+    				}
+    			}
+    			if(ar.length==1){
+    				return ar[0];
+    			}
+    			if(ar.length==0){
+    				return "";
+    			}
+    			if(ar.length>1){
+    				return ar;
+    			}
+    		}else{
+    			if(str == undefined || str == ""){
+		            return {};
+		        }
+    			var obj = {};
+    			for(var i in arr){
+    				if(!obj[arr[i].split("=")[0]]){
+    					obj[arr[i].split("=")[0]]=[];
+    				}
+    				obj[arr[i].split("=")[0]].push(arr[i].split("=")[1]);
+    				console.log(obj);
+    			}
+    			return obj;		
+    		}
+		}
+		console.log(getUrlParam("http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe"));
+		
+		Array.prototype.uniq = function () {
+			return [...new Set(this)];
+		}
+		console.log([false, true, undefined, null, NaN, 0, 1, {}, {}, 'a', 'a', NaN].uniq());
+		//[false, true, undefined, null, NaN, 0, 1, {}, {}, 'a']
+		
+		function functionFunction(str) {
+		    return function f(obj){
+		        return str + ', ' + obj;
+		       }
+		}
+		console.log(functionFunction('Hello')('world'));
+		
+		function useArguments() {
+		    var arg = arguments;
+		    var sum = 0;
+		    for(var i in arg){
+		    	sum+=arg[i];
+		    }
+		    return sum;
+		}
+		console.log(useArguments(1,2,3,4));
+		
+		function valueAtBit(num, bit) {
+    		var str = num.toString(2);
+    		console.log(str);
+    		return num.toString(2).charAt(str.length-bit);
+		}
+		console.log(valueAtBit(128,8));
+		
+		function convertToBinary(num) {
+			var str = num.toString(2);
+			console.log(str);
+			var arr = str.split("");
+			console.log(arr.length);
+			    while(arr.length<8){
+			        arr.splice(0,0,0);
+			    }
+			    return arr.join("");
+			}
+		console.log(convertToBinary(65));
+		
+		function multiply(a, b) {
+			if(a)
+			return a*b;
+		}
+		console.log(multiply(3,0.0001))
+		
+		function iterate(obj) {
+			return Object.entries(obj)
+			}
+		/*const obj = { foo: 'bar', baz: "baz" };
+		var arr = Object.entries(obj);
+		console.log(arr);
+		var obj1 = {}
+		for(var i in arr){
+			obj1[arr[i][0]]=arr[i][1];
+		}
+		delete obj1["undefined"];
+		console.log(obj1)*/
+		// [ ['foo', 'bar'], ['baz', 42] ]
+		
+		function containsRepeatingLetter(str) {
+		    var arr = str.split("");
+		    console.log(arr);
+		    for(var i = 0;i<arr.length;i++){
+		        if(arr[i]==arr[i+1]){
+		            flag = true;
+		        }else{
+		            return false;
+		        }
+		    }
+		}
+		
+		function captureThreeNumbers(str) {
+			if(/\d{3}/.test(str)){
+				return str.match(/\d{3}/)[0];
+			}else{
+				return false;
+			}
+		}
+		captureThreeNumbers("9876543");
+		
+		Array.prototype.delRepeat = function(){
+		    var obj = {};
+		    for(var i in this){
+		    	if(!obj[this[i]]){
+		    		obj[this[i]]=1;
+		    	}else{
+		    		obj[this[i]]++;
+		    	}
+		    }
+		    var arr = [];
+		    for(var key in obj){
+		    	if(obj[key]>1){
+		    		arr.push(parseInt(key));
+		    	}
+		    }
+		    return arr;
+		}
+		console.log([1,2,3,4,3,4].delRepeat());
+		
+		function mySort() {
+		    var tags = new Array();
+		    tags = Array.from(arguments);
+		    tags = tags.sort(function(a,b){
+		        return a-b;
+		    })
+		    return tags;
+		}
+		var result = mySort(50,11,16,32,24,99,57,100);//传入参数个数不确定
+		console.log(result);
+		</script>
+	
+</html>
