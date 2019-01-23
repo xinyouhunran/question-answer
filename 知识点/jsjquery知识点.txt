@@ -159,7 +159,7 @@ window.parent.document.getElementById("id");子iframe获取父级的元素。
 
 38.要习惯使用axios去获取数据（https://www.kancloud.cn/yunye/axios/234845）
 
-39.正则表达式 ？代表前面的字符只能匹配一次。
+39.正则表达式 ？代表前面的字符只能匹配一次或零次。
 
 40.str.match（/reg/）得到一个数组，数组第一个值为结果，第二个值为子表达式，且它会按照最长匹配的字符串进行获取。
 
@@ -296,3 +296,17 @@ addEventListener('keyup', function (event) {
 80.js将0开头的数默认为8进制的数
 
 81.正则表达式模式修饰符s的作用主要是能够匹配换行，在处理换行数据时，通常会用到。
+
+82.jQuery限制字符字数的方法（多行文本超出...）
+//限制字符个数
+$(".zxx_text_overflow").each(function(){
+  var maxwidth=23;
+  if($(this).text().length > maxwidth){
+    $(this).text($(this).text().substring(0,maxwidth));
+    $(this).html($(this).html()+'...');
+  }
+});
+
+83.[\u4e00-\u9fa5]表示中文字符匹配
+
+84.this.replace(/^\s*(.*?)\s*$/, '$1')；去掉前后空格，$1表示第一个括号里的值。
