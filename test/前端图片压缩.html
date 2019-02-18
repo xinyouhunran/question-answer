@@ -58,6 +58,8 @@
                 var base64 = canvas.toDataURL('image/jpeg', quality);
                 // 回调函数返回base64的值
                 console.log(base64);
+                
+               	//console.log(dataURLtoFile(base64,"12345"));
                 callback(base64);
             }
         }
@@ -76,8 +78,15 @@
             }
             return new Blob([u8arr], {type:mime});
         }
-
-
+		
+		function dataURLtoFile(dataurl, filename) {//将base64转换为文件
+		    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+		    bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+		    while(n--){
+		        u8arr[n] = bstr.charCodeAt(n);
+		    }
+		    return new File([u8arr], filename, {type:mime});
+		}
         var xhr;
         //上传文件方法
         function UpladFile() {

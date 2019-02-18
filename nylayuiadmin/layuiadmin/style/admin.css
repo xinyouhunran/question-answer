@@ -213,8 +213,8 @@ html{background-color: #f2f2f2; color: #666;}
 .layadmin-pagetabs .layui-tab{margin: 0; overflow: hidden;}
 .layadmin-pagetabs .layui-tab-title{height: 40px; border: none;}
 .layadmin-pagetabs .layui-tab-title li{min-width: 0; line-height: 40px; max-width: 160px; text-overflow: ellipsis; padding-right: 40px; overflow: hidden; border-right: 1px solid #f6f6f6; vertical-align: top;}
-.layadmin-pagetabs .layui-tab-title li:first-child{ padding-right: 15px;}
-.layadmin-pagetabs .layui-tab-title li:first-child .layui-tab-close{display: none;}
+.layadmin-pagetabs .layui-tab-title li:first-child{ padding-right: 35px;}
+/*.layadmin-pagetabs .layui-tab-title li .layui-tab-close{display: none;}*//*:first-child*/
 .layadmin-pagetabs .layui-tab-title li .layui-tab-close{position: absolute; right: 8px; top: 50%; margin: -7px 0 0 0; width: 16px; height: 16px; line-height: 16px; border-radius: 50%; font-size: 12px;}
 .layadmin-pagetabs .layui-tab-title li:after{content:''; position: absolute; top: 0; left: 0; width: 0; height: 2px; border-radius: 0; background-color: #292B34; transition: all .3s; -webkit-transition: all .3s;}
 .layadmin-pagetabs .layui-tab-title li:hover:after{width: 100%;}

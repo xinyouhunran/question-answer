@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>首页</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+    <style>
+        .my-border-black {
+            border: solid 0.5px;
+        }
+        cite{font-size: 22px;color:#fff;}
+        .layui-card-header{font-size: 22px;}
+        .layuiadmin-card-list {
+            padding: 25px;
+        }
+        .layui-card{    border-radius: 6px;}
+        .layuiadmin-card-text{    border-radius: 6px;}
+        .myheader{position: relative;margin-left: 11px;}
+        .layui-card-header .myheader span{font-size: 18px;}
+        .layui-card-header .myheader p{float: left;border-left: 4px solid #1BA2F4;height: 20px;margin-right: 10px;margin-top: 11px;}
+        .layui-card-header .myheader i{position: absolute;height: 28px;line-height:28px;background: url(img/red.png) no-repeat center center;width: 24px;text-align: center;color: #fff;font-size: 14px;font-style: normal;}
+    	.layui-card-header .myheader a{float: right;color: #1BA2F4;font-size: 14px;}
+    	.myml{margin-left: 5px;max-height: 332px;overflow: auto;}
+    	.myul li{border-bottom:1px solid #EAEAEA;padding: 10px 0px;}
+    	.mymb{margin-bottom: 15px;}
+    	.myul p{color: #000;overflow: hidden;}
+    	.myul p a{display: inline-block;max-width: 364px;overflow: hidden;text-overflow: ellipsis;white-space: pre;}
+    	.myul p span{color:#898989;}
+    	.myul p span:first-of-type{float: right;margin-right: 10px;}	
+    	.myul p span:last-of-type{float: right;margin-right: 14px;}
+    	.myul p span:nth-of-type(2){float: right;margin-right: 14px;}
+    	.mytag a{display: inline-block;width: 44px;height: 16px;color: #fff;text-align: center;cursor:default;line-height: 16px;font-size: 12px;}
+    	.mytag .jinji{background-color: #FE0000;}
+    	.mytag .teji{background-color: #FF6601;}
+    	.mytable{text-align: center;}
+    	.mytable .layui-row div{padding: 10px 0px;border-bottom: 1px solid #EAEAEA;}
+    	.mytable .layui-row div:first-of-type{border-left: 1px solid #EAEAEA;border-right: 1px solid #EAEAEA;background-color: #FAFAFA;}
+    	.mytable .layui-row div:last-of-type{border-right: 1px solid #EAEAEA;}
+    	.mytable .layui-row:first-of-type div{border-top:1px solid #EAEAEA;}
+    	.myimg{text-align: center;}
+    	.myimg .layui-row div{margin-bottom: 25px;}
+    	.work{width: 100%;padding: 13px;text-align: center;background-color: #1BA2F4;color: #fff;display: block;}
+    	.work:hover{color: #fff;}
+    </style>
+</head>
+
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+    	<div class="layui-col-md8">
+	      <div class="layui-row mymb">
+	      	<div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                       	 <div class="myheader"><p></p><span>待批</span><i>4</i><a href="">更多>></a></div>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row layui-col-space10 myml">
+                            <ul class="myul">
+                            	<li class="layui-row">
+                            		<div class="layui-col-md1 mytag"><a href="javascript:void(0)" class="jinji">紧急</a></div>
+                            		<div class="layui-col-md11">
+                            			<p><a href="">关于召开广东省两会的会议通知</a><span>14:20</span><span>2019-1-23</span><span>郭亮</span></p>
+                            		</div>
+                            	</li>
+                            	<li class="layui-row">
+                            		<div class="layui-col-md1 mytag"><a href="javascript:void(0)" class="jinji">紧急</a></div>
+                            		<div class="layui-col-md11">
+                            			<p><a href="">关于召开广东省两会的会议通知</a><span>14:20</span><span>2019-1-23</span><span>郭亮</span></p>
+                            		</div>
+                            	</li>
+                            	<li class="layui-row">
+                            		<div class="layui-col-md1 mytag"><a href="javascript:void(0)" class="jinji">紧急</a></div>
+                            		<div class="layui-col-md11">
+                            			<p><a href="">关于召开广东省两会的会议通知</a><span>14:20</span><span>2019-1-23</span><span>郭亮</span></p>
+                            		</div>
+                            	</li>
+                            	<li class="layui-row">
+                            		<div class="layui-col-md1 mytag"><a href="javascript:void(0)" class="jinji">紧急</a></div>
+                            		<div class="layui-col-md11">
+                            			<p><a href="">关于召开广东省两会的会议通知</a><span>14:20</span><span>2019-1-23</span><span>郭亮</span></p>
+                            		</div>
+                            	</li>
+                            	<li class="layui-row">
+                            		<div class="layui-col-md1 mytag"><a href="javascript:void(0)" class="jinji">紧急</a></div>
+                            		<div class="layui-col-md11">
+                            			<p><a href="">关于召开广东省两会的会议通知</a><span>14:20</span><span>2019-1-23</span><span>郭亮</span></p>
+                            		</div>
+                            	</li>
+                            	<li class="layui-row">
+                            		<div class="layui-col-md1 mytag"><a href="javascript:void(0)" class="jinji">紧急</a></div>
+                            		<div class="layui-col-md11">
+                            			<p><a href="">关于召开广东省两会的会议通知</a><span>14:20</span><span>2019-1-23</span><span>郭亮</span></p>
+                            		</div>
+                            	</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+	      </div>
+	      <div class="layui-row mymb">
+	      	<div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                       	 <div class="myheader"><p></p><span>待签</span><i>4</i><a href="">更多>></a></div>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row layui-col-space10 myml">
+                            <ul class="myul">
+                            	<li class="layui-row">
+                            		<div class="layui-col-md1 mytag"><a href="javascript:void(0)" class="teji">特急</a></div>
+                            		<div class="layui-col-md11">
+                            			<p><a href="">关于召开广东省两会的会议通知</a><span>14:20</span><span>2019-1-23</span><span>郭亮</span></p>
+                            		</div>
+                            	</li>
+                            	<li class="layui-row">
+                            		<div class="layui-col-md1 mytag"><a href="javascript:void(0)" class="teji">特急</a></div>
+                            		<div class="layui-col-md11">
+                            			<p><a href="">关于召开广东省两会的会议通知</a><span>14:20</span><span>2019-1-23</span><span>郭亮</span></p>
+                            		</div>
+                            	</li>
+                            	<li class="layui-row">
+                            		<div class="layui-col-md1 mytag"><a href="javascript:void(0)" class="teji">特急</a></div>
+                            		<div class="layui-col-md11">
+                            			<p><a href="">关于召开广东省两会的会议通知</a><span>14:20</span><span>2019-1-23</span><span>郭亮</span></p>
+                            		</div>
+                            	</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+           </div>
+	      </div>
+	      <div class="layui-row mymb">
+	      	<div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                       	 <div class="myheader"><p></p><span>催办</span><i>4</i><a href="">更多>></a></div>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row layui-col-space10 myml">
+                            <ul class="myul">
+                            	<li class="layui-row">
+                            		<div class="layui-col-md1 mytag"><a href="javascript:void(0)" class="jinji">紧急</a></div>
+                            		<div class="layui-col-md11">
+                            			<p><a href="">关于召开广东省两会的会议通知</a><span>14:20</span><span>2019-1-23</span><span>郭亮</span></p>
+                            		</div>
+                            	</li>
+                            	<li class="layui-row">
+                            		<div class="layui-col-md1 mytag"><a href="javascript:void(0)" class="jinji">紧急</a></div>
+                            		<div class="layui-col-md11">
+                            			<p><a href="">关于召开广东省两会的会议通知</a><span>14:20</span><span>2019-1-23</span><span>郭亮</span></p>
+                            		</div>
+                            	</li>
+                            	<li class="layui-row">
+                            		<div class="layui-col-md1 mytag"><a href="javascript:void(0)" class="jinji">紧急</a></div>
+                            		<div class="layui-col-md11">
+                            			<p><a href="">关于召开广东省两会的会议通知</a><span>14:20</span><span>2019-1-23</span><span>郭亮</span></p>
+                            		</div>
+                            	</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+           </div>
+	      </div>
+	    </div>
+	    <div class="layui-col-md4">
+	      		<div class="layui-card">
+                    <div class="layui-card-header">
+                       	 <div class="myheader"><p></p><span>今日值班</span></div>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-fluid mytable">
+                        	<div class="layui-row">
+                        		<div class="layui-col-md5">
+                        			<span>值班局领导</span>
+                        		</div>
+                        		<div class="layui-col-md7">
+                        			<span>李某某</span>
+                        		</div>
+                        	</div>
+                        	<div class="layui-row">
+                        		<div class="layui-col-md5">
+                        			<span>值班局领导</span>
+                        		</div>
+                        		<div class="layui-col-md7">
+                        			<span>李某某</span>
+                        		</div>
+                        	</div>
+                        	<div class="layui-row">
+                        		<div class="layui-col-md5">
+                        			<span>值班局领导</span>
+                        		</div>
+                        		<div class="layui-col-md7">
+                        			<span>李某某</span>
+                        		</div>
+                        	</div>
+                        	<div class="layui-row">
+                        		<div class="layui-col-md5">
+                        			<span>值班局领导</span>
+                        		</div>
+                        		<div class="layui-col-md7">
+                        			<span>李某某</span>
+                        		</div>
+                        	</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                       	 <div class="myheader"><p></p><span>其他业务事项</span></div>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-fluid myimg">
+                        	<div class="layui-row">
+                        		<div class="layui-col-md6">
+                        			<a href=""><img src="img/dxfw.png"/></a>
+                        		</div>
+                        		<div class="layui-col-md6">
+                        			<a href=""><img src="img/czj.png"/></a>
+                        		</div>
+                        		<div class="layui-col-md6">
+                        			<a href=""><img src="img/wdrw.png"/></a>
+                        		</div>
+                        		<div class="layui-col-md6">
+                        			<a href=""><img src="img/dzyj.png"/></a>
+                        		</div>
+                        		<div class="layui-col-md6">
+                        			<a href=""><img src="img/gstp.png"/></a>
+                        		</div>
+                        		<div class="layui-col-md6">
+                        			<a href=""><img src="img/wdwj.png"/></a>
+                        		</div>
+                        	</div>
+                        </div>	
+                    </div>
+                </div>
+                <div class="layui-col-md11">
+                	<a href="" class="work">最近工作查看</a>
+                </div>
+	    </div>
+    </div>
+    
+</div>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+    var operateType = 0;//初始化跟目录
+    var buttonType = 0;
+    var tableObj;
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'jquery', "console"], function () {
+        var $ = layui.jquery
+                , admin = layui.admin
+                , form = layui.form;
+        //获取待办数量
+//        alert(layui.data(layui.setter.tableName)[layui.setter.request.tokenName])
+        admin.req({
+            type: "post",
+            url: layui.setter.serverBase + "act/task/count?access_token="+layui.data(layui.setter.tableName)[layui.setter.request.tokenName],
+            done: function (res) {
+//				alert(JSON.stringify(res));
+                if (res.msg == "success") {
+                    var todoCount = res.data.todoCount;
+                    var doingCount = res.data.doingCount;
+                    var finishCount = res.data.finishCount;
+                    var passReadCount = res.data.passReadCount;
+                    $("#todo_count").html(todoCount);
+                    $("#doing_count").html(doingCount);
+                    $("#finish_count").html(finishCount);
+                    $("#passRead_count").html(passReadCount);
+                }
+            }
+        });
+        //获取通知通告
+        admin.req({
+            type: "get",
+            url: layui.setter.serverBase + "oa/notify/notifyList" + "?access_token=" + "b3b287a1ed877ea7de581aff3e80a95e" + "&pageNo=1&pageSize=10",
+            done: function (res) {
+                var title = res.result.records[0].title;
+                $("#tztg_one").html(title);
+                $("#tztg_one").click(function () {
+//                            window.location.href = "console.html" + "?id =" + res.result.records[0].id;
+                            layer.open({
+                                type: 2
+                                , title: '通告详情'
+                                , content: '../oa/notify/notify-view.html?oaNotifyId=' + res.result.records[0].id
+                                , maxmin: true
+                                , area: ['60%', '80%']
+                            });
+                        }
+                );
+
+            }
+        });
+
+
+    });
+    function qxjsq() {
+        alert(1112);
+    }
+
+
+</script>
+</body>
+</html>
