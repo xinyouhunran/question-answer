@@ -48,11 +48,19 @@
 	    	$("img").height(h);
 	    })*/
 	    
-	    var str = "Plagiogyria stenoptera var. major";
+	    /*var str = "Plagiogyria stenoptera var. major";
 	    var str1 = "Pteris vittata f. cristata";
 	    var regExp = /(.+)(var\.|f\.|subsp\.|\"X|Sect\.)(.+)/;
 	    var s = str.match(regExp);
 	    var s1 = str1.match(regExp);
-	    console.log(s,s1);
+	    console.log(s,s1);*/
+	   
+	   /*var regExp = /^([a-hA-H]|[j-nJ-N]|[p-zP-Z])/;
+	   var str = "1qwe";
+	   console.log(regExp.test(str));*/
+	  
+	   var regExp = /([a-zA-Z]{0,2}\d{2,4}){4}/;
+	   var str = "aa11";
+	   console.log(regExp.test(str));
 	</script>
 </html>
