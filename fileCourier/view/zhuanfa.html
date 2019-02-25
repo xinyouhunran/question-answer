@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<link rel="stylesheet" type="text/css" href="../static/bootstrap-3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/layui-v2.4.5/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/myfile.css"/>
+		<link rel="stylesheet" type="text/css" href="../static/ztree/css/zTreeStyle/zTreeStyle.css">
+		<style type="text/css">
+			#test1 img{width: 100%;height: 100%;display: inline-block}
+			#test1{width: 30%;height: 42px;text-align: center;line-height: 42px;color: #555555;cursor: pointer;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+			#fabu{width: 126px;height: 39px;line-height: 39px;background-color: #5B90FF;}
+			#que{float:right;width: 40%;height: 36px;background-color: #fff;color: #c2cad8;border: 1px solid #c2cad8;margin-right: 5%;}
+			#que:hover{background-color: #5B90FF;color: #fff;}
+			.toolbar {
+				border: 1px solid #ccc;
+				width: 100%;
+			}
+			.editarea {
+				min-height: 200px;
+				overflow: auto;
+				border: 1px solid #ccc;
+				height: 200px;
+				width: 100%;
+			}
+			
+			.editarea img {
+				max-width: 200px;
+				max-height: 200px;
+			}
+			.editarea iframe {
+				/* 在此代码区域样式 */
+				width: 480px;
+				height: 300px;
+				border: 1px solid #ccc;
+			}
+			.w-e-toolbar .w-e-menu{padding: 5px!important;}
+		</style>
+	</head>
+	<body>
+		<div class="topTitle">
+			<span>请选择联系人</span>
+		</div>
+		<div class="content clearFloat send" style="height: 100%;margin:0 auto;">
+			<div class="personList" style="width: 100%;margin:0 auto;min-height:600px;">
+				<div class="search">
+					<input type="text" name="" id="key" placeholder="查找联系人..." />
+				</div>
+				<div class="jzsstation">
+					<div id="" style="overflow: hidden;">
+						<h4 style="float: left;">晋中市公安局</h4>
+						<button type="button" class="layui-btn" id="que">确定勾选</button>
+					</div>
+					<div class="person">
+						<ul id="deptTree" class="ztree">
+							<!--<li><span><img src="../static/img/jia.png"/></span>政工监督室<strong></strong></li>
+							<li><span><img src="../static/img/jia.png"/></span>政工监督室<strong></strong>
+								<ul>
+									<li><span><img src="../static/img/jia.png"/></span>政工监督室<strong></strong></li>
+									<li><span><img src="../static/img/jia.png"/></span>政工监督室<strong></strong></li>
+								</ul>
+							</li>-->
+						</ul>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<script src="../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/js/jquery.form.min.js" type="text/javascript"></script>
+		<script src="../static/layui-v2.4.5/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/js/myfile.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../static/wangEditor-3.1.1/release/wangEditor.min.js"></script>
+		<script src="../static/js/editorConfig.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="../static/ztree/js/jquery.ztree.core.min.js" type="text/javascript"></script>
+		<script src="../static/ztree/js/jquery.ztree.exhide.min.js" type="text/javascript"></script>
+		<script src="../static/ztree/js/jquery.ztree.excheck.min.js" type="text/javascript"></script>
+		<script src="../static/ztree/js/fuzzysearch.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			layui.use(['upload','layer','form'],function(){
+				var $ = layui.jquery
+				,form = layui.form;
+				
+				//右侧部门人员树
+				var dept_ztree;
+				var dept_setting = {
+					data:{
+						simpleData:{
+							enable:true,
+							idKey:"id",
+							pIdKey:"parentId",
+							rootPID:1
+						},
+						key:{
+							name:"name"
+						}
+					},
+					callback:{
+						onCheck:function(event,treeId,treeNode){
+							var status = treeNode.getCheckStatus();//返回json对象
+							//treeNode.check_Child_State为-1时，代表没有子节点或子节点被设置为nocheck=true
+
+						}
+					},
+					check:{
+						enable:true,
+						chkStyle:"checkbox",
+						chkboxType:{"Y":"","N":""}//设置勾选操作是否影响子级或父级，p代表父，s代表子，为""是都不影响
+					},
+					view:{
+						showIcon:false,//不显示图标
+						//selectedMulti:false//不可多选
+						dblClickExpand:false,//双击不展开
+						fontCss:{},//定义文字和样式，a标签
+						nameIsHtml:true//允许name为html
+					}
+				}
+
+				$.ajax({
+					type:"POST",
+					url:"http://10.97.81.26:8000/sendfiles/sendFiles/treeData",
+					success:function(data){
+						console.log(JSON.parse(data).obj);
+						menu_ztree = $.fn.zTree.init($("#deptTree"),dept_setting,JSON.parse(data).obj.treeData)
+						fuzzySearch('deptTree','#key',null,true); //初始化模糊搜索方法
+					}
+				})
+				
+				var reiverDeptlds = "";
+				var receiverLogin = "";
+				$("#que").click(function(){
+					var treeObj = $.fn.zTree.getZTreeObj("deptTree");
+					var nodes = treeObj.getCheckedNodes(true);
+					
+					for(var i in nodes){
+						if(nodes[i].children){
+							if(reiverDeptlds==""){
+								reiverDeptlds+=nodes[i].id;
+							}else{
+								reiverDeptlds=reiverDeptlds+","+nodes[i].id
+							}
+							
+						}else{
+							if(receiverLogin==""){
+								receiverLogin+=nodes[i].name;
+							}else{
+								receiverLogin=receiverLogin+","+nodes[i].name
+							}
+						}
+					}
+					console.log(reiverDeptlds);
+					console.log(receiverLogin);
+					if(reiverDeptlds==""&&receiverLogin==""){
+						return layer.msg("请选择收件人");
+					}/*else{
+						$("input[name='receiver']").val(reiverDeptlds+receiverLogin);
+					}*/
+					var search = location.search.slice(1);
+					console.log(search);
+					var date1 = new Date();
+					var time1 = getnewDate(date1);
+					var userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+					$.ajax({
+						type:"post",
+						url:'http://10.97.81.26:8000/sendfiles/sendFiles/redictFiles',
+						data:{
+							senderLogid:userInfo.USER_LOGIN_ID,
+							receiverLogin:receiverLogin,
+							reiverDeptlds:reiverDeptlds,
+							id:search
+						},
+						success:function(data){
+							console.log(data);
+							layer.msg("转发成功");
+						}
+					})
+				})
+				
+				//调整日期格式
+					function getnewDate(mydate){
+						console.log(mydate.__proto__);
+						var lastY = mydate.getFullYear();
+						var lastM = mydate.getMonth()+1;
+						var lastD = mydate.getDate();
+						var lastH = mydate.getHours();
+						var lastm = mydate.getMinutes();
+						var lastS = mydate.getSeconds();
+						var LDate = lastY + "-" + (lastM < 10 ? "0" + lastM : lastM) + "-" +(lastD < 10 ? "0" + lastD : lastD)+" "+(lastH < 10 ? "0" + lastH :  lastH)+":"+(lastm < 10 ? "0" + lastm : lastm)+":"+(lastS < 10 ? "0" + lastS : lastS);
+						return LDate;
+					}
+			})
+		</script>
+	</body>
+</html>

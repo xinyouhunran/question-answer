@@ -14,22 +14,28 @@
 			#fabu{width: 126px;height: 39px;line-height: 39px;background-color: #5B90FF;}
 			#que{width: 80%;height: 36px;position: absolute;bottom: 20px;background-color: #fff;color: #c2cad8;left: 50%;margin-left: -40%;border: 1px solid #c2cad8;}
 			    
-			.keywords input{width: 370px;float: left;}
+			.keywords input{width: 290px;float: left;}
 			.keywords button{float: right;width: 100px;background-color: #5b9cff;}
 			.layui-laypage-em{background-color: #5b9cff!important;}
 			.content .layui-btn{background-color: #fff;color: #555555;}
 			.layui-btn-container img{margin-right: 5px;}
-			.content .layui-inline{position: absolute;right: 40px;z-index: 999;top: 20px;line-height: 38px;}
+			.content .layui-inline{position: absolute;right: 5px;z-index: 999;top: 21px;line-height: 38px;}
 			.content .layui-inline input{float: left;width: 200px;}
 			.content .layui-inline span{float: left;margin: 0 8px;color: #555555;}
+			.layui-table-tool-self{display: none;}
+			.layui-table-tool button{border: 1px solid #e6e6e6;}
+			.layui-table-view .layui-table td, .layui-table-view .layui-table th{border-right: none;} 
+			.layui-form-checkbox[lay-skin=primary]{min-width: 14px;min-height: 14px;}
+			.layui-table-view .layui-form-checkbox[lay-skin=primary] i{width: 14px;height: 14px;}
+			.layui-form-checked[lay-skin=primary] i {border-color: #5b9cff;background-color: #5b9cff;color: #fff;} 
 		</style>
 	</head>
 	<body>
 		<div class="topTitle">
-			<span>已发箱</span>
+			<span><a href="alreadySend.html">已发箱</a></span>
 			<div class="keywords">
-				<input type="text" name="" id="" placeholder="请输入关键词" class="layui-input"/>
-				<button type="button" class="layui-btn">搜索</button>
+				<input type="text" name="" id="keyvalue" placeholder="请输入关键词" class="layui-input"/>
+				<button type="button" class="layui-btn" id="keysearch">搜索</button>
 			</div>
 		</div>
 		<div class="content clearFloat">
@@ -38,6 +44,7 @@
 			  <input type="text" class="layui-input" id="date1">
 			  <span>至</span>
 			  <input type="text" class="layui-input" id="date2">
+			  <button type="button" class="layui-btn shaixuan"><i class="layui-icon layui-icon-search"></i></button>
 			</div>
 			<table id="receiveTable" lay-filter="receiveTable"></table>
 			<!--分页-->
@@ -55,8 +62,8 @@
 			  <div class="layui-btn-container">		  
 			    <button class="layui-btn" lay-event="del"><img src="../static/img/shanchu.png"/>删除</button>
 			    <button class="layui-btn" lay-event="zhuanfa"><img src="../static/img/zhuanfa.png"/>转发</button>
-			    <button class="layui-btn" lay-event="yidu"><img src="../static/img/yidu.png"/>已读</button>
-			    <button class="layui-btn" lay-event="weidu"><img src="../static/img/weidu.png"/>未读</button>
+			    <!-- <button class="layui-btn" lay-event="yidu"><img src="../static/img/yidu.png"/>已读</button>
+			    <button class="layui-btn" lay-event="weidu"><img src="../static/img/weidu.png"/>未读</button> -->
 			  </div>
 			</script>
 			
@@ -68,6 +75,10 @@
 			    {{d.sign}}(普通用户)
 			  {{#  } }}
 			</script>-->
+			<script type="text/html" id="isNow">
+			  {{d.createTime.split(" ")[0]}}
+			    
+			</script>
 		</div>
 		<script src="../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../static/layui-v2.4.5/layui/layui.js" type="text/javascript" charset="utf-8"></script>
@@ -86,66 +97,58 @@
 				laydate.render({
 					elem:"#date2"
 				})
+				//取当前日期和前一个月日期
+				var date1 = new Date();
+				var startDate = new Date(date1 - 1000 * 60 * 60 * 24 * 30);
+				//var endDate = new Date(date1 - 1000 * 60 * 60 * 24 * 1);
+				var time1 = getnewDate(startDate);
+				$("#date1").val(time1);
+				var time2 = getnewDate(date1);
+				$("#date2").val(time2);
 				
-				upload.render({
-				    elem: '#test1'
-				    //,url: '/upload/'
-				    ,multiple: true
-				    ,auto:false//不自动上传
-				    ,bindAction:'#fabu'
-				    ,accept:'file'
-				    //,acceptMime: 'image/*'
-				    ,size:2000
-				    ,choose:function(obj){
-				    	//预读本地文件示例，不支持ie8
-				      obj.preview(function(index, file, result){
-				        //$('#test1').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
-				        $('#test1').html(file.name);
-				      });
-				    }
-				    ,before: function(obj){
-				      
-				    }
-				    ,done: function(res){
-				      //上传完毕
-				    }
-				  });
 				
 				var curnum = 1;//记录第几页的数据
-				var limitcount = 2;//每页限制条数
+				var limitcount = 10;//每页限制条数
 				
-				roomInit(curnum,limitcount);
-				function roomInit(start,limitSize){//第几页，显示条数
+				var userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+				roomInit(curnum,limitcount,$("#date1").val(),$("#date2").val());
+				function roomInit(start,limitSize,time1,time2,tit){//第几页，显示条数
 				table.render({
 				    elem: '#receiveTable'
 				    ,height: 684
-				    ,url: 'data.json' //数据接口
-				    ,title: '警务室'
+				    ,url: 'http://10.97.81.26:8000/sendfiles/sendFiles/getSendFiles' //数据接口
+				    ,title: '已发箱'
 				    //,page: true //开启分页
 				    ,toolbar: '#toolbar' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
 				    //,totalRow: true //开启合计行
+				    ,where:{loginId:userInfo.USER_LOGIN_ID,pageNo:start,pageSize:limitSize,startTime:time1,endTime:time2,title:tit}
 				    ,cols: [[ //表头
 				      {type: 'checkbox',width:'10%'}
-				      ,{field: 'id', title: '<img src="../static/img/weidu.png" style="margin-right:5px"/><img src="../static/img/lianjie_lan.png"/>', width:'10%'}
-				      ,{field: 'username', title: '发件人', width:'20%',style:"height:60px;"}
-				      ,{field: 'experience', title: '主题', width: '40%'}
-				      ,{field: 'sex', title: '时间', width:'20%',edit:"text"}
+				      /*,{field: 'sendType', title: '<img src="../static/img/weidu.png" style="margin-right:5px"/><img src="../static/img/lianjie_lan.png"/>', width:'10%'}*/
+				      ,{field: 'receiverLogin', title: '收件人', width:'20%',/*style:"height:60px;"*/}
+				      ,{field: 'titile', title: '主题', width: '50%',style:"color:#5b9cff;cursor:pointer"}
+				      ,{field: 'createTime', title: '时间', width:'20%',templet:"#isNow"}
 				    ]],
 				   response: {
-					   statusName: 'code' //规定数据状态的字段名称，默认：code
-					    ,statusCode: 200 //规定成功的状态码，默认：0
+					   statusName: 'success' //规定数据状态的字段名称，默认：code
+					    ,statusCode: true //规定成功的状态码，默认：0
 					    ,msgName: 'msg' //规定状态信息的字段名称，默认：msg
-					    ,dataName: 'data' //规定数据列表的字段名称，默认：data
+					    ,dataName: 'obj' //规定数据列表的字段名称，默认：data
 					 }
 				   ,done:function(res,curr,count){
-				   		$(".layui-table-tool-self").hide();
+				   		//$(".layui-table-tool-self").hide();
+				   		//console.log(res);
+				   		var titile = $("[data-field='titile']");
+					    for(var i=1;i<=res.obj.length;i++){
+					    	$("[data-field='titile']").eq(i).data("contentId",`${res.obj[i-1].id}`);
+					    }
 				    	laypage.render({
 						  	elem:"roomPage",
-						  	count:res.total,
+						  	count:res.count,
 						  	curr:curnum,
-						  	limit:2,
-						  	limits:[2,4,6],
-						  	layout: ['prev', 'page', 'next', 'skip','count','limit'],
+						  	limit:10,
+						  	limits:[5,10,20],
+						  	layout: ['prev', 'page', 'next', 'skip','count'],
 						  	jump:function(obj,first){
 						  		if(!first){
                                 curnum = obj.curr;
@@ -153,36 +156,105 @@
                                 //console.log("curnum"+curnum);
                                 //console.log("limitcount"+limitcount);
                                 //layer.msg(curnum+"-"+limitcount);
-                                roomInit(curnum,limitcount);
+                                roomInit(curnum,limitcount,time1,time2,$("#keyval").val());
                            		}
 						  	}
 						  })
 				    }
 				  });
 				 }
+				 $("#keysearch").click(function(){
+				  	var value = $("#keyval").val();
+				  	roomInit(curnum,limitcount,$("#date1").val(),$("#date2").val(),value);
+				  })
+				 $("body").on("click","td[data-field='titile']",function(){
+				 	//console.log($(this));
+				 	var id = $(this).data("contentId");
+				 	location.href = "detial.html?Id="+id;
+				 })
+
+				 $(".shaixuan").click(function(){
+				 	roomInit(curnum,limitcount,$("#date1").val(),$("#date2").val());
+				 })
 				  //监听头工具栏事件
 				  table.on('toolbar(receiveTable)', function(obj){
 				    var checkStatus = table.checkStatus(obj.config.id)
 				    ,data = checkStatus.data; //获取选中的数据
-				    console.log(obj);
+				    //console.log(checkStatus);
 				    switch(obj.event){
-				      case 'add':
-				        layer.msg('添加');
-				      break;
-				      case 'print':
-				      	var str = myhtml = $("body").html();
-				      	$("#mydiv").html(str);
-				        window.print();
+				      case 'zhuanfa':
+				      	if(data.length === 0){
+				          return layer.msg('请选择一行');
+				        } else{
+				        	var ids = "";
+				        	layui.each(data, function(index, item){ 
+				        		//console.log(index);
+								if(index==0){
+									ids+=item.id;
+								}else{
+									ids=ids+","+item.id;
+								}
+									
+						    });
+						    layer.open({
+						    	title:"联系人",
+						    	type:2,
+						    	content:"zhuanfa.html?"+ids,
+						    	area:["600px","758px"]
+						    })
+				        }
 				      break;
 				      case 'del':
 				        if(data.length === 0){
-				          layer.msg('请选择一行');
+				          return layer.msg('请选择数据');
 				        } else {
-				          layer.msg('删除');
+				        	var ids = "";
+				        	layui.each(data, function(index, item){ 
+				        		//console.log(index);
+								if(index==0){
+									ids+=item.id;
+								}else{
+									ids=ids+","+item.id;
+								}
+									
+						    });
+				            /*var Ids = new Array();
+						    layui.each(data, function(index, item){ 
+									Ids.push(item.id);
+						    });
+					    	console.log(Ids);
+					    	var obj = {id:JSON.stringify(Ids)}
+					    	console.log(obj);*/
+						    layer.confirm('确定删除吗？', function(index) {
+						    //console.log(ids);	          
+					          $.ajax({
+								url:'http://10.97.81.26:8000/sendfiles/sendFiles/deleteFiles'
+								,type:'post'
+							    ,data:{
+							    	ids:ids,
+							    	readLogin:userInfo.USER_LOGIN_ID
+							    }
+							    ,success:function(res){
+									roomInit(curnum,limitcount,$("#date1").val(),$("#date2").val());
+									layer.msg('已删除');			 
+								}
+							  });
+							  
+						    });
 				        }
 				      break;
+				      
 				    };
 				  });
+
+				  //调整日期格式
+					function getnewDate(mydate){
+						var lastY = mydate.getFullYear();
+						var lastM = mydate.getMonth()+1;
+						var lastD = mydate.getDate();
+						var LDate = lastY + "-" + (lastM < 10 ? "0" + lastM : lastM) + "-" +(lastD < 10 ? "0" + lastD : lastD);
+						return LDate;
+					}
 			})
 		</script>
 	</body>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../static/layui-v2.4.5/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/myfile.css"/>
+		<style type="text/css">
+			.layui-form .layui-input-block{width: 70%;}
+			.layui-form .layui-form-item{width: 50%;}
+		</style>
+	</head>
+	<body>
+		<div class="topTitle">
+			<span>修改密码</span>
+		</div>
+		<form action="" method="post" class="layui-form">
+					<div class="layui-form-item" style="margin-top: 30px;">
+						<label class="mylabel">原密码:</label>
+						<div class="layui-input-block">  
+							<!--class="layui-disabled"样式不错-->
+						  	<input type="password" name="oldpass" autocomplete="off" class="layui-input" placeholder="" lay-verify="pass">
+						</div>	
+					</div>
+					<div class="layui-form-item">
+						<label class="mylabel">新密码:</label>
+						<div class="layui-input-block">  
+						  	<input type="password" name="newpass" autocomplete="off" class="layui-input" placeholder="">
+						</div>	
+					</div>
+					<div class="layui-form-item">
+						<label class="mylabel">确认新密码:</label>
+						<div class="layui-input-block">  
+						  	<input type="password" name="quenewpass" autocomplete="off" class="layui-input" placeholder="">
+						</div>	
+					</div>
+					<div class="layui-form-item">
+						<label class="mylabel"></label>
+						<div class="layui-input-block">  
+						  	<button class="layui-btn" style="background-color: #5B90FF!important;" lay-submit lay-filter="ljtj">立即提交</button>
+						  	<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+						</div>
+						
+					</div>
+		</form>
+		<script src="../static/layui-v2.4.5/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			layui.use(["form"],function(){
+				var form = layui.form;
+				
+				form.verify({
+					pass:[
+						/[^(请在右侧进行选择)]/,
+						"请选择收件人"
+					],
+					//username:function(value,item){}value是表单值，item是dom对象
+				})
+				
+				form.on("submit(ljtj)",function(data){//data.form;data.field提交的表单字段{name:value}
+					
+				})
+			})
+		</script>
+	</body>
+</html>

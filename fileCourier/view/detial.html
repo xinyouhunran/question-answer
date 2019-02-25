@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		<div class="topTitle">
-			<span>已发箱</span><span>></span><span>扫除邪恶文件</span>
+			<span><a href="alreadySend.html">已发箱</a></span><span>></span><span id="fileName"></span>
 		</div>
 		<div class="content clearFloat detial">
 			<div class="detialtop">
@@ -22,27 +22,27 @@
 					<img src="../static/img/chakan_doc.png"/>
 				</div>
 				<div class="mes left">
-					<p>刘警官</p>
-					<span>晋中市公安局</span>
+					<p></p>
+					<span></span>
 				</div>
 				<div class="time right">
-					<strong>2018-11-13</strong><span>14:17:02</span>
+					<strong></strong>
 				</div>
 			</div>
 			<div class="detialperson">
-				<p>收件人：<span>吴警官</span><span>14641865106</span></p>
-				<p>发件人：<span class="myself">我自己</span><span>489654189+4</span></p>
+				<!-- <p>收件人：<span>吴警官</span><span>14641865106</span></p>
+				<p>发件人：<span class="myself">我自己</span><span>489654189+4</span></p> -->
 			</div>
 			<div class="detialartical">
-				<h2>扫除邪恶文件</h2>
+				<h2></h2>
 				<div class="myartical">
-					<p>返回肯德基撒发回来好放得开沙发看了会分开积分卡法兰克福了</p>
+					<!-- <p>返回肯德基撒发回来好放得开沙发看了会分开积分卡法兰克福了</p> -->
 				</div>
 			</div>
 			<div class="detialattachment">
 				<h4>附件：</h4>
 				<div id="attachmentList">
-					<div class="doc">
+					<!-- <div class="doc">
 						<div class="left">
 							<img src="../static/img/doc.png"/>
 						</div>
@@ -93,13 +93,13 @@
 						<div class="left yulan">
 							<img src="../static/img/chakan_doc.png"/>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<div class="detialsign">
 				<h4>签阅名单：</h4>
 				<ul>
-					<li>
+					<!-- <li>
 						<img src="../static/img/chakan_xls.png"/>
 						<p>黄警官</p>
 					</li>
@@ -118,9 +118,10 @@
 					<li>
 						<img src="../static/img/chakan_xls.png"/>
 						<p>黄警官</p>
-					</li>
+					</li> -->
 				</ul>
 			</div>
+			
 		</div>
 		<script src="../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../static/layui-v2.4.5/layui/layui.js" type="text/javascript" charset="utf-8"></script>
@@ -130,30 +131,60 @@
 				var upload = layui.upload
 				,$ = layui.jquery;
 				
-				
-				upload.render({
-			    elem: '#test1'
-			    //,url: '/upload/'
-			    ,multiple: true
-			    ,auto:false//不自动上传
-			    ,bindAction:'#fabu'
-			    ,accept:'file'
-			    //,acceptMime: 'image/*'
-			    ,size:2000
-			    ,choose:function(obj){
-			    	//预读本地文件示例，不支持ie8
-			      obj.preview(function(index, file, result){
-			        //$('#test1').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
-			        $('#test1').html(file.name);
-			      });
-			    }
-			    ,before: function(obj){
-			      
-			    }
-			    ,done: function(res){
-			      //上传完毕
-			    }
-			  });
+				var myId = location.search.slice(-1);
+				$.ajax({
+					type:"post",
+					url:"http://10.97.81.26:8000/sendfiles/sendFiles/getSendFilesById",
+					data:{id:myId},
+					success:function(data){
+						//console.log(data);
+						var data = JSON.parse(data);
+						var sendFiles = data.obj;
+						var attachments = data.attachments;
+						var signforfiles = data.signforfiles;
+						//console.log(data);
+						$("#fileName").html(sendFiles.titile);
+						$(".mes>p").html(sendFiles.receiverName);
+						$(".mes>span").html(sendFiles.reiverDeptName);
+						$(".time>strong").html(sendFiles.createTime);
+						$(".detialperson").html(`<p>收件人：<span>${sendFiles.receiverName}</span><span>${sendFiles.reiverDeptCode}</span></p>
+				<p>发件人：<span class="myself">我自己</span><span>${sendFiles.senderDeptCode}</span></p>`);
+						$(".detialartical h2").html(sendFiles.titile);
+						$(".myartical").html(sendFiles.content);
+						
+						if(attachments.length==0){
+							$(".detialattachment").html("");
+						}else{
+							for(var i=0;i<attachments.length;i++){
+								var filetype = attachments[i].pfname.split(".")[1];
+								//console.log(filetype);
+									var attachs = `<div class="doc">
+												<div class="left opeater">
+													<h4>${attachments[i].ofname}</h4>
+													<p>${attachments[i].fileSize}k</p>
+													<a href='http://10.97.81.26:8000${attachments[i].pfname}' target='_blank'>下载</a>
+												</div>
+											</div>`;
+									$("#attachmentList").append(attachs);
+								
+								
+							}
+						}
+						if(signforfiles.length==0){
+							$(".detialsign").html("");
+						}else{
+							for(var i=0;i<signforfiles.length;i++){
+									var signs = `<li>
+													<img src="../static/img/chakan_xls.png"/>
+													<p>${signforfiles[i].signForName}</p>
+												</li>`;
+									$(".detialsign ul").append(signs);
+								
+							}
+						}
+
+					}
+				})
 			})
 		</script>
 	</body>
