@@ -13,25 +13,47 @@
 		<script src="jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			(function($){
+				function changeColor(self){
+					var timer;
+					this.self = self;
+					this.r = 255;
+					this.g = 255;
+					this.b = 255;
+					this.init();
+				}
+				changeColor.prototype = {
+					init:function(){
+						this.timeChange();
+					},
+					timeChange:function(){
+						var _this = this;
+						timer = setInterval(function(){
+							_this.r = parseInt(Math.random()*(255+1),10)
+							_this.g = parseInt(Math.random()*(255+1),10)
+							_this.b = parseInt(Math.random()*(255+1),10)
+							_this.self.css("color",`rgb(${_this.r},${_this.g},${_this.b})`);
+						},1000)
+					}
+				}
 				$.fn.heightLight = function(options){
 					var opts = $.extend({},$.fn.heightLight.default,options);
 					var self = $(this);
 					self.css("color",opts.color);
-					var history = window.history;
+					/*var history = window.history;
 					var len = history.length;
 					history.pushState(null,null,"./wufeng.html");
-					history.
-					console.log(history);
+					console.log(history);*/
+					var cc = new changeColor(self);
 				}
 				$.fn.heightLight.default = {
-					color:"yellow"
+					color:"rgb(255,255,255)"
 				}
 			})(jQuery)
 			
 			$(function(){
-				$("*").heightLight();
+				$("*").heightLight({color:"red"});
 			})
-		
+			
 		</script>
 	</body>
 </html>
