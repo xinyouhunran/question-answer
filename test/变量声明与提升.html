@@ -29,7 +29,7 @@
 	new new Foo().getName();
 	</script>-->
 	<script src="http://www.stc.gov.cn/images/jquery-1.8.3-20180801.min.js"></script>
-	<script>
+	<!--<script>
 			$(function(){
 				$.ajax({
 					url : 'http://app.gd.gov.cn/xxts/pushinfo_json.php',
@@ -58,7 +58,7 @@
 	                } 
 				});
 			})
-		</script>
+		</script>-->
 		<script>
 			/*function test(n){
 				console.log(1);
@@ -106,10 +106,13 @@
 			  }
 			}
 			console.log(isSquare(4));*/
-			var arr=[];
-			console.log(arr);
-			console.log(arr.length);
-			arr[0]=1;
-			arr[1]=2;
+			let user = {
+				count:1,
+				getCount:function(){
+					return ()=>{this.count}
+				}
+			}
+			let fnn = user.getCount;
+			console.log(fnn());
 		</script>
 </html>

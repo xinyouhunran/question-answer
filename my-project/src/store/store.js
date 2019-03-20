@@ -9,13 +9,15 @@ export default new Vuex.Store({
 	  },
 	  mutations: {
 	    increment (state,n) {
+	    	console.log(n);
 	      state.detial = n.detial;
-	     /* console.log(state.detial)*/
+	      console.log(state.detial)
 	    }
 	  },
 	  actions: {
 	    increment (context,n) {
-	      context.commit('increment')
+	    	console.log(n);
+	      context.commit('increment',n)
 	    }
 	  }
 })

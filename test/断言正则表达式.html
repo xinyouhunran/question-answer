@@ -62,5 +62,24 @@
 	   var regExp = /([a-zA-Z]{0,2}\d{2,4}){4}/;
 	   var str = "aa11";
 	   console.log(regExp.test(str));
+	   
+	   /*function verify(str){
+	   	var arr = str.split("");
+	   	if(arr.length>6){
+	   		return false;
+	   	}
+	   	var set = new Set(arr);
+	   	if(set.size==1){
+	   		return false;
+	   	}
+	   	for(var i=0;i<arr.length-1;i++){
+	   		if(parseInt(arr[i])+1!=parseInt(arr[i+1])){
+	   			return str;
+	   		}else{
+	   			return false;
+	   		}
+	   	}
+	   }*/
+	   console.log(verify("111112"));
 	</script>
 </html>
