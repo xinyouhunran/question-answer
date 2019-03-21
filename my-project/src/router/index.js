@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import demo from '@/components/demo'
 import child from '@/components/child'
+import test from '@/components/test'
 
 import 'weui'
 
@@ -24,6 +25,11 @@ export default new Router({
       	name:'child',
       	component:child
       }]
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: test
     },
   ]
 })
