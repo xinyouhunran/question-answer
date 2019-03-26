@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/setting/setting",
+    "pages/detail/detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#666",
+    "navigationBarTitleText": "测试",
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "default",
+    "backgroundColor": "#555555",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50
+  },
+  "debug": true,
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "icon/cart.png",
+        "selectedIconPath": "icon/favorites.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "iconPath": "icon/good-filling.png",
+        "selectedIconPath": "icon/onepage.png",
+        "text": "日志"
+      },
+      {
+        "pagePath": "pages/setting/setting",
+        "iconPath": "icon/good-filling.png",
+        "selectedIconPath": "icon/onepage.png",
+        "text": "设置"
+      }
+    ],
+    "color": "#bc58bc",
+    "selectedColor": "#666666",
+    "borderStyle": "black"
+  }
+}
