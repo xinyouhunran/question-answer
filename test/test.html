@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="{CHARSET}">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		/*function T(arg){
+		console.log(this);
+	    this.a = arg;
+	    return this;
+	}
+	var b = T(3);
+	var a = T(2);
+	console.log(a.a);
+	console.log(b.a);*/
+function T(arg){
+	console.log(this);
+	this.a = arg;
+	return this;
+}
+var b = T(3);
+var c = T(2);
+console.log(b.a,c.a)
+	</script>
+</html>
